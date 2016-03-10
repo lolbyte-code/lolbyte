@@ -1,0 +1,148 @@
+/* Match Details Team Section */
+#matchDetailResult {
+    width: 98%;
+    left: 2px;
+    top: 2px;
+    height: 22px;
+}
+
+#matchDetailResult p {
+    font-size: 105%;
+    top: 12px;
+    left: 2px;
+    color: white;
+    line-height: 0;
+}
+
+#matchDetailTeam1 {
+    top: -17px;
+    left: 2px;
+}
+
+#matchDetailTeam2 {
+    position: absolute;
+    left: 350px;
+    top: 80px;
+}
+
+#matchDetailTeam1, #matchDetailTeam2 {
+    width: 50%;
+}
+
+#matchDetailTeam {
+    top: 2px;
+}
+
+#matchDetailSummoner {
+    height: 48px;
+    width: 98%;
+    margin: 2px;
+    background-color: #14161A;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+#matchDetailSummoner #matchDetailSummonerChampion {
+    width: 40px;
+    border-radius: 50%;
+    top: 2px;
+    left: 1px;
+}
+
+#matchDetailSummoner #summonerName {
+    color: #22A8CE;
+    font-size: 100%;
+}
+
+#matchDetailSummoner #rank {
+    color: white;
+    font-size: 85%;
+}
+
+#matchDetailSummoner #summonerKda {
+    font-size: 105%;
+    color: white;
+    top: -34px;
+    left: 47px;
+}
+
+#matchDetailSummoner #namerank {
+    top: -40px;
+    left: 47px;
+}
+
+#matchDetailSummoner #itemList {
+    display: inline-flex;
+    top: -15px;
+    left: 90px;
+    position: absolute;
+}
+
+#matchDetailSummoner #item {
+    width: 28px;
+    z-index: 1;
+    margin: 2px;
+}
+
+#matchDetailSummoner #trinket {
+    top: 2px;
+    width: 20px;
+}
+
+#matchDetailSummoner #spellList {
+    z-index: 1;
+    top: -89px;
+    left: 48px;
+}
+
+#matchDetailSummoner #spell1, #matchDetailSummoner #spell2 {
+    width: 15px;
+    left: 2px;
+}
+
+#matchDetailSummoner #spell1 {
+    left: -1px;
+}
+
+#matchDetailSummoner #wrapBadgeList {
+    position: absolute;
+    top: 33px;
+    left: 138px;
+    width: 203px;
+    height: 13px;
+}
+
+#matchDetailSummoner #badgeList {
+    float: right;
+    display: inline-flex;
+    height: 10px;
+}
+
+#matchDetailSummoner #badge {
+    width: 13px;
+    margin-right: 1px;
+}
+
+#matchDetailSummoner #badgeText {
+    font-size: 61%;
+    text-align: center;
+    top: -9px;
+}
+
+/* Hover/Animation Effects */
+#matchDetailSummoner:hover {
+    opacity: 1;
+}
+
+.matchDetailSelectedSummoner {
+    opacity: 1;
+    border: 1px solid white;
+}
+
+.matchDetailNotSelectedSummoner {
+    opacity: .6;
+    border: 1px solid #19191B;
+}

@@ -1,0 +1,92 @@
+/* Defaults */
+* {
+    font-family: 'Calibri';
+    position: relative;
+    color: #B2B4BB;
+    font-size: 100%;
+}
+
+/* TODO: add this to a crx css */
+body {
+    font-family: 'Calibri';
+    position: relative;
+    color: #B2B4BB;
+    font-size: 100%;
+}
+
+@font-face {
+    font-family: 'Calibri';
+    src: url('../fonts/Calibri.ttf');
+}
+
+img {
+    width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+::selection {
+    color: #04070E;
+    background: #B2B4BB;
+}
+
+::-moz-selection {
+    color: #04070E;
+    background: #B2B4BB;
+}
+
+/* Entire page */
+.lolbyte {
+    width: 700px;
+    height: 580px;
+    background-image: url('../img/assets/background.png');
+}
+
+/* Summoner page stats */
+.summonerPage {
+    height: 125px;
+    top: 19px;
+}
+
+.statsPage {
+    position: absolute;
+    top: 196px;
+    left: 5px;
+    height: 381px;
+    width: 693px;
+}
+
+/* Buttons */
+#feedbackButton, #favoriteButton, #donationButton, #alertButton,
+#backButton, #backButton2, #forwardButton, #homeButton, #homeButton2,
+#summonerFavoriteButton, #summonerFavoriteButton2 {
+    width: 35px;
+}
+
+#feedbackButton:hover, #donationButton:hover, #alertButton:hover,
+#backButton:hover, #backButton2:hover, #forwardButton:hover, #homeButton:hover,
+#homeButton2:hover,  #inGameButton:hover, #summonerFavoriteButton2:hover {
+    -webkit-filter: brightness(1000%);
+    filter: brightness(1000%);
+}
+
+#rankedToggleButton:hover, #summonerFavoriteButton:hover {
+    -webkit-filter: brightness(120%);
+    filter: brightness(120%);
+}
+
+/* Labels */
+#playerStatsLabel, #rankedStatsLabel, #leagueStatsLabel {
+    font-size: 120%;
+    text-align: left;
+    left: 5px;
+    margin: 0px;
+    top: 2px;
+}

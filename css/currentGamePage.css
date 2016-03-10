@@ -1,0 +1,101 @@
+/* Current Game Page */
+.currentGamePage {
+    width: 696px;
+    height: 125px;
+    background-color: #04070E;
+    border: 2px solid #38B171;
+    position: absolute;
+    top: 95px;
+    z-index: 2;
+}
+
+#inGameButton {
+    left: 459px;
+    top: -110px;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #38B171;
+    color: #38B171;
+    text-align: center;
+    position: absolute;
+}
+
+#inGameButton p {
+    color: #38B171;
+    line-height: 0;
+    font-size: 130%;
+    top: -5px;
+}
+
+.currentGamePage #currentGameInfo {
+    display: inline-flex;
+}
+
+.currentGamePage #currentGameSummoner img {
+    border-radius: 50%;
+    width: 80%;
+    left: 4px;
+}
+
+.currentGamePage .currentGameSummonerTeam100 img {
+    border: 2px solid #22A8CE;
+}
+
+.currentGamePage .currentGameSummonerTeam200 img {
+    border: 2px solid #B2281D;
+}
+
+.currentGamePage .selectedCurrentGameSummonerTeam100 #summonerName {
+    color: #22A8CE;
+}
+
+.currentGamePage .selectedCurrentGameSummonerTeam200 #summonerName {
+    color: #B2281D;
+}
+
+.currentGamePage #currentGameSummoner:hover {
+    -webkit-filter: blur(1px);
+    filter: blur(1px);
+}
+
+.currentGamePage #currentGameSummoner p {
+    line-height: 1;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.currentGamePage #currentGameSummoner {
+    width: 70px;
+    margin: -1px;
+    top: 19px;
+    left: -694px;
+}
+
+.currentGamePage #wrapGameType {
+    width: 696px;
+    height: 18px;
+}
+
+.currentGamePage #gameType {
+    top: -16px;
+    color: #38B171;
+    text-align: center;
+}
+
+.currentGamePage #versusText {
+    top: 24px;
+    left: -695px;
+    color: white;
+}
+
+.currentGamePage #summonerName {
+    color: white;
+    top: -15px;
+    font-size: 80%;
+}
+
+.currentGamePage #rank {
+    color: #B2B4BB;
+    top: -28px;
+    font-size: 80%;
+}

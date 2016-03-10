@@ -1,0 +1,45 @@
+/* Recent Games */
+.recentGames {
+    top: -20px;
+    left: 1px;
+}
+
+.recentGames #recentGamesList #recentGame img {
+    border-radius: 50%;
+    width: 88%;
+    left: 2px;
+}
+
+.recentGames #recentGamesList #recentGame img:hover {
+    -webkit-filter: blur(1px);
+    filter: blur(1px);
+}
+
+.recentGames #recentGamesList p {
+    font-size: 100%;
+    color: white;
+}
+
+.recentGames #recentGamesLabel {
+    font-size: 98%;
+    left: 4px;
+}
+
+.recentGames #recentGamesList #recentGameResult {
+    text-align: center;
+    line-height: 0;
+    top: -27px;
+}
+
+.recentGames #recentGamesList #recentGameKDA {
+    text-align: center;
+    line-height: 0;
+    top: -22px;
+}
+
+.recentGames #rankedToggleButton {
+    width: 10%;
+    top: 2px;
+    left: 528px;
+    z-index: 2;
+}

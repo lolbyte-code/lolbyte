@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LolByte</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/navigationBar.css">
+        <link rel="stylesheet" type="text/css" href="css/alertPage.css">
+        <link rel="stylesheet" type="text/css" href="css/landingPage.css">
+        <link rel="stylesheet" type="text/css" href="css/summonerBar.css">
+        <link rel="stylesheet" type="text/css" href="css/recentGames.css">
+        <link rel="stylesheet" type="text/css" href="css/playerStats.css">
+        <link rel="stylesheet" type="text/css" href="css/rankedStats.css">
+        <link rel="stylesheet" type="text/css" href="css/leagueStats.css">
+        <link rel="stylesheet" type="text/css" href="css/currentGamePage.css">
+        <link rel="stylesheet" type="text/css" href="css/summonerNotFoundPage.css">
+        <link rel="stylesheet" type="text/css" href="css/matchDetailPage.css">
+        <link rel="stylesheet" type="text/css" href="css/matchDetailPageSplash.css">
+        <link rel="stylesheet" type="text/css" href="css/matchDetailTeam.css">
+        <link rel="stylesheet" type="text/css" href="css/owl.css">
+        <link rel="stylesheet" type="text/css" href="css/lolbyte.css">
+        <link rel="stylesheet" type="text/css" href="lib/owl.carousel/assets/owl.carousel.css">
+    </head>
+
+    <body>
+        <div class="lolbyte">
+            <div class="navigationBar">
+                <input id="searchSummoner" type="text" size="20" placeholder="enter summoner name" autocomplete="on"/>
+                <select id="regionSelector">
+                    <option value="NA">NA</option>
+                    <option value="EUW">EUW</option>
+                    <option value="EUNE">EUNE</option>
+                    <option value="KR">KR</option>
+                    <option value="LAN">LAN</option>
+                    <option value="LAS">LAS</option>
+                    <option value="BR">BR</option>
+                    <option value="OCE">OCE</option>
+                    <option value="TR">TR</option>
+                    <option value="RU">RU</option>
+                </select>
+                <a href="#"><div id="searchButton"><p>search</p></div></a>
+                <a href="#"><img id="alertButton" src="img/assets/alertButton.png" alt="alertButton"></a>
+                <a href="#"><img id="feedbackButton" src="img/assets/feedbackButton.png" alt="feedbackButton"></a>
+                <a href="#"><img id="donationButton" src="img/assets/donationButton.png" alt="donationButton"></a>
+                <img id="lolbyteLogo" src="img/assets/logo.png" alt="lolbyteLogo">
+            </div>
+            <div class="alertPage"></div>
+            <div class="landingPage">
+                <div class="favoriteSummoners">
+                    <span id="label">Favorites</span>
+                    <img id="favoriteButton" src="img/assets/favoriteButton.png" alt="favoriteButton">
+                    <img src="img/assets/divider.png" alt="divider">
+                    <div id="summonerList"></div>
+                </div>
+                <div class="recentSummoners">
+                    <span id="label">Recent Searches</span>
+                    <img src="img/assets/divider.png" alt="divider">
+                    <div id="summonerList"></div>
+                </div>
+            </div>
+            <div class="summonerNotFoundPage">
+                <a href="#"><img id="homeButton2" src="img/assets/homeButton.png" alt="homeButton"></a>
+                <a href="#"><img id="backButton2" src="img/assets/backButton.png" alt="backButton"></a>
+                <a href="#"><img id="summonerFavoriteButton2" src="img/assets/favoriteButton.png" alt="favoriteButton"></a>
+
+                <img src="img/other/summonerNotFound.png" alt="summonerNotFound">
+                <p>Summoner Not Found!</p>
+            </div>
+            <div class="summonerPage">
+                <div class="summonerBar">
+                    <a href="#" id="summonerName">Loading...</a>
+                    <span id="summonerLevel"></span>
+                    <a href="#"><img id="summonerFavoriteButton" src="img/assets/favoriteButtonOff.png" alt="summonerFavoriteButton"></a>
+                    <a href="#"><img id="backButton" src="img/assets/backButton.png" alt="favoriteButton"></a>
+                    <a href="#"><img id="forwardButton" src="img/assets/forwardButton.png" alt="favoriteButton"></a>
+                    <a href="#"><img id="homeButton" src="img/assets/homeButton.png" alt="favoriteButton"></a>
+                </div>
+                <div class="recentGames">
+                    <span id="recentGamesLabel">Recent Games</span>
+                    <a id="wrapRankedToggleButton" href="#"></a>
+                </div>
+            </div>
+            <div class="statsPage">
+                <div class="playerStats">
+                    <p id="playerStatsLabel">Player Statistics</p>
+                    <div id="playerStatsList"></div>
+                </div>
+                <div class="rankedStats">
+                    <p id="rankedStatsLabel">Ranked Statistics</p>
+                    <div id="rankedStatsList"></div>
+                </div>
+                <div class="leagueStats">
+                    <p id="leagueStatsLabel">Ranked Information</p>
+                    <div id="leagueStatsList"></div>
+                </div>
+            </div>
+            <a href="#"><div id="inGameButton"><p>in game</p></div></a>
+            <div class="currentGamePage"></div>
+            <div class="matchDetailPage"></div>
+        </div>
+
+        <script src="lib/jquery.js"></script>
+        <script src="lib/owl.carousel/owl.carousel.min.js"></script>
+        <script src="js/localStorage.js"></script>
+        <script src="js/utility.js"></script>
+        <script src="js/system.js"></script>
+        <script src="js/elementUpdater.js"></script>
+        <script src="js/elementBuilder.js"></script>
+        <script src="js/pageBuilder.js"></script>
+        <script src="js/pageUpdater.js"></script>
+        <script src="js/lolbyteAPI.js"></script>
+        <script src="js/clickHandler.js"></script>
+        <script src="js/eventListener.js"></script>
+        <script src="js/lolbyte.js"></script>
+    </body>
+</html>

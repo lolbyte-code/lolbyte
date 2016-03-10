@@ -1,0 +1,76 @@
+/* Navigation Bar */
+.navigationBar {
+    top: 5px;
+    left: 5px;
+}
+
+.navigationBar #searchSummoner {
+    border-color: #B2B4BB;
+    background-color : #04070E;
+    font-size: 110%;
+    height: 28px;
+}
+
+.navigationBar #searchSummoner:focus {
+    outline: none;
+}
+
+.navigationBar #regionSelector {
+    height: 34px;
+    color: #50525D;
+    border-color: #B2B4BB;
+    color: #B2B4BB;
+    background-color : #50525D;
+    font-size: 110%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+}
+
+.navigationBar #regionSelector option {
+    background-color: #04070E;
+}
+
+.navigationBar #regionSelector:hover {
+    border: 1px solid #B2B4BB;
+}
+
+.navigationBar #searchButton {
+    width: 105px;
+    position: absolute;
+    top: -25px;
+    left: 4px;
+}
+
+.navigationBar #searchButton p {
+    text-align: center;
+    color: white;
+    background-color: #B2B4BB;
+    line-height: 34px;
+}
+
+.navigationBar #searchButton:hover {
+    -webkit-filter: drop-shadow(0 0 2px white);
+    filter: drop-shadow(0 0 2px white);
+}
+
+.navigationBar #alertButton {
+    left: 115px;
+    position: absolute;
+}
+
+.navigationBar #feedbackButton {
+    left: 251px;
+    position: absolute;
+}
+
+.navigationBar #donationButton {
+    left: 289px;
+    position: absolute;
+}
+
+.navigationBar #lolbyteLogo {
+    left: 586px;
+    width: 15%;
+    position: absolute;
+}

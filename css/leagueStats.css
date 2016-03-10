@@ -1,0 +1,49 @@
+/* League Stats */
+.statsPage .leagueStats {
+    height: 380px;
+    width: 54%;
+    float: right;
+    top: -374px;
+    left: -3px;
+    background-image: url('../img/assets/leagueStats.png');
+}
+
+.leagueStats p {
+    text-align: center;
+    line-height: 0;
+    font-size: 115%;
+}
+
+.leagueStats #leagueStatsLabel {
+    top: 14px;
+}
+
+.leagueStats #rankBadge {
+    width: 90%;
+    left: 4%;
+}
+
+.leagueStats #rankQueueType {
+    font-size: 125%;
+    text-align: left;
+    left: 5px;
+    color: white;
+    top: 11px;
+}
+
+.leagueStats #rank {
+    font-size: 130%;
+    color: white;
+}
+
+.leagueStats #leaguePoints, .leagueStats #leagueName {
+    color: white;
+}
+
+.leagueStats #calcMMR {
+    color: #22A8CE;
+}
+
+.leagueStats #rankedWL, #rankedWinRatio, #lastSeasonRank {
+    color: #50525D;
+}

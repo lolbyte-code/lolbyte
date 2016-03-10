@@ -1,0 +1,53 @@
+/* Landing Page */
+.landingPage {
+    top: 17px;
+}
+
+.landingPage #favoriteButton {
+    left: -2px;
+    top: 17px;
+}
+
+.landingPage #label {
+    color: #50525D;
+    top: 14px;
+    font-size: 139%;
+}
+
+.landingPage .favoriteSummoners {
+    left: 8px;
+    width: 97%;
+}
+
+.landingPage .recentSummoners {
+    left: 8px;
+    width: 97%;
+}
+
+/* Summoner lists */
+#summonerList {
+    top: 10px;
+}
+
+#summonerList img {
+    border-radius: 50%;
+}
+
+#summonerList p {
+    text-align: center;
+    line-height: 1px;
+    top: 3px;
+}
+
+#summonerList #summonerName {
+    color: #22A8CE;
+}
+
+#summonerList #summonerOrb:hover {
+    -webkit-filter: blur(1px);
+    filter: blur(1px);
+}
+
+#summonerList #summonerOrb img {
+    width: 90%;
+}

@@ -1,0 +1,144 @@
+/* Owl Carousel */
+.landingPage .owl-stage-outer {
+    width: 680px;
+    height: 179px;
+}
+
+.recentGames .owl-stage-outer {
+    width: 699px;
+    height: 82px;
+}
+
+.playerStats .owl-stage-outer {
+    height: 108px;
+}
+
+.rankedStats .owl-stage-outer {
+    height: 177px;
+    width: 312px;
+}
+
+.leagueStats .owl-stage-outer {
+    width: 374px;
+    height: 360px;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    width: 5px;
+    height: 5px;
+    margin: 2px;
+    background: #50525D;
+    display: block;
+    -webkit-backface-visibility: visible;
+    -webkit-transition: opacity 200ms ease;
+    -moz-transition: opacity 200ms ease;
+    -ms-transition: opacity 200ms ease;
+    -o-transition: opacity 200ms ease;
+    transition: opacity 200ms ease;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+
+.owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #22A8CE;
+}
+
+.owl-theme, .owl-dots {
+    text-align: center;
+}
+
+.owl-theme .owl-dots .owl-dot {
+    display: inline-block;
+}
+
+.owl-controls .owl-nav {
+    position: absolute;
+}
+
+/* TODO: hack for CRX... remove hack */
+.owl-controls .owl-nav, .owl-controls .owl-nav .owl-prev, .owl-controls .owl-nav .owl-next {
+    height: 0;
+}
+
+#navLeft, #navRight {
+    opacity: 0;
+    -webkit-backface-visibility: visible;
+    -webkit-transition: opacity 500ms ease;
+    -moz-transition: opacity 500ms ease;
+    -ms-transition: opacity 500ms ease;
+    -o-transition: opacity 500ms ease;
+    transition: opacity 500ms ease;
+}
+
+#navLeft:hover, #navRight:hover {
+    opacity: 1;
+}
+
+.landingPage .owl-prev, .landingPage .owl-next {
+    width: 40px;
+}
+
+.landingPage .owl-prev {
+    top: -113px;
+}
+
+.landingPage .owl-next {
+    top: -119px;
+    left: 650px;
+}
+
+.recentGames .owl-prev, .recentGames .owl-next {
+    width: 30px;
+}
+
+.recentGames .owl-prev {
+    top: -62px;
+}
+
+.recentGames .owl-next {
+    top: -65px;
+    left: 668px;
+}
+
+.playerStats .owl-prev, .playerStats .owl-next {
+    width: 40px;
+}
+
+.playerStats .owl-prev {
+    top: -68px;
+}
+
+.playerStats .owl-next {
+    top: -70px;
+    left: 270px;
+}
+
+.leagueStats .owl-prev, .leagueStats .owl-next {
+    width: 75px;
+}
+
+.leagueStats .owl-prev {
+    top: -210px;
+    left: 2px;
+}
+
+.leagueStats .owl-next {
+    top: -214px;
+    left: 300px;
+}
+
+.rankedStats .owl-prev, .rankedStats .owl-next {
+    width: 40px;
+}
+
+.rankedStats .owl-prev {
+    top: -131px;
+    left: -2px;
+}
+
+.rankedStats .owl-next {
+    top: -135px;
+    left: 270px;
+}
+

@@ -1,0 +1,23 @@
+/* Alert Page */
+.alertPage {
+    background-color: black;
+    border: 2px solid #50525D;
+    position: absolute;
+    width: 30%;
+    z-index: 3;
+    left: 297px;
+    top: 47px;
+    text-align: left;
+    font-size: 120%;
+    display: none;
+}
+
+.alertPage p {
+    color: #B2B4BB;
+    margin: 5px;
+    word-break: break-word;
+}
+
+#alertButton {
+    display: none;
+}

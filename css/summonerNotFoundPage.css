@@ -1,0 +1,41 @@
+/* Summoner Not Found Page */
+.summonerNotFoundPage {
+    text-align: center;
+    height: 545px;
+    display: none;
+}
+
+.summonerNotFoundPage p {
+    padding: 25px;
+    border: 4px solid #B84E4B;
+    background-color: #272425;
+    color: #E9E9E9;
+    font-size: 320%;
+    width: 70%;
+    top: -178px;
+    left: 73px;
+}
+
+.summonerNotFoundPage img {
+    width: 70%;
+    top: 5px;
+    left: 41px;
+}
+
+.summonerNotFoundPage #backButton2 {
+    top: 12px;
+    left: -8px;
+    float: right;
+}
+
+.summonerNotFoundPage #homeButton2 {
+    top: 12px;
+    left: -5px;
+    float: right;
+}
+
+.summonerNotFoundPage #summonerFavoriteButton2 {
+    top: 12px;
+    left: -11px;
+    float: right;
+}
