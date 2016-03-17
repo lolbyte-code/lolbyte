@@ -32,6 +32,7 @@ function loadLolByte(inputObject) {
         showPage('summonerPage')
         showPage('matchDetailPage')
     } else if (inputObject.summonerNotFoundPage) {
+        $('#inGameButton').hide()
         buildSummonerNotFoundPage()
         showPage('summonerNotFoundPage')
     } else if (inputObject.minimizeRecentGame) {

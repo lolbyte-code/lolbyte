@@ -81,4 +81,5 @@ function setRecentGames(recentGames) {
 };
 
 function clearMatchData() {
-    localStorage.removeItem('matchesData')};
+    localStorage.removeItem('matchesData')
+};

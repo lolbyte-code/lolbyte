@@ -1,64 +1,26 @@
 /* Owl Carousel */
-.landingPage .owl-stage-outer {
+.landingPage .owl-wrapper-outer {
     width: 680px;
     height: 179px;
 }
 
-.recentGames .owl-stage-outer {
+.recentGames .owl-wrapper-outer {
     width: 699px;
-    height: 82px;
+    height: 83px;
 }
 
-.playerStats .owl-stage-outer {
-    height: 108px;
-}
-
-.rankedStats .owl-stage-outer {
-    height: 177px;
-    width: 312px;
-}
-
-.leagueStats .owl-stage-outer {
+.leagueStats .owl-wrapper-outer {
     width: 374px;
     height: 360px;
 }
 
-.owl-theme .owl-dots .owl-dot span {
-    width: 5px;
-    height: 5px;
-    margin: 2px;
-    background: #50525D;
-    display: block;
-    -webkit-backface-visibility: visible;
-    -webkit-transition: opacity 200ms ease;
-    -moz-transition: opacity 200ms ease;
-    -ms-transition: opacity 200ms ease;
-    -o-transition: opacity 200ms ease;
-    transition: opacity 200ms ease;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    border-radius: 30px;
+.playerStats .owl-wrapper-outer {
+    height: 108px;
 }
 
-.owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
-    background: #22A8CE;
-}
-
-.owl-theme, .owl-dots {
-    text-align: center;
-}
-
-.owl-theme .owl-dots .owl-dot {
-    display: inline-block;
-}
-
-.owl-controls .owl-nav {
-    position: absolute;
-}
-
-/* TODO: hack for CRX... remove hack */
-.owl-controls .owl-nav, .owl-controls .owl-nav .owl-prev, .owl-controls .owl-nav .owl-next {
-    height: 0;
+.rankedStats .owl-wrapper-outer {
+    height: 177px;
+    width: 312px;
 }
 
 #navLeft, #navRight {
@@ -75,17 +37,25 @@
     opacity: 1;
 }
 
+.owl-buttons {
+    height: 0;
+}
+
 .landingPage .owl-prev, .landingPage .owl-next {
     width: 40px;
 }
 
+.landingPage .owl-buttons {
+    top: -165px;
+}
+
 .landingPage .owl-prev {
-    top: -113px;
+    top: 20px;
 }
 
 .landingPage .owl-next {
-    top: -119px;
-    left: 650px;
+    top: -26px;
+    left: 645px;
 }
 
 .recentGames .owl-prev, .recentGames .owl-next {
@@ -93,25 +63,12 @@
 }
 
 .recentGames .owl-prev {
-    top: -62px;
+    top: -84px;
 }
 
 .recentGames .owl-next {
-    top: -65px;
+    top: -120px;
     left: 668px;
-}
-
-.playerStats .owl-prev, .playerStats .owl-next {
-    width: 40px;
-}
-
-.playerStats .owl-prev {
-    top: -68px;
-}
-
-.playerStats .owl-next {
-    top: -70px;
-    left: 270px;
 }
 
 .leagueStats .owl-prev, .leagueStats .owl-next {
@@ -124,8 +81,21 @@
 }
 
 .leagueStats .owl-next {
-    top: -214px;
+    top: -291px;
     left: 300px;
+}
+
+.playerStats .owl-prev, .playerStats .owl-next {
+    width: 40px;
+}
+
+.playerStats .owl-prev {
+    top: -85px;
+}
+
+.playerStats .owl-next {
+    top: -130px;
+    left: 270px;
 }
 
 .rankedStats .owl-prev, .rankedStats .owl-next {
@@ -138,7 +108,42 @@
 }
 
 .rankedStats .owl-next {
-    top: -135px;
+    top: -177px;
     left: 270px;
 }
 
+/* Defaults */
+.owl-theme .owl-controls {
+    text-align: center;
+}
+
+.owl-theme .owl-controls .owl-page {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+
+.owl-theme .owl-controls .owl-page span {
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin: 5px 2px;
+    filter: Alpha(Opacity=50);
+    opacity: 0.5;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background: #50525D;
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span {
+    filter: Alpha(Opacity=100);
+    opacity: 1;
+    background: #22A8CE;
+}
+
+.owl-item.loading {
+    min-height: 150px;
+    background: url(AjaxLoader.gif) no-repeat center center
+}

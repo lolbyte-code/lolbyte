@@ -6,7 +6,7 @@
     font-size: 100%;
 }
 
-/* TODO: add this to a crx css */
+/* CRX Fix */
 body {
     font-family: 'Calibri';
     position: relative;
@@ -74,7 +74,7 @@ a {
 #backButton:hover, #backButton2:hover, #forwardButton:hover, #homeButton:hover,
 #homeButton2:hover,  #inGameButton:hover, #summonerFavoriteButton2:hover {
     -webkit-filter: brightness(1000%);
-    filter: brightness(1000%);
+    filter: brightness(150%);
 }
 
 #rankedToggleButton:hover, #summonerFavoriteButton:hover {

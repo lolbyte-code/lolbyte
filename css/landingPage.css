@@ -27,6 +27,7 @@
 /* Summoner lists */
 #summonerList {
     top: 10px;
+    height: 200px;
 }
 
 #summonerList img {
@@ -35,12 +36,16 @@
 
 #summonerList p {
     text-align: center;
-    line-height: 1px;
-    top: 3px;
+    line-height: 17px;
 }
 
 #summonerList #summonerName {
     color: #22A8CE;
+    top: -15px;
+}
+
+#summonerList #summonerRegion {
+    top: -32px;
 }
 
 #summonerList #summonerOrb:hover {
@@ -48,6 +53,10 @@
     filter: blur(1px);
 }
 
+#summonerList #summonerOrb {
+    margin: 10px;
+}
+
 #summonerList #summonerOrb img {
-    width: 90%;
+    width: 115px;
 }

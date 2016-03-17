@@ -8,7 +8,7 @@ function feedbackButtonClicked() {
 };
 
 function donationButtonClicked() {
-    window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L3HYQR8RNYPU8&lc=US&item_name=LolByte%20Development&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted')
+    window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L3HYQR8RNYPU8&lc=US&item_name+=LolByte%20Development&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted')
 };
 
 function backButtonClicked() {

@@ -1,5 +1,6 @@
 /* API CALLS */
 function landingPage() {
+    $('#searchSummoner').focus()
     clearLocalCache()
     clearFields()
     var init = {'landingPage': {'favoriteSummoners': getSummoners('favoriteSummoners'), 'recentSummoners': getSummoners('recentSummoners')}}
@@ -56,15 +57,17 @@ function initMatchDetailNameRanks(gameId) {
               gameId + '&id=' +  SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(matchDetailData) {
         if (!matchDetailData.error) {
             var targetGame = getMatchData(matchDetailData.gameId)
-            for (var i = 0; i < targetGame.players.length; i++) {
-                targetGame.players[i].summonerName = matchDetailData.players[targetGame.players[i].participantId - 1].summonerName
-                targetGame.players[i].rank = matchDetailData.players[targetGame.players[i].participantId - 1].rank
-            }
+            if (targetGame) {
+                for (var i = 0; i < targetGame.players.length; i++) {
+                    targetGame.players[i].summonerName = matchDetailData.players[targetGame.players[i].participantId - 1].summonerName
+                    targetGame.players[i].rank = matchDetailData.players[targetGame.players[i].participantId - 1].rank
+                }
 
-            setMatchData(targetGame)
-            if (SELECTED_MATCH == matchDetailData.gameId) {
-                updateMatchDetailSelection(matchDetailData.gameId)
-                updateMatchDetailTeam(matchDetailData.gameId)
+                setMatchData(targetGame)
+                if (SELECTED_MATCH == matchDetailData.gameId) {
+                    updateMatchDetailSelection(matchDetailData.gameId)
+                    updateMatchDetailTeam(matchDetailData.gameId)
+                }
             }
         }
     });
@@ -101,7 +104,7 @@ function initAlertPage() {
     $.getJSON(API_BASE_URL + '?data=Alerts', function(alertData) {
         if (alertData['alert']) {
             var alertMessage = document.createElement('p')
-            alertMessage.innerHTML = alertData['alert']
+            $(alertMessage).html(alertData['alert'])
             $('.alertPage').append(alertMessage)
             $('#alertButton').show()
         }

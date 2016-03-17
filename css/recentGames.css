@@ -1,13 +1,16 @@
 /* Recent Games */
 .recentGames {
     top: -20px;
-    left: 1px;
+    height: 114px;
+}
+
+#recentGame {
+    margin: 2px;
 }
 
 .recentGames #recentGamesList #recentGame img {
     border-radius: 50%;
-    width: 88%;
-    left: 2px;
+    width: 62px;
 }
 
 .recentGames #recentGamesList #recentGame img:hover {
@@ -28,13 +31,13 @@
 .recentGames #recentGamesList #recentGameResult {
     text-align: center;
     line-height: 0;
-    top: -27px;
+    top: -33px;
 }
 
 .recentGames #recentGamesList #recentGameKDA {
     text-align: center;
     line-height: 0;
-    top: -22px;
+    top: -28px;
 }
 
 .recentGames #rankedToggleButton {

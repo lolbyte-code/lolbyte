@@ -6,7 +6,7 @@ function updateMostPlayedChampsSection(rankedData) {
         $('.rankedStats #rankedStatsList').append(buildRankedStatElement(rankedData.rankedStats[rankedStat]))
     }
 
-    loadOwlCarousel('rankedStats', 'rankedStatsList', {'items': 1, 'margin': 0})
+    loadOwlCarousel('rankedStats', 'rankedStatsList', {'items': 1})
     setOwlVisibility('rankedStats', 'rankedStatsList', 1)
 };
 
@@ -16,7 +16,7 @@ function updateLeaguePage(leagueData) {
     for (var league in leagueData.leagueStats)
         $('.leagueStats #leagueStatsList').append(buildLeagueElement(leagueData.leagueStats[league]))
 
-    loadOwlCarousel('leagueStats', 'leagueStatsList', {'items': 1, 'margin': 0})
+    loadOwlCarousel('leagueStats', 'leagueStatsList', {'items': 1})
     setOwlVisibility('leagueStats', 'leagueStatsList', 1)
 };
 

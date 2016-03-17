@@ -36,6 +36,10 @@ function buildSummonerPage(pageData) {
 
     // Build ranked toggle button
     $('.recentGames #wrapRankedToggleButton').html(buildRankedToggleButtonElement())
+
+    if (isFirefox && OSName == 'Windows') {
+        $('.recentGames #recentGamesList #recentGameKDA').css('top', '-25px')
+    }
 };
 
 function buildSummonerNotFoundPage() {
@@ -76,11 +80,15 @@ function buildMatchDetailsPage(pageData) {
     var team2Win = pageData.team2Win
     $('#matchDetailTeam1 #matchDetailResult').css('background-color', team1Win ? '#22A8CE' : '#B2281D')
     $('#matchDetailTeam2 #matchDetailResult').css('background-color', team2Win ? '#22A8CE' : '#B2281D')
-    $('#matchDetailTeam1 #matchDetailSummonerChampion').css('border', '2px solid ' + (team1Win ? '#22A8CE' : '#B2281D'))
-    $('#matchDetailTeam2 #matchDetailSummonerChampion').css('border', '2px solid ' + (team2Win ? '#22A8CE' : '#B2281D'))
 
     if (OSName == 'Windows') {
         $('#matchDetailSummoner #spellList').css('top', '-87px')
+        $('#matchDetailSelection #playerInfo').css('top', '-5px')
         $('#matchDetailSummoner #badgeText').css('line-height', '1')
+    }
+
+    if (isFirefox && OSName == 'Windows') {
+        $('#matchDetailSummoner #spellList').css('top', '-90px')
+        $('#matchDetailSummoner #namerank').css('top', '-42px')
     }
 };

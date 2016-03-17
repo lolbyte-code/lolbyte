@@ -51,6 +51,7 @@
 .rankedStats #mostPlayedChamp p {
     text-align: center;
     line-height: 0;
+    top: -6px;
 }
 
 .rankedStats #championName {

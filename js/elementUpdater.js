@@ -51,7 +51,7 @@ function updateMatchDetailSelectionElement(gameId) {
         badge.id = 'badge'
         var badgeText = document.createElement('p')
         badgeText.id = 'badgeText'
-        badgeText.innerHTML = selectedSummoner.badges[j].big
+        $(badgeText).html(selectedSummoner.badges[j].big)
         var badgeColor = selectedSummoner.badges[j]['color']
         $(badgeText).css('border', '1px solid ' + badgeColor)
         $(badgeText).css('color', badgeColor)
