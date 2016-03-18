@@ -1,5 +1,5 @@
 /* Player Stats */
-.playerStats {
+.statsPage .playerStats {
     height: 152px;
     width: 45%;
     background-image: url('../img/assets/playerStats.png');

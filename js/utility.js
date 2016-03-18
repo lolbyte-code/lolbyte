@@ -44,7 +44,7 @@ function setOwlVisibility(className, listName, maxItemCount) {
 
 /* Helper functions */
 function FormatText(text) {
-    return text.toLowerCase().replace(/[^a-zA-Z0-9\u00C0-\u017F]/g, '');
+    return text.toLowerCase().replace(/[^a-zA-Z0-9\u00C0-\u017F]/g, '')
 };
 
 /* Setters/getters for selected summoner */
@@ -150,11 +150,11 @@ function setSearch(summonerName, region) {
     region ? $('#regionSelector').val(region):''
 };
 
-function getSearch() {
-    var searchedSummoner = FormatText($('#searchSummoner').val())
-    var selectedRegion = $('#regionSelector').val().toLowerCase()
+function getSearch(summonerOverride) {
+    var searchedSummoner = summonerOverride ? summonerOverride.summonerName : $('#searchSummoner').val()
+    var selectedRegion = summonerOverride ? summonerOverride.region : $('#regionSelector').val()
 
-    return {"summonerName": searchedSummoner, "region": selectedRegion}
+    return {"summonerName": FormatText(searchedSummoner), "region": selectedRegion.toLowerCase()}
 };
 
 function minimizeRecentGame() {

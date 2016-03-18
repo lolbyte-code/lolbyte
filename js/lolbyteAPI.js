@@ -7,12 +7,12 @@ function landingPage() {
     loadLolByte(init)
 };
 
-function summonerPage(navigationFlag) {
-    var summonerQuery = getSearch()
+function summonerPage(notUpdateQueue, summonerOverride) {
+    var summonerQuery = getSearch(summonerOverride)
     $.getJSON(API_BASE_URL + '?region=' + summonerQuery.region.toLowerCase() + '&data=SearchSummoner&ranked=' +
               RANKED_MODE + '&name=' + summonerQuery.summonerName + '&size=' + MAX_GAME_COUNT, function(summonerData) {
         if (!summonerData.error) {
-            !navigationFlag ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
+            !notUpdateQueue ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
             updateRecentSummoners(summonerData.searchSummonerPage.summonerObject)
             loadLolByte(summonerData)
 

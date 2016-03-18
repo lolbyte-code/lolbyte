@@ -81,11 +81,11 @@ function recentGameClicked(recentGameClickedData) {
 function rankedToggleButtonClicked() {
     if (RANKED_MODE) {
         RANKED_MODE = 0
-        summonerPage()
+        summonerPage(true, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER])
         $('#rankedToggleButton').attr('src', 'img/assets/rankedToggleOff.png')
     } else {
         RANKED_MODE = 1
-        summonerPage()
+        summonerPage(true, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER])
         $('#rankedToggleButton').attr('src', 'img/assets/rankedToggleOn.png')
     }
 };

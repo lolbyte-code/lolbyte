@@ -38,7 +38,8 @@ function buildSummonerPage(pageData) {
     $('.recentGames #wrapRankedToggleButton').html(buildRankedToggleButtonElement())
 
     if (isFirefox && OSName == 'Windows') {
-        $('.recentGames #recentGamesList #recentGameKDA').css('top', '-25px')
+        $('.recentGames #recentGamesList #recentGameKDA').css('top', '-30px')
+        $('.recentGames #recentGamesList #recentGameResult').css('top', '-35px')
     }
 };
 
