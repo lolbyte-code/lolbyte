@@ -11,6 +11,15 @@ function getSummoners(listType) {
     return listType == 'recentSummoners' ? getLocal('recentSummoners') : getLocal('favoriteSummoners')
 };
 
+function getLatestRegion() {
+    var summoners = getSummoners('recentSummoners')
+    if (summoners.length > 0) {
+        return summoners[0].region
+    } else {
+        return 'NA'
+    }
+};
+
 function getSummoner(summonerId, listType) {
     var summoners = getSummoners(listType)
     for (var i = 0; i < summoners.length; i++) {

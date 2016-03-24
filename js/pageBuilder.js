@@ -1,5 +1,8 @@
 /*** PAGE BUILDERS ***/
 function buildLandingPage(pageData) {
+    // Set region to region of last searched summoner
+    $('#regionSelector').val(getLatestRegion())
+
     // Refresh lists using Owl
     refreshOwlList($('.recentSummoners #summonerList'), 'summonerList', $('.recentSummoners'))
     refreshOwlList($('.favoriteSummoners #summonerList'), 'summonerList', $('.favoriteSummoners'))
