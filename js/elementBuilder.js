@@ -275,28 +275,34 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     trinket.appendChild(trinketImage)
     itemList.appendChild(trinket)
 
-    var stats = document.createElement('div')
-    stats.id = 'stats'
+    var stats1 = document.createElement('div')
+    stats1.id = 'stats1'
+    var stats2 = document.createElement('div')
+    stats2.id = 'stats2'
     var kdaLong = document.createElement('p')
     kdaLong.id = 'kdaLong'
     $(kdaLong).html(selectedSummoner.kdaLong)
-    stats.appendChild(kdaLong)
+    stats1.appendChild(kdaLong)
     var kdaShort = document.createElement('p')
     kdaShort.id = 'kdaShort'
     $(kdaShort).html(selectedSummoner.kdaShort)
-    stats.appendChild(kdaShort)
+    stats1.appendChild(kdaShort)
     var level = document.createElement('p')
     level.id = 'level'
     $(level).html(selectedSummoner.level)
-    stats.appendChild(level)
+    stats1.appendChild(level)
     var cs = document.createElement('p')
     cs.id = 'cs'
-    $(cs).html(selectedSummoner.cs)
-    stats.appendChild(cs)
+    $(cs).html(selectedSummoner.cs + ',')
+    stats2.appendChild(cs)
     var gold = document.createElement('p')
     gold.id = 'gold'
-    $(gold).html(selectedSummoner.gold)
-    stats.appendChild(gold)
+    $(gold).html(selectedSummoner.gold + ',')
+    stats2.appendChild(gold)
+    var kp = document.createElement('p')
+    kp.id = 'kp'
+    $(kp).html(selectedSummoner.killParticipation)
+    stats2.appendChild(kp)
 
     var spellList = document.createElement('div')
     spellList.id = 'spellList'
@@ -349,7 +355,8 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     wrapBadgeList.appendChild(badgeList)
 
     matchDetailSelectionElement.appendChild(itemList)
-    matchDetailSelectionElement.appendChild(stats)
+    matchDetailSelectionElement.appendChild(stats1)
+    matchDetailSelectionElement.appendChild(stats2)
     matchDetailSelectionElement.appendChild(spellList)
     matchDetailSelectionElement.appendChild(wrapPlayerInfo)
     matchDetailSelectionElement.appendChild(wrapBadgeList)
@@ -366,8 +373,55 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     matchDetailResult.id = 'matchDetailResult'
     var matchDetailResultText = document.createElement('p')
     var teamWin = matchDetailData['team' + teamNumber + 'Win']
-    $(matchDetailResultText).html(teamWin ? 'Victory' : 'Defeat')
+    $(matchDetailResultText).html(teamWin ? 'Victory  ' : 'Defeat  ')
     matchDetailResult.appendChild(matchDetailResultText)
+
+    var towerKills = document.createElement('div')
+    towerKills.id = 'towerKills'
+    var towerKillIcon = document.createElement('img')
+    towerKillIcon.id = 'towerKillIcon'
+    towerKillIcon.src = 'img/assets/tower.png'
+    towerKills.appendChild(towerKillIcon)
+    var towerKillCount = document.createElement('p')
+    towerKillCount.id = 'towerKillCount'
+    $(towerKillCount).html(matchDetailData.teams[teamNumber - 1].towerKills)
+    towerKills.appendChild(towerKillCount)
+    $(matchDetailResult).append(towerKills)
+
+    var dragonKills = document.createElement('div')
+    dragonKills.id = 'dragonKills'
+    var dragonKillIcon = document.createElement('img')
+    dragonKillIcon.id = 'dragonKillIcon'
+    dragonKillIcon.src = 'img/assets/dragon.png'
+    dragonKills.appendChild(dragonKillIcon)
+    var dragonKillCount = document.createElement('p')
+    dragonKillCount.id = 'dragonKillCount'
+    $(dragonKillCount).html(matchDetailData.teams[teamNumber - 1].dragonKills)
+    dragonKills.appendChild(dragonKillCount)
+    $(matchDetailResult).append(dragonKills)
+
+    var baronKills = document.createElement('div')
+    baronKills.id = 'baronKills'
+    var baronKillIcon = document.createElement('img')
+    baronKillIcon.id = 'baronKillIcon'
+    baronKillIcon.src = 'img/assets/baron.png'
+    baronKills.appendChild(baronKillIcon)
+    var baronKillCount = document.createElement('p')
+    baronKillCount.id = 'baronKillCount'
+    $(baronKillCount).html(matchDetailData.teams[teamNumber - 1].baronKills)
+    baronKills.appendChild(baronKillCount)
+    $(matchDetailResult).append(baronKills)
+
+    var teamKda = document.createElement('p')
+    teamKda.id = 'teamKda'
+    $(teamKda).html(matchDetailData.teams[teamNumber - 1].kda)
+    $(matchDetailResult).append(teamKda)
+
+    var teamGold = document.createElement('p')
+    teamGold.id = 'teamGold'
+    $(teamGold).html('$' + matchDetailData.teams[teamNumber - 1].gold)
+    $(matchDetailResult).append(teamGold)
+
     var matchDetailTeam = document.createElement('div')
     matchDetailTeam.id = 'matchDetailTeam'
     $('#matchDetailTeam' + teamNumber + ' #matchDetailResult').css('background-color', teamWin ? '#38B171' : '#B2281D')

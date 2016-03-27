@@ -48,7 +48,7 @@
 }
 
 .matchDetailPage #matchDetailSelection #item {
-    width: 10%;
+    width: 9%;
     margin: 1px;
 }
 
@@ -61,41 +61,51 @@
     width: 100%;
 }
 
-.matchDetailPage #matchDetailSelection #stats {
+.matchDetailPage #matchDetailSelection #stats1 {
     display: inline-flex;
-    top: 45px;
+    top: 35px;
     left: 2px;
     position: absolute;
 }
 
-.matchDetailPage #matchDetailSelection #stats p {
+.matchDetailPage #matchDetailSelection #stats1 p {
     margin: 2px;
 }
 
+.matchDetailPage #matchDetailSelection #stats2 {
+    display: inline-flex;
+    position: absolute;
+    left: 2px;
+    top: 53px;
+}
+
+.matchDetailPage #matchDetailSelection #stats2 p {
+    margin: 2px;
+    color: #50525D;
+}
+
 .matchDetailPage #matchDetailSelection #kdaLong {
-    font-size: 130%;
+    font-size: 120%;
     color: white;
 }
 
 .matchDetailPage #matchDetailSelection #kdaShort {
-    color: #50525D;
-    top: 3px;
     font-size: 110%;
+    left: 7px;
 }
 
 .matchDetailPage #matchDetailSelection #level {
-    top: 3px;
-    font-size: 110%
+    font-size: 103%;
+    left: 15px;
+    top: 1px;
 }
 
 .matchDetailPage #matchDetailSelection #cs {
     font-size: 90%;
-    top: 5px;
 }
 
 .matchDetailPage #matchDetailSelection #gold {
     font-size: 90%;
-    top: 5px;
 }
 
 .matchDetailPage #matchDetailSelection #spellList {
@@ -103,6 +113,10 @@
     float: right;
     top: 3px;
     left: -6px;
+}
+
+.matchDetailPage #matchDetailSelection #kp {
+    font-size: 90%;
 }
 
 .matchDetailPage #matchDetailSelection #spell1, .matchDetailPage #matchDetailSelection #spell2 {
@@ -124,7 +138,7 @@
 
 .matchDetailPage #matchDetailSelection #wrapBadgeList {
     position: absolute;
-    top: 49px;
+    top: 45px;
     left: 315px;
     z-index: 2;
 }
