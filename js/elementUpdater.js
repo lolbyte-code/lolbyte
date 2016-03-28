@@ -42,6 +42,7 @@ function updateMatchDetailSelectionElement(gameId) {
     $('#matchDetailSelection #playerInfo #summonerName').html(selectedSummoner.summonerName)
     $('#matchDetailSelection #playerInfo #rank').html(selectedSummoner.rank)
     $('#matchDetailSelection #playerInfo #championName').html(selectedSummoner.championName)
+    $('#matchDetailSelection #playerInfo').off('click')
     $('#matchDetailSelection #playerInfo').click({'summonerName': selectedSummoner.summonerName}, matchDetailSummonerPlayerInfoClicked)
 
     $('#wrapBadgeList').empty()

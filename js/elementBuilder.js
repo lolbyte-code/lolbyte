@@ -293,11 +293,11 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     stats1.appendChild(level)
     var cs = document.createElement('p')
     cs.id = 'cs'
-    $(cs).html(selectedSummoner.cs + ',')
+    $(cs).html(selectedSummoner.cs)
     stats2.appendChild(cs)
     var gold = document.createElement('p')
     gold.id = 'gold'
-    $(gold).html(selectedSummoner.gold + ',')
+    $(gold).html(selectedSummoner.gold)
     stats2.appendChild(gold)
     var kp = document.createElement('p')
     kp.id = 'kp'

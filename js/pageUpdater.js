@@ -31,6 +31,7 @@ function updateMatchDetailSelection(gameId) {
     var selectedSummoner = getSelectedSummoner(gameId)
     $('#playerInfo #summonerName').html(selectedSummoner.summonerName)
     $('#playerInfo #rank').html(selectedSummoner.rank)
+    $('#matchDetailSelection #playerInfo').off('click')
     $('#matchDetailSelection #playerInfo').click({'summonerName': selectedSummoner.summonerName}, matchDetailSummonerPlayerInfoClicked)
 };
 
