@@ -4,7 +4,7 @@ function buildSummonerElement(summonerData) {
     summonerElement.id = 'summonerOrb'
     $(summonerElement).click(function(){ summonerOrbClicked(summonerData.summonerName, summonerData.region) })
     var summonerIcon = document.createElement('img')
-    summonerIcon.src = 'http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/' + summonerData.summonerIcon + '.png'
+    summonerIcon.src = 'http://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/' + summonerData.summonerIcon + '.png'
     var summonerName = document.createElement('p')
     summonerName.id = 'summonerName'
     $(summonerName).html(summonerData.summonerName)
