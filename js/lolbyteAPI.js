@@ -49,7 +49,8 @@ function retrieveMatchData(gameId) {
 
 function matchDetailPage(gameId, teamId, championId) {
     setSelectedSummonerByChampionTeamId(gameId, championId, teamId)
-    loadLolByte({'matchDetailPage': getMatchData(gameId)})
+    if (getMatchData(gameId).players.length)
+        loadLolByte({'matchDetailPage': getMatchData(gameId)})
 };
 
 function initMatchDetailNameRanks(gameId) {
