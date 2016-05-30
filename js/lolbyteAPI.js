@@ -48,9 +48,13 @@ function retrieveMatchData(gameId) {
 };
 
 function matchDetailPage(gameId, teamId, championId) {
-    setSelectedSummonerByChampionTeamId(gameId, championId, teamId)
-    if (getMatchData(gameId).players.length)
+    // Only show page if the match exists
+    if (getMatchData(gameId)) {
+        setSelectedSummonerByChampionTeamId(gameId, championId, teamId)
         loadLolByte({'matchDetailPage': getMatchData(gameId)})
+    } else {
+        alert('Game data not found.')
+    }
 };
 
 function initMatchDetailNameRanks(gameId) {
