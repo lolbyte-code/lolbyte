@@ -1,5 +1,5 @@
 /* PAGE UPDATER */
-function updateMostPlayedChampsSection(rankedData) {
+function updateMostPlayedChampionsSection(rankedData) {
     refreshOwlList($('#rankedStatsList'), 'rankedStatsList', $('.rankedStats'))
 
     for (var rankedStat in rankedData.rankedStats) {

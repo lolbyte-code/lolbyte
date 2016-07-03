@@ -91,7 +91,7 @@ function initMostPlayedChampions() {
     $.getJSON(API_BASE_URL + '?region=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '&data=SearchSummoner&mpc=1&ranked=' +
               RANKED_MODE + '&name=' + FormatText(SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerName), function(rankedData) {
         if (!rankedData.error) {
-            updateMostPlayedChampsSection(rankedData)
+            updateMostPlayedChampionsSection(rankedData)
         }
     });
 };

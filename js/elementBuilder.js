@@ -193,33 +193,69 @@ function buildRankedStatElement(rankedStatData) {
     var rankedStatType = document.createElement('p')
     rankedStatType.id = 'rankedStatType'
     $(rankedStatType).html(rankedStatData.rankedStatType)
-    var mostPlayedChamps = document.createElement('div')
-    mostPlayedChamps.id = 'mostPlayedChamps'
-    for (champ in rankedStatData.mostPlayedChampions) {
-        var currentChamp = rankedStatData.mostPlayedChampions[champ]
-        var mostPlayedChamp = document.createElement('div')
-        mostPlayedChamp.id = 'mostPlayedChamp'
-        var champPic = document.createElement('img')
-        champPic.src = 'img/resources/champions/' + currentChamp.championId + '.png'
-        var championName = document.createElement('p')
-        championName.id = 'championName'
-        $(championName).html(currentChamp.championName)
-        var champWL = document.createElement('p')
-        champWL.id = 'champWL'
-        $(champWL).html(currentChamp.winloss)
-        var champKDA = document.createElement('p')
-        champKDA.id = 'champKDA'
-        $(champKDA).html(currentChamp.kda)
 
-        mostPlayedChamp.appendChild(champPic)
-        mostPlayedChamp.appendChild(championName)
-        mostPlayedChamp.appendChild(champWL)
-        mostPlayedChamp.appendChild(champKDA)
-        mostPlayedChamps.appendChild(mostPlayedChamp)
+    if (rankedStatData.mostPlayedChampions) {
+        var mostPlayedChampions = document.createElement('div')
+        mostPlayedChampions.id = 'mostPlayedChampions'
+        for (champion in rankedStatData.mostPlayedChampions) {
+            var currentChampion = rankedStatData.mostPlayedChampions[champion]
+            var mostPlayedChampion = document.createElement('div')
+            mostPlayedChampion.id = 'mostPlayedChampion'
+            var championImage = document.createElement('img')
+            championImage.src = 'img/resources/champions/' + currentChampion.championId + '.png'
+            var championName = document.createElement('p')
+            championName.id = 'championName'
+            $(championName).html(currentChampion.championName)
+            var championWinLoss = document.createElement('p')
+            championWinLoss.id = 'championWinLoss'
+            $(championWinLoss).html(currentChampion.winloss)
+            var championWinLossPercentage = document.createElement('p')
+            championWinLossPercentage.id = 'championWinLossPercentage'
+            $(championWinLossPercentage).html(currentChampion.winlossPercentage)
+            var championKDA = document.createElement('p')
+            championKDA.id = 'championKDA'
+            $(championKDA).html(currentChampion.kda)
+
+            mostPlayedChampion.appendChild(championImage)
+            mostPlayedChampion.appendChild(championName)
+            mostPlayedChampion.appendChild(championWinLossPercentage)
+            mostPlayedChampion.appendChild(championWinLoss)
+            mostPlayedChampion.appendChild(championKDA)
+            mostPlayedChampions.appendChild(mostPlayedChampion)
+        }
+
+        rankedStatElement.appendChild(rankedStatType)
+        rankedStatElement.appendChild(mostPlayedChampions)
+    } else {
+        var topChampions = document.createElement('div')
+        topChampions.id = 'topChampions'
+        for (champion in rankedStatData.topChampions) {
+            var currentChampion = rankedStatData.topChampions[champion]
+            var topChampion = document.createElement('div')
+            topChampion.id = 'topChampion'
+            var championImage = document.createElement('img')
+            championImage.src = 'img/resources/champions/' + currentChampion.championId + '.png'
+            $(championImage).css('border', '3px solid ' + currentChampion.masteryBorder)
+            var championName = document.createElement('p')
+            championName.id = 'championName'
+            $(championName).html(currentChampion.championName)
+            var championLevel = document.createElement('p')
+            championLevel.id = 'championLevel'
+            $(championLevel).html(currentChampion.championLevel)
+            var championPoints = document.createElement('p')
+            championPoints.id = 'championPoints'
+            $(championPoints).html(currentChampion.championPoints)
+
+            topChampion.appendChild(championImage)
+            topChampion.appendChild(championName)
+            topChampion.appendChild(championLevel)
+            topChampion.appendChild(championPoints)
+            topChampions.appendChild(topChampion)
+        }
+
+        rankedStatElement.appendChild(rankedStatType)
+        rankedStatElement.appendChild(topChampions)
     }
-
-    rankedStatElement.appendChild(rankedStatType)
-    rankedStatElement.appendChild(mostPlayedChamps)
 
     return rankedStatElement
 };

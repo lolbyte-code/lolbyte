@@ -7,9 +7,15 @@
     background-image: url('../img/assets/rankedStats.png');
 }
 
-.rankedStats #rankedStatsList #mostPlayedChamp img {
+.rankedStats #rankedStatsList #mostPlayedChampion img {
     border-radius: 50%;
-    border: 2px solid #B2B4BB;
+    border: 3px solid #B2B4BB;
+    width: 89px;
+}
+
+.rankedStats #rankedStatsList #topChampion img {
+    border-radius: 50%;
+    border: 3px solid #B2B4BB;
     width: 89px;
 }
 
@@ -36,34 +42,67 @@
     height: 180px;
 }
 
-.rankedStats #mostPlayedChamps {
+.rankedStats #mostPlayedChampions {
     width: 270px;
     left: -3px;
-    top: -20px;
+    top: -24px;
     display: inline-flex;
 }
 
-.rankedStats #mostPlayedChamp {
+.rankedStats #mostPlayedChampion {
     width: 100px;
     margin: 5px;
 }
 
-.rankedStats #mostPlayedChamp p {
+.rankedStats #mostPlayedChampion p {
     text-align: center;
     line-height: 0;
-    top: -6px;
+    top: -11px;
 }
 
 .rankedStats #championName {
     font-size: 105%;
 }
 
-.rankedStats #champWL {
-    color: #22A8CE;
-    font-size: 90%;
+.rankedStats #championWinLoss {
+    color: white;
+    font-size: 82%;
 }
 
-.rankedStats #champKDA {
+.rankedStats #championWinLossPercentage {
+    color: #22A8CE;
+    font-size: 82%;
+}
+
+.rankedStats #championKDA {
+    color: #B2B4BB;
+    font-size: 80%;
+}
+
+.rankedStats #topChampions {
+    width: 270px;
+    left: -3px;
+    top: -24px;
+    display: inline-flex;
+}
+
+.rankedStats #topChampion {
+    width: 100px;
+    margin: 5px;
+}
+
+.rankedStats #topChampion p {
+    text-align: center;
+    line-height: 0;
+    top: -11px;
+}
+
+.rankedStats #championLevel {
+    color: #22A8CE;
+    font-size: 82%;
+}
+
+.rankedStats #championPoints {
     color: white;
-    font-size: 84%;
+    font-size: 80%;
 }
