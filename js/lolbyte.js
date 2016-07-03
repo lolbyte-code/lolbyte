@@ -10,6 +10,7 @@ var CURRENT_SUMMONER = -1
 var RANKED_MODE = 0
 
 /* INIT CODE */
+clearInvalidSavedSummoners()
 landingPage()
 initAlertPage()
 

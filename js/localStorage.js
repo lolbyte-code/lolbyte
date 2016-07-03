@@ -42,6 +42,13 @@ function updateRecentSummoners(summonerObject) {
     setLocal('recentSummoners', recentSummoners)
 };
 
+function removeRecentSummoner(summonerObject) {
+    var recentSummoners = getLocal('recentSummoners')
+    var targetSummoner = getSummoner(summonerObject.summonerId, 'recentSummoners')
+    recentSummoners.splice(targetSummoner['index'], 1)
+    setLocal('recentSummoners', recentSummoners)
+};
+
 function addFavoriteSummoner(summonerObject) {
     var favoriteSummoners = getLocal('favoriteSummoners')
     favoriteSummoners.unshift(summonerObject)

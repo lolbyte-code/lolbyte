@@ -123,6 +123,22 @@ function clearFields() {
     setSearch('')
 };
 
+function clearInvalidSavedSummoners() {
+    // Remove any saved summoners without a summoner name
+    var recentSummoners = getSummoners('recentSummoners')
+    var favoriteSummoners = getSummoners('favoriteSummoners')
+
+    for (var summoner in recentSummoners) {
+        var recentSummoner = recentSummoners[summoner]
+        !recentSummoner.summonerName ? removeRecentSummoner(recentSummoner) :''
+    }
+
+    for (var summoner in favoriteSummoners) {
+        var favoriteSummoner = favoriteSummoners[summoner]
+        !favoriteSummoner.summonerName ? removeFavoriteSummoner(favoriteSummoner) :''
+    }
+};
+
 /* UI functions */
 function hideAllPages() {
     $('.landingPage').hide()
