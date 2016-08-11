@@ -19,15 +19,35 @@ function updateMatchDetailSelectionElement(gameId) {
     for (var i = 0; i < selectedSummoner.items.length; i++) {
         var item = document.createElement('li')
         item.id = 'item'
+        if (selectedSummoner.items[i]['id']) {
+            $(item).qtip({
+                content: {
+                    title: selectedSummoner.items[i]['name'],
+                    text: selectedSummoner.items[i]['description']
+                },
+                style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
+                position: { viewport: $('.lolbyte') }
+            });
+        }
         var itemImage = document.createElement('img')
-        itemImage.src = 'img/resources/items/' + selectedSummoner.items[i] + '.png'
+        itemImage.src = 'img/resources/items/' + selectedSummoner.items[i]['id'] + '.png'
         item.appendChild(itemImage)
         $('#matchDetailSelection #itemList').append(item)
     }
     var trinket = document.createElement('li')
     trinket.id = 'trinket'
+    if (selectedSummoner.trinket['id']) {
+        $(trinket).qtip({
+            content: {
+                title: selectedSummoner.trinket['name'],
+                text: selectedSummoner.trinket['description']
+            },
+            style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
+            position: { viewport: $('.lolbyte') }
+        });
+    }
     var trinketImage = document.createElement('img')
-    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket + '.png'
+    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket['id'] + '.png'
     trinket.appendChild(trinketImage)
     $('#matchDetailSelection #itemList').append(trinket)
 

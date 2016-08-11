@@ -162,6 +162,7 @@
     z-index: 1;
     top: -89px;
     left: 48px;
+    width: 33px;
 }
 
 #matchDetailSummoner #spell1, #matchDetailSummoner #spell2 {

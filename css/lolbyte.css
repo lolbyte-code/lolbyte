@@ -90,3 +90,9 @@ a {
     margin: 0px;
     top: 2px;
 }
+
+/* Qtip */
+.qtip-content, .qtip-title {
+    font-family: 'Calibri';
+    color: white;
+}

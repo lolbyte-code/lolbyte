@@ -4,7 +4,7 @@ function buildSummonerElement(summonerData) {
     summonerElement.id = 'summonerOrb'
     $(summonerElement).click(function(){ summonerOrbClicked(summonerData.summonerName, summonerData.region) })
     var summonerIcon = document.createElement('img')
-    summonerIcon.src = 'http://ddragon.leagueoflegends.com/cdn/6.14.1/img/profileicon/' + summonerData.summonerIcon + '.png'
+    summonerIcon.src = 'img/resources/icons/' + summonerData.summonerIcon + '.png'
     var summonerName = document.createElement('p')
     summonerName.id = 'summonerName'
     $(summonerName).html(summonerData.summonerName)
@@ -293,21 +293,41 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     matchDetailSelectionElement.id = 'matchDetailSelection'
     $(matchDetailSelectionElement).addClass('matchDetailSelection' + selectedSummoner.championId)
     $(matchDetailSelectionElement).css('background-image', 'url("img/resources/splashes/' + selectedSummoner.championId + '.jpg")')
-    // $(matchDetailSelectionElement).css('background-image', 'url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + selectedSummoner.championName + '_0.jpg")')
     var itemList = document.createElement('ul')
     itemList.id = 'itemList'
     for (var i = 0; i < selectedSummoner.items.length; i++) {
         var item = document.createElement('li')
         item.id = 'item'
+        if (selectedSummoner.items[i]['id']) {
+            $(item).qtip({
+                content: {
+                    title: selectedSummoner.items[i]['name'],
+                    text: selectedSummoner.items[i]['description']
+                },
+                style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
+                position: { viewport: $('.lolbyte') }
+            });
+        }
         var itemImage = document.createElement('img')
-        itemImage.src = 'img/resources/items/' + selectedSummoner.items[i] + '.png'
+        itemImage.src = 'img/resources/items/' + selectedSummoner.items[i]['id'] + '.png'
         item.appendChild(itemImage)
         itemList.appendChild(item)
     }
     var trinket = document.createElement('li')
     trinket.id = 'trinket'
+    if (selectedSummoner.trinket['id']) {
+        $(trinket).qtip({
+            content: {
+                title: selectedSummoner.trinket['name'],
+                text: selectedSummoner.trinket['description']
+            },
+            style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
+            position: { viewport: $('.lolbyte') }
+        });
+    }
+    $(trinket).attr('title', selectedSummoner.trinket['name']);
     var trinketImage = document.createElement('img')
-    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket + '.png'
+    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket['id'] + '.png'
     trinket.appendChild(trinketImage)
     itemList.appendChild(trinket)
 
@@ -493,15 +513,36 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
         itemList.id = 'itemList'
         var trinket = document.createElement('li')
         trinket.id = 'trinket'
+        if (currentSummoner.trinket['id']) {
+        $(trinket).qtip({
+                content: {
+                    title: selectedSummoner.trinket['name'],
+                    text: selectedSummoner.trinket['description']
+                },
+                style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
+                position: { viewport: $('.lolbyte') }
+            });
+        }
+        $(trinket).attr('title', currentSummoner.trinket['name']);
         var trinketImage = document.createElement('img')
-        trinketImage.src = 'img/resources/items/' + currentSummoner.trinket + '.png'
+        trinketImage.src = 'img/resources/items/' + currentSummoner.trinket['id'] + '.png'
         trinket.appendChild(trinketImage)
         itemList.appendChild(trinket)
         for (var j = 0; j < currentSummoner.items.length; j++) {
             var item = document.createElement('li')
             item.id = 'item'
+            if (currentSummoner.items[j]['id']) {
+                $(item).qtip({
+                    content: {
+                        title: currentSummoner.items[j]['name'],
+                        text: currentSummoner.items[j]['description']
+                    },
+                    style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
+                    position: { viewport: $('.lolbyte') }
+                });
+            }
             var itemImage = document.createElement('img')
-            itemImage.src = 'img/resources/items/' + currentSummoner.items[j] + '.png'
+            itemImage.src = 'img/resources/items/' + currentSummoner.items[j]['id'] + '.png'
             item.appendChild(itemImage)
             itemList.appendChild(item)
         }
