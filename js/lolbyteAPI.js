@@ -52,8 +52,8 @@ function matchDetailPage(gameId, teamId, championId) {
     if (getMatchData(gameId)) {
         setSelectedSummonerByChampionTeamId(gameId, championId, teamId)
         loadLolByte({'matchDetailPage': getMatchData(gameId)})
-    } else {
-        !isFirefox ? alert('Game data not found.'):''
+    // } else {
+    //     !isFirefox ? alert('Game data not found.'):''
     }
 };
 
