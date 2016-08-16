@@ -95,4 +95,5 @@ a {
 .qtip-content, .qtip-title {
     font-family: 'Calibri';
     color: white;
+    font-size: 13px;
 }
