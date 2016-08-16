@@ -1,5 +1,5 @@
 /*** CONSTANTS ***/
-var API_BASE_URL = 'http://gg.lolbyte.me/api2/Handler.php'
+var API_BASE_URL = 'http://gg.lolbyte.me:8080/api/v3/';
 var MAX_SUMMONER_LIST_SIZE = 20
 var MAX_GAME_COUNT = 20
 
@@ -7,7 +7,7 @@ var MAX_GAME_COUNT = 20
 var SELECTED_MATCH
 var SEARCH_SUMMONER_QUEUE = []
 var CURRENT_SUMMONER = -1
-var RANKED_MODE = 0
+var RANKED_MODE = false
 
 /* INIT CODE */
 clearInvalidSavedSummoners()

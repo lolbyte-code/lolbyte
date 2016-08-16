@@ -267,7 +267,7 @@ function buildMatchDetailBarElement(matchDetailData) {
     matchResult.id = 'matchResult'
     var matchDate = document.createElement('div')
     matchDate.id = 'matchDate'
-    $(matchDate).html(matchDetailData.matchDate)
+    $(matchDate).html(formatTimestamp(matchDetailData.matchDate))
     var matchGameType = document.createElement('div')
     matchGameType.id = 'matchGameType'
     $(matchGameType).html(matchDetailData.matchGameType)

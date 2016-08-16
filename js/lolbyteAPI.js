@@ -9,8 +9,8 @@ function landingPage() {
 
 function summonerPage(notUpdateQueue, summonerOverride) {
     var summonerQuery = getSearch(summonerOverride)
-    $.getJSON(API_BASE_URL + '?region=' + summonerQuery.region.toLowerCase() + '&data=SearchSummoner&ranked=' +
-              RANKED_MODE + '&name=' + summonerQuery.summonerName + '&size=' + MAX_GAME_COUNT, function(summonerData) {
+    $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
+              '?rankedOnly=' + RANKED_MODE, function(summonerData) {
         if (!summonerData.error) {
             !notUpdateQueue ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
             updateRecentSummoners(summonerData.searchSummonerPage.summonerObject)
@@ -35,8 +35,8 @@ function updateSummonerQueue(summonerObject) {
 function retrieveMatchData(gameId) {
     var targetGame = getMatchData(gameId)
     if (!targetGame) {
-        $.getJSON(API_BASE_URL + '?region=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '&data=MatchDetails&gameId=' +
-                  gameId + '&id=' +  SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(matchDetailData) {
+        $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() +
+                  '/game-id/' + gameId, function(matchDetailData) {
             if (!matchDetailData.error) {
                 addMatchData(matchDetailData.matchDetailPage)
                 initMatchDetailNameRanks(matchDetailData.matchDetailPage.gameId)
@@ -58,8 +58,8 @@ function matchDetailPage(gameId, teamId, championId) {
 };
 
 function initMatchDetailNameRanks(gameId) {
-    $.getJSON(API_BASE_URL + '?region=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '&data=MatchDetails&ff=1&gameId=' +
-              gameId + '&id=' +  SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(matchDetailData) {
+    $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/game-id/' + gameId + '/details' +
+              '?summonerId=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(matchDetailData) {
         if (!matchDetailData.error) {
             var targetGame = getMatchData(matchDetailData.gameId)
             if (targetGame) {
@@ -79,8 +79,8 @@ function initMatchDetailNameRanks(gameId) {
 };
 
 function initCurrentGamePage() {
-    $.getJSON(API_BASE_URL + '?region=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() +
-              '&data=CurrentGame&id=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(currentGameData) {
+    $.getJSON(API_BASE_URL + 'current/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/' +
+              SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(currentGameData) {
         if (!currentGameData.error) {
             updateCurrentGamePage(currentGameData)
         }
@@ -88,8 +88,8 @@ function initCurrentGamePage() {
 };
 
 function initMostPlayedChampions() {
-    $.getJSON(API_BASE_URL + '?region=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '&data=SearchSummoner&mpc=1&ranked=' +
-              RANKED_MODE + '&name=' + FormatText(SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerName), function(rankedData) {
+    $.getJSON(API_BASE_URL + 'summoners/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/'+
+              formatText(SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId) +'/champions', function(rankedData) {
         if (!rankedData.error) {
             updateMostPlayedChampionsSection(rankedData)
         }
@@ -97,8 +97,8 @@ function initMostPlayedChampions() {
 };
 
 function initLeaguePage() {
-    $.getJSON(API_BASE_URL + '?region=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '&data=SearchSummoner&rg=1&ranked=' +
-              RANKED_MODE + '&name=' + FormatText(SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerName), function(leagueData) {
+    $.getJSON(API_BASE_URL + 'summoners/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/'+
+              formatText(SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId) +'/rank', function(leagueData) {
         if (!leagueData.error) {
             updateLeaguePage(leagueData)
         }
@@ -106,7 +106,7 @@ function initLeaguePage() {
 };
 
 function initAlertPage() {
-    $.getJSON(API_BASE_URL + '?data=Alerts', function(alertData) {
+    $.getJSON(API_BASE_URL + 'notifications', function(alertData) {
         if (alertData['alert']) {
             var alertMessage = document.createElement('p')
             $(alertMessage).html(alertData['alert'])

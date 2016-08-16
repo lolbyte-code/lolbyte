@@ -43,9 +43,16 @@ function setOwlVisibility(className, listName, maxItemCount) {
 };
 
 /* Helper functions */
-function FormatText(text) {
+function formatText(text) {
     return text.toLowerCase().replace(/[^a-zA-Z0-9\u00C0-\u017F]/g, '')
 };
+
+function formatTimestamp(timestamp) {
+    var dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    var date = new Date(0)
+    date.setUTCMilliseconds(timestamp)
+    return date.toLocaleDateString('en-us', dateOptions)
+}
 
 /* Setters/getters for selected summoner */
 function setSelectedSummonerByParticipantId(gameId, participantId) {
@@ -170,7 +177,7 @@ function getSearch(summonerOverride) {
     var searchedSummoner = summonerOverride ? summonerOverride.summonerName : $('#searchSummoner').val()
     var selectedRegion = summonerOverride ? summonerOverride.region : $('#regionSelector').val()
 
-    return {"summonerName": FormatText(searchedSummoner), "region": selectedRegion.toLowerCase()}
+    return {"summonerName": formatText(searchedSummoner), "region": selectedRegion.toLowerCase()}
 };
 
 function minimizeRecentGame() {
