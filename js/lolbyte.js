@@ -8,6 +8,8 @@ var SELECTED_MATCH
 var SEARCH_SUMMONER_QUEUE = []
 var CURRENT_SUMMONER = -1
 var RANKED_MODE = false
+var RETRY_FREQ = 1000
+var RETRY_LIMIT = 5
 
 /* INIT CODE */
 clearInvalidSavedSummoners()

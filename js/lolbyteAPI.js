@@ -7,12 +7,13 @@ function landingPage() {
     loadLolByte(init)
 };
 
-function summonerPage(notUpdateQueue, summonerOverride) {
-    var summonerQuery = getSearch(summonerOverride)
+function summonerPage(noUpdateQueue, summonerSearchOverride, retryCount) {
+    retryCount = retryCount || 0
+    var summonerQuery = getSearch(summonerSearchOverride)
     $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
               '?rankedOnly=' + RANKED_MODE, function(summonerData) {
         if (!summonerData.error) {
-            !notUpdateQueue ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
+            !noUpdateQueue ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
             updateRecentSummoners(summonerData.searchSummonerPage.summonerObject)
             loadLolByte(summonerData)
 
@@ -20,8 +21,19 @@ function summonerPage(notUpdateQueue, summonerOverride) {
             for (var i = 0; i < summonerData.searchSummonerPage.recentGames.length; i++) {
                 retrieveMatchData(summonerData.searchSummonerPage.recentGames[i].gameId)
             }
-        } else {
-            updateSummonerQueue({'summonerName': summonerQuery.summonerName, 'region': summonerQuery.region})
+        } else if (summonerData.error == 1) {
+            // Should only enter this block if RANKED_MODE = true
+            if (retryCount++ < RETRY_LIMIT)
+                // If ranked games call fails, try again
+                setTimeout(summonerPage(noUpdateQueue, summonerSearchOverride, retryCount), RETRY_FREQ)
+            else {
+                // Ranked games call failed because summoner has no ranked games
+                // Toggle ranked mode off and reload the page
+                rankedToggleButtonClicked()
+                summonerPage()
+            }
+        } else if (summonerData.error == 4) {
+            updateSummonerQueue({'summonerName': summonerQuery.summonerName, 'region': summonerQuery.region, 'summonerIcon': 0})
             loadLolByte({'summonerNotFoundPage': {}})
         }
     });
@@ -32,7 +44,8 @@ function updateSummonerQueue(summonerObject) {
     SEARCH_SUMMONER_QUEUE.push(summonerObject)
 };
 
-function retrieveMatchData(gameId) {
+function retrieveMatchData(gameId, retryCount) {
+    retryCount = retryCount || 0
     var targetGame = getMatchData(gameId)
     if (!targetGame) {
         $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() +
@@ -40,6 +53,9 @@ function retrieveMatchData(gameId) {
             if (!matchDetailData.error) {
                 addMatchData(matchDetailData.matchDetailPage)
                 initMatchDetailNameRanks(matchDetailData.matchDetailPage.gameId)
+            } else {
+                if (retryCount++ < RETRY_LIMIT)
+                    setTimeout(retrieveMatchData(gameId, retryCount), RETRY_FREQ)
             }
         });
     } else {
@@ -57,7 +73,8 @@ function matchDetailPage(gameId, teamId, championId) {
     }
 };
 
-function initMatchDetailNameRanks(gameId) {
+function initMatchDetailNameRanks(gameId, retryCount) {
+    retryCount = retryCount || 0
     $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/game-id/' + gameId + '/details' +
               '?summonerId=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(matchDetailData) {
         if (!matchDetailData.error) {
@@ -74,6 +91,9 @@ function initMatchDetailNameRanks(gameId) {
                     updateMatchDetailTeam(matchDetailData.gameId)
                 }
             }
+        } else {
+            if (retryCount++ < RETRY_LIMIT)
+                setTimeout(initMatchDetailNameRanks(gameId, retryCount), RETRY_FREQ)
         }
     });
 };

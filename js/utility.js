@@ -177,7 +177,7 @@ function getSearch(summonerOverride) {
     var searchedSummoner = summonerOverride ? summonerOverride.summonerName : $('#searchSummoner').val()
     var selectedRegion = summonerOverride ? summonerOverride.region : $('#regionSelector').val()
 
-    return {"summonerName": formatText(searchedSummoner), "region": selectedRegion.toLowerCase()}
+    return {"summonerName": formatText(searchedSummoner), "region": selectedRegion}
 };
 
 function minimizeRecentGame() {
