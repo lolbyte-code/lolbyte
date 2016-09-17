@@ -94,6 +94,14 @@ a {
 /* Qtip */
 .qtip-content, .qtip-title {
     font-family: 'Calibri';
-    color: white;
     font-size: 13px;
 }
+
+.qtip-title {
+    color: #38B171;
+}
+
+.qtip-content {
+    color: white;
+}
+

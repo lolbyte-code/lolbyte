@@ -1,11 +1,3 @@
-function updateMatchDetailBarElement(gameId) {
-    var recentGame = getMatchData(gameId)
-
-    $('#matchDate').html(recentGame.matchDate)
-    $('#matchGameType').html(recentGame.matchGameType)
-    $('#matchDuration').html(recentGame.matchDuration)
-};
-
 function updateMatchDetailSelectionElement(gameId) {
     var selectedSummoner = getSelectedSummoner(gameId)
 

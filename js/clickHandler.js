@@ -100,7 +100,6 @@ function matchDetailSummonerClicked(matchDetailSummonerClickData) {
     var gameId = matchDetailSummonerClickData.data.gameId
 
     setSelectedSummonerByParticipantId(gameId, participantId)
-    updateMatchDetailBarElement(gameId)
     updateMatchDetailSelectionElement(gameId)
     updateMatchDetailTeamElement(gameId)
 };
