@@ -20,7 +20,7 @@
 }
 
 .matchDetailPage #matchDate {
-    color: #50525D;
+    color: #5E606E;
     width: 169px;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .matchDetailPage #matchDuration {
-    color: #50525D;
+    color: #5E606E;
     width: 82px;
 }
 
@@ -81,7 +81,7 @@
 
 .matchDetailPage #matchDetailSelection #stats2 p {
     margin: 2px;
-    color: #50525D;
+    color: #5E606E;
 }
 
 .matchDetailPage #matchDetailSelection #kdaLong {
@@ -89,7 +89,7 @@
     color: white;
 }
 
-.matchDetailPage #matchDetailSelection #kdaShort {
+.matchDetailPage #matchDetailSelection #damageContribution {
     font-size: 110%;
     left: 7px;
 }

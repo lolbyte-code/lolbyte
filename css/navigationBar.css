@@ -17,10 +17,8 @@
 
 .navigationBar #regionSelector {
     height: 34px;
-    color: #50525D;
     border-color: #B2B4BB;
-    color: #B2B4BB;
-    background-color : #50525D;
+    background-color: #50525D;
     font-size: 110%;
     -webkit-appearance: none;
     -moz-appearance: none;

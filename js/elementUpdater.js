@@ -28,23 +28,13 @@ function updateMatchDetailSelectionElement(gameId) {
     }
     var trinket = document.createElement('li')
     trinket.id = 'trinket'
-    if (selectedSummoner.trinket['id']) {
-        $(trinket).qtip({
-            content: {
-                title: selectedSummoner.trinket['name'],
-                text: selectedSummoner.trinket['description']
-            },
-            style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
-            position: { viewport: $('.lolbyte') }
-        });
-    }
     var trinketImage = document.createElement('img')
-    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket['id'] + '.png'
+    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket + '.png'
     trinket.appendChild(trinketImage)
     $('#matchDetailSelection #itemList').append(trinket)
 
     $('#matchDetailSelection #stats1 #kdaLong').html(selectedSummoner.kdaLong)
-    $('#matchDetailSelection #stats1 #kdaShort').html(selectedSummoner.kdaShort)
+    $('#matchDetailSelection #stats1 #damageContribution').html(selectedSummoner.damageContribution)
     $('#matchDetailSelection #stats1 #level').html(selectedSummoner.level)
     $('#matchDetailSelection #stats2 #cs').html(selectedSummoner.cs)
     $('#matchDetailSelection #stats2 #gold').html(selectedSummoner.gold)

@@ -315,19 +315,8 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     }
     var trinket = document.createElement('li')
     trinket.id = 'trinket'
-    if (selectedSummoner.trinket['id']) {
-        $(trinket).qtip({
-            content: {
-                title: selectedSummoner.trinket['name'],
-                text: selectedSummoner.trinket['description']
-            },
-            style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
-            position: { viewport: $('.lolbyte') }
-        });
-    }
-    $(trinket).attr('title', selectedSummoner.trinket['name']);
     var trinketImage = document.createElement('img')
-    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket['id'] + '.png'
+    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket + '.png'
     trinket.appendChild(trinketImage)
     itemList.appendChild(trinket)
 
@@ -339,10 +328,10 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     kdaLong.id = 'kdaLong'
     $(kdaLong).html(selectedSummoner.kdaLong)
     stats1.appendChild(kdaLong)
-    var kdaShort = document.createElement('p')
-    kdaShort.id = 'kdaShort'
-    $(kdaShort).html(selectedSummoner.kdaShort)
-    stats1.appendChild(kdaShort)
+    var damageContribution = document.createElement('p')
+    damageContribution.id = 'damageContribution'
+    $(damageContribution).html(selectedSummoner.damageContribution)
+    stats1.appendChild(damageContribution)
     var level = document.createElement('p')
     level.id = 'level'
     $(level).html(selectedSummoner.level)
@@ -513,19 +502,8 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
         itemList.id = 'itemList'
         var trinket = document.createElement('li')
         trinket.id = 'trinket'
-        if (currentSummoner.trinket['id']) {
-        $(trinket).qtip({
-                content: {
-                    title: selectedSummoner.trinket['name'],
-                    text: selectedSummoner.trinket['description']
-                },
-                style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
-                position: { viewport: $('.lolbyte') }
-            });
-        }
-        $(trinket).attr('title', currentSummoner.trinket['name']);
         var trinketImage = document.createElement('img')
-        trinketImage.src = 'img/resources/items/' + currentSummoner.trinket['id'] + '.png'
+        trinketImage.src = 'img/resources/items/' + currentSummoner.trinket + '.png'
         trinket.appendChild(trinketImage)
         itemList.appendChild(trinket)
         for (var j = 0; j < currentSummoner.items.length; j++) {

@@ -55,7 +55,7 @@ function retrieveMatchData(gameId, retryCount) {
                 initMatchDetailNameRanks(matchDetailData.matchDetailPage.gameId)
             } else {
                 if (retryCount++ < RETRY_LIMIT)
-                    setTimeout(retrieveMatchData(gameId, retryCount), RETRY_FREQ)
+                    setTimeout(function() { retrieveMatchData(gameId, retryCount); }, RETRY_FREQ)
             }
         });
     } else {
@@ -93,7 +93,7 @@ function initMatchDetailNameRanks(gameId, retryCount) {
             }
         } else {
             if (retryCount++ < RETRY_LIMIT)
-                setTimeout(initMatchDetailNameRanks(gameId, retryCount), RETRY_FREQ)
+                setTimeout(function() { initMatchDetailNameRanks(gameId, retryCount); }, RETRY_FREQ)
         }
     });
 };
