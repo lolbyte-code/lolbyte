@@ -25,7 +25,7 @@ function summonerPage(noUpdateQueue, summonerSearchOverride, retryCount) {
             // Should only enter this block if RANKED_MODE = true
             if (retryCount++ < RETRY_LIMIT)
                 // If ranked games call fails, try again
-                setTimeout(summonerPage(noUpdateQueue, summonerSearchOverride, retryCount), RETRY_FREQ)
+                setTimeout(function() { summonerPage(noUpdateQueue, summonerSearchOverride, retryCount); }, RETRY_FREQ)
             else {
                 // Ranked games call failed because summoner has no ranked games
                 // Toggle ranked mode off and reload the page
