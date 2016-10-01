@@ -473,6 +473,9 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
 
     for (var i = 0; i < matchDetailData.players.length / 2; i++) {
         var teamOffset = teamNumber == 1 ? i : i + (matchDetailData.players.length / 2)
+        // Handle teams with uneven number of players
+        teamOffset = Math.floor(teamOffset)
+        if (matchDetailData.players[teamOffset].teamId != teamNumber + '00') { break }
         var currentSummoner = matchDetailData.players[teamOffset]
         var countMatchDetailSummoner = document.createElement('div')
         countMatchDetailSummoner.id = 'summoner' + currentSummoner.participantId
