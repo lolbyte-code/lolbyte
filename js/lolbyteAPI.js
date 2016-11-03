@@ -10,33 +10,35 @@ function landingPage() {
 function summonerPage(noUpdateQueue, summonerSearchOverride, retryCount) {
     retryCount = retryCount || 0
     var summonerQuery = getSearch(summonerSearchOverride)
-    $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
-              '?rankedOnly=' + RANKED_MODE, function(summonerData) {
-        if (!summonerData.error) {
-            !noUpdateQueue ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
-            updateRecentSummoners(summonerData.searchSummonerPage.summonerObject)
-            loadLolByte(summonerData)
+    if (summonerQuery.region && summonerQuery.summonerName) {
+        $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
+                  '?rankedOnly=' + RANKED_MODE, function(summonerData) {
+            if (!summonerData.error) {
+                !noUpdateQueue ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
+                updateRecentSummoners(summonerData.searchSummonerPage.summonerObject)
+                loadLolByte(summonerData)
 
-            // Kick off call to server for game data!
-            for (var i = 0; i < summonerData.searchSummonerPage.recentGames.length; i++) {
-                retrieveMatchData(summonerData.searchSummonerPage.recentGames[i].gameId)
+                // Kick off call to server for game data!
+                for (var i = 0; i < summonerData.searchSummonerPage.recentGames.length; i++) {
+                    retrieveMatchData(summonerData.searchSummonerPage.recentGames[i].gameId)
+                }
+            } else if (summonerData.error == 1) {
+                // Should only enter this block if RANKED_MODE = true
+                if (retryCount++ < RETRY_LIMIT)
+                    // If ranked games call fails, try again
+                    setTimeout(function() { summonerPage(noUpdateQueue, summonerSearchOverride, retryCount); }, RETRY_FREQ)
+                else {
+                    // Ranked games call failed because summoner has no ranked games
+                    // Toggle ranked mode off and reload the page
+                    rankedToggleButtonClicked()
+                    summonerPage()
+                }
+            } else if (summonerData.error == 4) {
+                updateSummonerQueue({'summonerName': summonerQuery.summonerName, 'region': summonerQuery.region, 'summonerIcon': 0})
+                loadLolByte({'summonerNotFoundPage': {}})
             }
-        } else if (summonerData.error == 1) {
-            // Should only enter this block if RANKED_MODE = true
-            if (retryCount++ < RETRY_LIMIT)
-                // If ranked games call fails, try again
-                setTimeout(function() { summonerPage(noUpdateQueue, summonerSearchOverride, retryCount); }, RETRY_FREQ)
-            else {
-                // Ranked games call failed because summoner has no ranked games
-                // Toggle ranked mode off and reload the page
-                rankedToggleButtonClicked()
-                summonerPage()
-            }
-        } else if (summonerData.error == 4) {
-            updateSummonerQueue({'summonerName': summonerQuery.summonerName, 'region': summonerQuery.region, 'summonerIcon': 0})
-            loadLolByte({'summonerNotFoundPage': {}})
-        }
-    });
+        });
+    }
 };
 
 function updateSummonerQueue(summonerObject) {
