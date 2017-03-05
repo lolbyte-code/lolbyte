@@ -44,7 +44,7 @@ function setOwlVisibility(className, listName, maxItemCount) {
 
 /* Helper functions */
 function formatText(text) {
-    return text.toLowerCase().replace(/[^a-zA-Z0-9\u00C0-\u017F]/g, '')
+    return text.toLowerCase().replace(/[^a-zA-Z0-9\u0080-\uFFFF]/g, '')
 };
 
 function formatTimestamp(timestamp) {
