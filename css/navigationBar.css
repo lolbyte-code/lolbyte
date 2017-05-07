@@ -40,6 +40,11 @@
     left: 4px;
 }
 
+.navigationBar #anchorSearchButton {
+    position: absolute;
+    top: 9px;
+}
+
 .navigationBar #searchButton p {
     text-align: center;
     color: white;
