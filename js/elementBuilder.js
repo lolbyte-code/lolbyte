@@ -73,25 +73,32 @@ function buildCurrentGameElement(currentGameData) {
 function buildRecentGameElement(gameData, gameNumber) {
     var recentGameElement = document.createElement('div')
     recentGameElement.id = 'recentGame'
-    $(recentGameElement).attr('class', 'gameId' + gameData.gameId)
-    $(recentGameElement).click({'gameId': gameData.gameId, 'championId': gameData.championId, 'teamId': gameData.teamId}, recentGameClicked)
+    $(recentGameElement).attr('class', 'matchId' + gameData.matchId)
+    $(recentGameElement).click({'matchId': gameData.matchId, 'championId': gameData.championId, 'teamId': gameData.teamId}, recentGameClicked)
     var champion = document.createElement('img')
     champion.src = 'img/resources/champions/' + gameData.championId + '.png'
-    champion.style = gameData.win ? 'border: 2px solid #22A8CE;' : 'border: 2px solid #B2281D;'
-    var gameResult = document.createElement('p')
-    gameResult.id = 'recentGameResult'
-    $(gameResult).html(gameData.win ? 'W' : 'L')
-    var gameKDA = document.createElement('p')
-    gameKDA.id = 'recentGameKDA'
-    $(gameKDA).html(gameData.kda)
-
     recentGameElement.appendChild(champion)
-    recentGameElement.appendChild(gameResult)
-    recentGameElement.appendChild(gameKDA)
+    if (gameData.isRanked) {
+        champion.style = gameData.win ? 'border: 2px solid #22A8CE;' : 'border: 2px solid #B2281D;'
+        var gameResult = document.createElement('p')
+        gameResult.id = 'recentGameResult'
+        $(gameResult).html(gameData.win ? 'W' : 'L')
+        var gameKDA = document.createElement('p')
+        gameKDA.id = 'recentGameKDA'
+        $(gameKDA).html(gameData.kda)
+        recentGameElement.appendChild(gameResult)
+        recentGameElement.appendChild(gameKDA)
+    } else {
+        champion.style = 'border: 2px solid #38B171'
+    }
 
     var wrapRecentGameElement = document.createElement('a')
     wrapRecentGameElement.href = '#'
-    wrapRecentGameElement.id = gameData.win ? 1 : 0
+    if (gameData.isRanked) {
+        wrapRecentGameElement.id = gameData.win ? 1 : 0
+    } else {
+        wrapRecentGameElement.id = -1
+    }
     wrapRecentGameElement.className = 'recentGame' + gameNumber
     wrapRecentGameElement.appendChild(recentGameElement)
 
@@ -187,50 +194,42 @@ function buildPlayerStatElement(playerStatData) {
     return playerStatElement
 };
 
-function buildRankedStatElement(rankedStatData) {
-    var rankedStatElement = document.createElement('div')
-    rankedStatElement.id = 'rankedStatElement'
-    var rankedStatType = document.createElement('p')
-    rankedStatType.id = 'rankedStatType'
-    $(rankedStatType).html(rankedStatData.rankedStatType)
+function buildchampionStatElement(championStatData) {
+    var championStatElement = document.createElement('div')
+    championStatElement.id = 'championStatElement'
+    var championStatType = document.createElement('p')
+    championStatType.id = 'championStatType'
+    $(championStatType).html(championStatData.championStatType)
 
-    if (rankedStatData.mostPlayedChampions) {
+    if (championStatData.mostPlayedChampions) {
         var mostPlayedChampions = document.createElement('div')
         mostPlayedChampions.id = 'mostPlayedChampions'
-        for (champion in rankedStatData.mostPlayedChampions) {
-            var currentChampion = rankedStatData.mostPlayedChampions[champion]
+        for (champion in championStatData.mostPlayedChampions) {
+            var currentChampion = championStatData.mostPlayedChampions[champion]
             var mostPlayedChampion = document.createElement('div')
             mostPlayedChampion.id = 'mostPlayedChampion'
             var championImage = document.createElement('img')
             championImage.src = 'img/resources/champions/' + currentChampion.championId + '.png'
+            $(championImage).css('border', '3px solid ' + currentChampion.championBorder)
             var championName = document.createElement('p')
             championName.id = 'championName'
             $(championName).html(currentChampion.championName)
-            var championWinLoss = document.createElement('p')
-            championWinLoss.id = 'championWinLoss'
-            $(championWinLoss).html(currentChampion.winloss)
             var championWinLossPercentage = document.createElement('p')
             championWinLossPercentage.id = 'championWinLossPercentage'
-            $(championWinLossPercentage).html(currentChampion.winlossPercentage)
-            var championKDA = document.createElement('p')
-            championKDA.id = 'championKDA'
-            $(championKDA).html(currentChampion.kda)
-
+            $(championWinLossPercentage).html(currentChampion.championGamesPlayed)
             mostPlayedChampion.appendChild(championImage)
             mostPlayedChampion.appendChild(championName)
             mostPlayedChampion.appendChild(championWinLossPercentage)
-            mostPlayedChampion.appendChild(championWinLoss)
-            mostPlayedChampion.appendChild(championKDA)
             mostPlayedChampions.appendChild(mostPlayedChampion)
         }
 
-        rankedStatElement.appendChild(rankedStatType)
-        rankedStatElement.appendChild(mostPlayedChampions)
+        championStatElement.appendChild(championStatType)
+        championStatElement.appendChild(mostPlayedChampions)
     } else {
         var topChampions = document.createElement('div')
         topChampions.id = 'topChampions'
-        for (champion in rankedStatData.topChampions) {
-            var currentChampion = rankedStatData.topChampions[champion]
+        for (champion in championStatData.topChampions) {
+            var currentChampion = championStatData.topChampions[champion]
             var topChampion = document.createElement('div')
             topChampion.id = 'topChampion'
             var championImage = document.createElement('img')
@@ -253,11 +252,11 @@ function buildRankedStatElement(rankedStatData) {
             topChampions.appendChild(topChampion)
         }
 
-        rankedStatElement.appendChild(rankedStatType)
-        rankedStatElement.appendChild(topChampions)
+        championStatElement.appendChild(championStatType)
+        championStatElement.appendChild(topChampions)
     }
 
-    return rankedStatElement
+    return championStatElement
 };
 
 function buildMatchDetailBarElement(matchDetailData) {
@@ -270,7 +269,7 @@ function buildMatchDetailBarElement(matchDetailData) {
     $(matchDate).html(formatTimestamp(matchDetailData.matchDate))
     var matchGameType = document.createElement('div')
     matchGameType.id = 'matchGameType'
-    $(matchGameType).html(matchDetailData.matchGameType)
+    $(matchGameType).html(matchDetailData.matchQueueType)
     var matchDuration = document.createElement('div')
     matchDuration.id = 'matchDuration'
     $(matchDuration).html(matchDetailData.matchDuration)
@@ -284,10 +283,12 @@ function buildMatchDetailBarElement(matchDetailData) {
 };
 
 function buildMatchDetailSelectionElement(matchDetailData) {
-    var selectedSummoner = getSelectedSummoner(matchDetailData.gameId)
+    var selectedSummoner = getSelectedSummoner(matchDetailData.matchId)
 
-    $('#matchResult').html(selectedSummoner.win ? 'Victory' : 'Defeat')
-    $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
+    if (matchDetailData.isRanked) {
+        $('#matchResult').html(selectedSummoner.win ? 'Victory' : 'Defeat')
+        $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
+    }
 
     var matchDetailSelectionElement = document.createElement('div')
     matchDetailSelectionElement.id = 'matchDetailSelection'
@@ -364,7 +365,9 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     playerInfo.id = 'playerInfo'
     var summonerName = document.createElement('p')
     summonerName.id = 'summonerName'
-    $(summonerName).html(selectedSummoner.summonerName ? selectedSummoner.summonerName + ' ' : 'Loading...')
+    if (matchDetailData.isRanked) {
+        $(summonerName).html(selectedSummoner.summonerName ? selectedSummoner.summonerName + ' ' : 'Loading...')
+    }
     playerInfo.appendChild(summonerName)
     var rank = document.createElement('p')
     rank.id = 'rank'
@@ -410,7 +413,7 @@ function buildMatchDetailSelectionElement(matchDetailData) {
 };
 
 function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
-    var selectedSummoner = getSelectedSummoner(matchDetailData.gameId)
+    var selectedSummoner = getSelectedSummoner(matchDetailData.matchId)
 
     var matchDetailTeamXElement = document.createElement('div')
     matchDetailTeamXElement.id = 'matchDetailTeam' + teamNumber
@@ -484,7 +487,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
         var matchDetailSummonerChampion = document.createElement('img')
         matchDetailSummonerChampion.id = 'matchDetailSummonerChampion'
         matchDetailSummonerChampion.src = 'img/resources/champions/' + currentSummoner.championId + '.png'
-        $(matchDetailSummoner).click({'participantId': currentSummoner.participantId, 'gameId': matchDetailData.gameId}, matchDetailSummonerClicked)
+        $(matchDetailSummoner).click({'participantId': currentSummoner.participantId, 'matchId': matchDetailData.matchId}, matchDetailSummonerClicked)
         $(matchDetailSummonerChampion).css('border', '2px solid ' + (teamWin ? '#22A8CE' : '#B2281D'))
         setSelectedSummonerUI(matchDetailSummoner, currentSummoner, selectedSummoner)
         var summonerKda = document.createElement('div')
@@ -494,7 +497,11 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
         namerank.id = 'namerank'
         var summonerName = document.createElement('span')
         summonerName.id = 'summonerName'
-        $(summonerName).html(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
+        if (matchDetailData.isRanked) {
+            $(summonerName).html(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
+        } else {
+            $(summonerName).html(currentSummoner.championName)
+        }
         $(summonerName).css('color', (teamWin ? '#22A8CE' : '#B2281D'))
         var rank = document.createElement('span')
         rank.id = 'rank'

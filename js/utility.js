@@ -55,8 +55,8 @@ function formatTimestamp(timestamp) {
 }
 
 /* Setters/getters for selected summoner */
-function setSelectedSummonerByParticipantId(gameId, participantId) {
-    var targetRecentGame = getMatchData(gameId)
+function setSelectedSummonerByParticipantId(matchId, participantId) {
+    var targetRecentGame = getMatchData(matchId)
     for (var i = 0; i < targetRecentGame.players.length; i++) {
         if (targetRecentGame.players[i].participantId == participantId) {
             targetRecentGame.players[i]['selectedSummoner'] = true
@@ -67,8 +67,8 @@ function setSelectedSummonerByParticipantId(gameId, participantId) {
     setMatchData(targetRecentGame)
 };
 
-function setSelectedSummonerBySummonerId(gameId, summonerId) {
-    var targetRecentGame = getMatchData(gameId)
+function setSelectedSummonerBySummonerId(matchId, summonerId) {
+    var targetRecentGame = getMatchData(matchId)
     for (var i = 0; i < targetRecentGame.players.length; i++) {
         if (targetRecentGame.players[i].summonerId == summonerId) {
             targetRecentGame.players[i]['selectedSummoner'] = true
@@ -79,10 +79,10 @@ function setSelectedSummonerBySummonerId(gameId, summonerId) {
     setMatchData(targetRecentGame)
 };
 
-function setSelectedSummonerByChampionTeamId(gameId, championId, teamId) {
-    var targetRecentGame = getMatchData(gameId)
+function setSelectedSummonerByChampionTeamId(matchId, championId, teamId) {
+    var targetRecentGame = getMatchData(matchId)
     for (var i = 0; i < targetRecentGame.players.length; i++) {
-        if (targetRecentGame.players[i].championId == championId && targetRecentGame.players[i].teamId == teamId) {
+        if (targetRecentGame.players[i].championId == championId) {
             targetRecentGame.players[i]['selectedSummoner'] = true
         } else {
             targetRecentGame.players[i]['selectedSummoner'] = false
@@ -91,8 +91,8 @@ function setSelectedSummonerByChampionTeamId(gameId, championId, teamId) {
     setMatchData(targetRecentGame)
 };
 
-function getSelectedSummoner(gameId) {
-    var targetGame = getMatchData(gameId)
+function getSelectedSummoner(matchId) {
+    var targetGame = getMatchData(matchId)
     for (var i = 0; i < targetGame.players.length; i++) {
         if (targetGame.players[i].selectedSummoner) {
             return targetGame.players[i]
@@ -115,7 +115,17 @@ function clearRecentGameWhiteBorders() {
     // Clear white borders and remove glow from recent games
     for (var i = 0; i < MAX_GAME_COUNT; i++) {
         var win = $('.recentGame' + i).attr('id')
-        var border = win == '1' ? '2px solid #22A8CE' : '2px solid #B2281D'
+
+        switch (win) {
+            case '1':
+                var border = '2px solid #22A8CE';
+                break;
+            case '0':
+                var border = '2px solid #B2281D';
+                break;
+            default:
+                var border = '2px solid #38B171'
+        }
         $('.recentGame' + i + ' #recentGame img').css('border', border)
     }
 };

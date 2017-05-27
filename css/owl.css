@@ -18,7 +18,7 @@
     height: 108px;
 }
 
-.rankedStats .owl-wrapper-outer {
+.championStats .owl-wrapper-outer {
     height: 177px;
     width: 312px;
 }
@@ -98,16 +98,16 @@
     left: 270px;
 }
 
-.rankedStats .owl-prev, .rankedStats .owl-next {
+.championStats .owl-prev, .championStats .owl-next {
     width: 40px;
 }
 
-.rankedStats .owl-prev {
+.championStats .owl-prev {
     top: -131px;
     left: -2px;
 }
 
-.rankedStats .owl-next {
+.championStats .owl-next {
     top: -177px;
     left: 270px;
 }

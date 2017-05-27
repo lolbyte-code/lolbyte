@@ -1,5 +1,5 @@
-function updateMatchDetailSelectionElement(gameId) {
-    var selectedSummoner = getSelectedSummoner(gameId)
+function updateMatchDetailSelectionElement(matchId) {
+    var selectedSummoner = getSelectedSummoner(matchId)
 
     $('#matchResult').html(selectedSummoner.win ? 'Victory' : 'Defeat')
     $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
@@ -66,9 +66,9 @@ function updateMatchDetailSelectionElement(gameId) {
     $('#wrapBadgeList').append(badgeList)
 };
 
-function updateMatchDetailTeamElement(gameId) {
-    var recentGame = getMatchData(gameId)
-    var selectedSummoner = getSelectedSummoner(gameId)
+function updateMatchDetailTeamElement(matchId) {
+    var recentGame = getMatchData(matchId)
+    var selectedSummoner = getSelectedSummoner(matchId)
 
     for (var i = 0; i < recentGame.players.length; i++) {
         var currentSummoner = recentGame.players[i]

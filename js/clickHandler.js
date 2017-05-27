@@ -64,17 +64,17 @@ function headerSummonerNameClicked() {
 function recentGameClicked(recentGameClickedData) {
     clearRecentGameWhiteBorders()
 
-    var gameId = recentGameClickedData.data.gameId
+    var matchId = recentGameClickedData.data.matchId
     var teamId = recentGameClickedData.data.teamId
     var championId = recentGameClickedData.data.championId
 
-    if (gameId == SELECTED_MATCH) {
+    if (matchId == SELECTED_MATCH) {
         minimizeRecentGame()
         SELECTED_MATCH = 0
     } else {
-        matchDetailPage(gameId, teamId, championId)
-        SELECTED_MATCH = gameId
-        $('.gameId' + recentGameClickedData.data.gameId + ' img').css('border', '2px solid white')
+        matchDetailPage(matchId, teamId, championId)
+        SELECTED_MATCH = matchId
+        $('.matchId' + recentGameClickedData.data.matchId + ' img').css('border', '2px solid white')
     }
 };
 
@@ -97,9 +97,9 @@ function matchDetailSummonerPlayerInfoClicked(matchDetailSummonerPlayerInfoClick
 
 function matchDetailSummonerClicked(matchDetailSummonerClickData) {
     var participantId = matchDetailSummonerClickData.data.participantId
-    var gameId = matchDetailSummonerClickData.data.gameId
+    var matchId = matchDetailSummonerClickData.data.matchId
 
-    setSelectedSummonerByParticipantId(gameId, participantId)
-    updateMatchDetailSelectionElement(gameId)
-    updateMatchDetailTeamElement(gameId)
+    setSelectedSummonerByParticipantId(matchId, participantId)
+    updateMatchDetailSelectionElement(matchId)
+    updateMatchDetailTeamElement(matchId)
 };

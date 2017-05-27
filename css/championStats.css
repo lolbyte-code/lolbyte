@@ -1,29 +1,29 @@
-/* Ranked Stats */
-.statsPage .rankedStats {
+/* Champion Stats */
+.statsPage .championStats {
     height: 222px;
     width: 45%;
     top: 5px;
     float: none;
-    background-image: url('../img/assets/rankedStats.png');
+    background-image: url('../img/assets/championStats.png');
 }
 
-.rankedStats #rankedStatsList #mostPlayedChampion img {
+.championStats #championStatsList #mostPlayedChampion img {
     border-radius: 50%;
     border: 3px solid #B2B4BB;
     width: 89px;
 }
 
-.rankedStats #rankedStatsList #topChampion img {
+.championStats #championStatsList #topChampion img {
     border-radius: 50%;
     border: 3px solid #B2B4BB;
     width: 89px;
 }
 
-.rankedStats #rankedStatsLabel {
+.championStats #championStatsLabel {
     top: 2px;
 }
 
-.rankedStats #rankedStatType {
+.championStats #championStatType {
     color: white;
     font-size: 130%;
     left: 5px;
@@ -31,78 +31,78 @@
     top: -13px;
 }
 
-.rankedStats #rankedStatElement {
+.championStats #championStatElement {
     width: 300px;
     text-align: left;
 }
 
-.rankedStats #rankedStatsList {
+.championStats #championStatsList {
     top: 2px;
     width: 312px;
     height: 180px;
 }
 
-.rankedStats #mostPlayedChampions {
+.championStats #mostPlayedChampions {
     width: 270px;
     left: -3px;
     top: -24px;
     display: inline-flex;
 }
 
-.rankedStats #mostPlayedChampion {
+.championStats #mostPlayedChampion {
     width: 100px;
     margin: 5px;
 }
 
-.rankedStats #mostPlayedChampion p {
+.championStats #mostPlayedChampion p {
     text-align: center;
     line-height: 0;
     top: -11px;
 }
 
-.rankedStats #championName {
+.championStats #championName {
     font-size: 105%;
 }
 
-.rankedStats #championWinLoss {
+.championStats #championWinLoss {
     color: white;
     font-size: 82%;
 }
 
-.rankedStats #championWinLossPercentage {
+.championStats #championWinLossPercentage {
     color: #22A8CE;
     font-size: 82%;
 }
 
-.rankedStats #championKDA {
+.championStats #championKDA {
     color: #B2B4BB;
     font-size: 80%;
 }
 
-.rankedStats #topChampions {
+.championStats #topChampions {
     width: 270px;
     left: -3px;
     top: -24px;
     display: inline-flex;
 }
 
-.rankedStats #topChampion {
+.championStats #topChampion {
     width: 100px;
     margin: 5px;
 }
 
-.rankedStats #topChampion p {
+.championStats #topChampion p {
     text-align: center;
     line-height: 0;
     top: -11px;
 }
 
-.rankedStats #championLevel {
+.championStats #championLevel {
     color: #22A8CE;
     font-size: 82%;
 }
 
-.rankedStats #championPoints {
+.championStats #championPoints {
     color: white;
     font-size: 80%;
 }

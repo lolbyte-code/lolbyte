@@ -19,15 +19,17 @@
 }
 
 .playerStats #recentGamesStats {
-    top: -66px;
+    position: absolute;
+    top: 24px;
     line-height: 0;
     text-align: left;
     left: 136px;
 }
 
 .playerStats #winPercentage {
+    position: absolute;
     width: 26%;
-    left: -104px;
+    left: 20px;
     top: 25px;
 }
 

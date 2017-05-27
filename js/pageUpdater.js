@@ -1,13 +1,13 @@
 /* PAGE UPDATER */
 function updateMostPlayedChampionsSection(rankedData) {
-    refreshOwlList($('#rankedStatsList'), 'rankedStatsList', $('.rankedStats'))
+    refreshOwlList($('#championStatsList'), 'championStatsList', $('.championStats'))
 
-    for (var rankedStat in rankedData.rankedStats) {
-        $('.rankedStats #rankedStatsList').append(buildRankedStatElement(rankedData.rankedStats[rankedStat]))
+    for (var championStat in rankedData.championStats) {
+        $('.championStats #championStatsList').append(buildchampionStatElement(rankedData.championStats[championStat]))
     }
 
-    loadOwlCarousel('rankedStats', 'rankedStatsList', {'items': 1})
-    setOwlVisibility('rankedStats', 'rankedStatsList', 1)
+    loadOwlCarousel('championStats', 'championStatsList', {'items': 1})
+    setOwlVisibility('championStats', 'championStatsList', 1)
 };
 
 function updateLeaguePage(leagueData) {
@@ -26,18 +26,18 @@ function updateCurrentGamePage(currentGameData) {
     $('#inGameButton').show()
 };
 
-function updateMatchDetailSelection(gameId) {
+function updateMatchDetailSelection(matchId) {
     // Update match detail selection info
-    var selectedSummoner = getSelectedSummoner(gameId)
+    var selectedSummoner = getSelectedSummoner(matchId)
     $('#playerInfo #summonerName').html(selectedSummoner.summonerName)
     $('#playerInfo #rank').html(selectedSummoner.rank)
     $('#matchDetailSelection #playerInfo').off('click')
     $('#matchDetailSelection #playerInfo').click({'summonerName': selectedSummoner.summonerName}, matchDetailSummonerPlayerInfoClicked)
 };
 
-function updateMatchDetailTeam(gameId) {
+function updateMatchDetailTeam(matchId) {
     // Update match detail team info
-    var recentGame = getMatchData(gameId)
+    var recentGame = getMatchData(matchId)
     for (var i = 0; i < recentGame.players.length; i++) {
         var currentPlayer = recentGame.players[i]
         $('#matchDetailTeam #summoner' + currentPlayer.participantId + ' a #matchDetailSummoner #namerank #summonerName').html(currentPlayer.summonerName + ' ')

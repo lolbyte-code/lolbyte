@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="css/summonerBar.css">
         <link rel="stylesheet" type="text/css" href="css/recentGames.css">
         <link rel="stylesheet" type="text/css" href="css/playerStats.css">
-        <link rel="stylesheet" type="text/css" href="css/rankedStats.css">
+        <link rel="stylesheet" type="text/css" href="css/championStats.css">
         <link rel="stylesheet" type="text/css" href="css/leagueStats.css">
         <link rel="stylesheet" type="text/css" href="css/currentGamePage.css">
         <link rel="stylesheet" type="text/css" href="css/summonerNotFoundPage.css">
@@ -21,7 +21,6 @@
         <link rel="stylesheet" type="text/css" href="lib/owl.carousel/owl.carousel.css">
         <link rel="stylesheet" type="text/css" href="lib/qtip/jquery.qtip.min.css">
     </head>
-
     <body>
         <div class="lolbyte">
             <div class="navigationBar">
@@ -62,7 +61,6 @@
                 <a href="#"><img id="homeButton2" src="img/assets/homeButton.png" alt="homeButton"></a>
                 <a href="#"><img id="backButton2" src="img/assets/backButton.png" alt="backButton"></a>
                 <a href="#"><img id="summonerFavoriteButton2" src="img/assets/favoriteButton.png" alt="favoriteButton"></a>
-
                 <img src="img/other/summonerNotFound.png" alt="summonerNotFound">
                 <p>Summoner Not Found!</p>
             </div>
@@ -82,12 +80,12 @@
             </div>
             <div class="statsPage">
                 <div class="playerStats">
-                    <p id="playerStatsLabel">Player Statistics</p>
+                    <p id="playerStatsLabel">Ranked Statistics</p>
                     <div id="playerStatsList"></div>
                 </div>
-                <div class="rankedStats">
-                    <p id="rankedStatsLabel">Champion Statistics</p>
-                    <div id="rankedStatsList"></div>
+                <div class="championStats">
+                    <p id="championStatsLabel">Champion Statistics</p>
+                    <div id="championStatsList"></div>
                 </div>
                 <div class="leagueStats">
                     <p id="leagueStatsLabel">Ranked Information</p>
@@ -98,8 +96,7 @@
             <div class="currentGamePage"></div>
             <div class="matchDetailPage"></div>
         </div>
-
-        <script src="lib/jquery-3.0.0.min.js"></script>
+        <script src="lib/jquery-3.2.1.min.js"></script>
         <script src="lib/owl.carousel/owl.carousel.min.js"></script>
         <script src="lib/qtip/jquery.qtip.min.js"></script>
         <script src="js/localStorage.js"></script>

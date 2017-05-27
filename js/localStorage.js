@@ -63,10 +63,10 @@ function removeFavoriteSummoner(summonerObject) {
     setLocal('favoriteSummoners', favoriteSummoners)
 };
 
-function getMatchData(gameId) {
+function getMatchData(matchId) {
     var recentGames = getLocal('matchesData')
     for (var game in recentGames) {
-        if (recentGames[game].gameId == gameId) {
+        if (recentGames[game].matchId == matchId) {
             return recentGames[game]
         }
     }
@@ -77,7 +77,7 @@ function getMatchData(gameId) {
 function setMatchData(recentGameObject) {
     var recentGames = getLocal('matchesData')
     for (var game in recentGames) {
-        if (recentGames[game].gameId == recentGameObject.gameId) {
+        if (recentGames[game].matchId == recentGameObject.matchId) {
             recentGames[game] = recentGameObject
             break
         }

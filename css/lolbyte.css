@@ -83,7 +83,7 @@ a {
 }
 
 /* Labels */
-#playerStatsLabel, #rankedStatsLabel, #leagueStatsLabel {
+#playerStatsLabel, #championStatsLabel, #leagueStatsLabel {
     font-size: 120%;
     text-align: left;
     left: 5px;
