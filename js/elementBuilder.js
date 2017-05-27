@@ -128,9 +128,9 @@ function buildLeagueElement(leagueData) {
     var rank = document.createElement('p')
     rank.id = 'rank'
     $(rank).html(leagueData.rank)
-    var leaguePoints = document.createElement('p')
-    leaguePoints.id = 'leaguePoints'
-    $(leaguePoints).html(leagueData.leaguePoints)
+    var leagueProgress = document.createElement('p')
+    leagueProgress.id = 'leagueProgress'
+    $(leagueProgress).html(leagueData.leagueProgress)
     var leagueName = document.createElement('p')
     leagueName.id = 'leagueName'
     $(leagueName).html(leagueData.leagueName)
@@ -152,7 +152,7 @@ function buildLeagueElement(leagueData) {
     leagueElement.appendChild(leagueRankStats)
     leagueRankStats.appendChild(rank)
     if (leagueData.tier != 'unranked') {
-        leagueRankStats.appendChild(leaguePoints)
+        leagueRankStats.appendChild(leagueProgress)
         leagueRankStats.appendChild(leagueName)
         leagueRankStats.appendChild(calcMMR)
         leagueRankStats.appendChild(rankedWL)
@@ -288,6 +288,9 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     if (matchDetailData.isRanked) {
         $('#matchResult').html(selectedSummoner.win ? 'Victory' : 'Defeat')
         $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
+    } else {
+        $('#matchResult').html('Details')
+        $('#matchResult').css('color', '#5E606E')
     }
 
     var matchDetailSelectionElement = document.createElement('div')
