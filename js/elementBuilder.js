@@ -7,10 +7,10 @@ function buildSummonerElement(summonerData) {
     summonerIcon.src = 'img/resources/icons/' + summonerData.summonerIcon + '.png'
     var summonerName = document.createElement('p')
     summonerName.id = 'summonerName'
-    $(summonerName).html(summonerData.summonerName)
+    $(summonerName).text(summonerData.summonerName)
     var summonerRegion = document.createElement('p')
     summonerRegion.id = 'summonerRegion'
-    $(summonerRegion).html(summonerData.region)
+    $(summonerRegion).text(summonerData.region)
 
     summonerElement.appendChild(summonerIcon)
     summonerElement.appendChild(summonerName)
@@ -28,7 +28,7 @@ function buildCurrentGameElement(currentGameData) {
     currentGameElement.id = 'currentGameInfo'
     var gameType = document.createElement('p')
     gameType.id = 'gameType'
-    $(gameType).html(currentGameData.gameType)
+    $(gameType).text(currentGameData.gameType)
     var wrapGameType = document.createElement('div')
     wrapGameType.id = 'wrapGameType'
     wrapGameType.appendChild(gameType)
@@ -38,7 +38,7 @@ function buildCurrentGameElement(currentGameData) {
         if (i == currentGameData.summoners.length / 2) {
             var versusText = document.createElement('p')
             versusText.id = 'versusText'
-            $(versusText).html('vs')
+            $(versusText).text('vs')
             currentGameElement.appendChild(versusText)
         }
 
@@ -49,10 +49,10 @@ function buildCurrentGameElement(currentGameData) {
         champion.src = 'img/resources/champions/' + currentSummoner.championId + '.png'
         var summonerName = document.createElement('p')
         summonerName.id = 'summonerName'
-        $(summonerName).html(currentSummoner.summonerName)
+        $(summonerName).text(currentSummoner.summonerName)
         var rank = document.createElement('p')
         rank.id = 'rank'
-        $(rank).html(currentSummoner.rank)
+        $(rank).text(currentSummoner.rank)
 
         $(currentGameSummoner).addClass('currentGameSummonerTeam' + currentSummoner.teamId)
         currentSummoner.selectedSummoner ?  $(currentGameSummoner).addClass('selectedCurrentGameSummonerTeam' + currentSummoner.teamId):''
@@ -82,10 +82,10 @@ function buildRecentGameElement(gameData, gameNumber) {
         champion.style = gameData.win ? 'border: 2px solid #22A8CE;' : 'border: 2px solid #B2281D;'
         var gameResult = document.createElement('p')
         gameResult.id = 'recentGameResult'
-        $(gameResult).html(gameData.win ? 'W' : 'L')
+        $(gameResult).text(gameData.win ? 'W' : 'L')
         var gameKDA = document.createElement('p')
         gameKDA.id = 'recentGameKDA'
-        $(gameKDA).html(gameData.kda)
+        $(gameKDA).text(gameData.kda)
         recentGameElement.appendChild(gameResult)
         recentGameElement.appendChild(gameKDA)
     } else {
@@ -124,28 +124,28 @@ function buildLeagueElement(leagueData) {
 
     var rankQueueType = document.createElement('p')
     rankQueueType.id = 'rankQueueType'
-    $(rankQueueType).html(leagueData.rankQueueType)
+    $(rankQueueType).text(leagueData.rankQueueType)
     var rank = document.createElement('p')
     rank.id = 'rank'
-    $(rank).html(leagueData.rank)
+    $(rank).text(leagueData.rank)
     var leagueProgress = document.createElement('p')
     leagueProgress.id = 'leagueProgress'
-    $(leagueProgress).html(leagueData.leagueProgress)
+    $(leagueProgress).text(leagueData.leagueProgress)
     var leagueName = document.createElement('p')
     leagueName.id = 'leagueName'
-    $(leagueName).html(leagueData.leagueName)
+    $(leagueName).text(leagueData.leagueName)
     var calcMMR = document.createElement('p')
     calcMMR.id = 'calcMMR'
-    $(calcMMR).html(leagueData.mmr)
+    $(calcMMR).text(leagueData.mmr)
     var rankedWL = document.createElement('p')
     rankedWL.id = 'rankedWL'
-    $(rankedWL).html(leagueData.rankedWL)
+    $(rankedWL).text(leagueData.rankedWL)
     var rankedWinRatio = document.createElement('p')
     rankedWinRatio.id = 'rankedWinRatio'
-    $(rankedWinRatio).html(leagueData.rankedWinRatio)
+    $(rankedWinRatio).text(leagueData.rankedWinRatio)
     var lastSeasonRank = document.createElement('p')
     lastSeasonRank.id = 'lastSeasonRank'
-    $(lastSeasonRank).html(leagueData.lastSeasonRank)
+    $(lastSeasonRank).text(leagueData.lastSeasonRank)
 
     leagueElement.appendChild(rankQueueType)
     leagueElement.appendChild(rankBadge)
@@ -168,7 +168,7 @@ function buildPlayerStatElement(playerStatData) {
     var playerStatElement = document.createElement('div')
     var playerStatType = document.createElement('p')
     playerStatType.id = 'playerStatType'
-    $(playerStatType).html(playerStatData.playerStatType)
+    $(playerStatType).text(playerStatData.playerStatType)
     var winPercentage = document.createElement('img')
     winPercentage.id = 'winPercentage'
     winPercentage.src = 'img/assets/percent' + playerStatData.winPercentage + '.png'
@@ -176,13 +176,13 @@ function buildPlayerStatElement(playerStatData) {
     recentGamesStats.id = 'recentGamesStats'
     var kdaLong = document.createElement('p')
     kdaLong.id = 'kdaLong'
-    $(kdaLong).html(playerStatData.kdaLong)
+    $(kdaLong).text(playerStatData.kdaLong)
     var kdaShort = document.createElement('p')
     kdaShort.id = 'kdaShort'
-    $(kdaShort).html(playerStatData.kdaShort)
+    $(kdaShort).text(playerStatData.kdaShort)
     var averageWardsPlaced = document.createElement('p')
     averageWardsPlaced.id = 'averageWardsPlaced'
-    $(averageWardsPlaced).html(playerStatData.averageWardsPlaced)
+    $(averageWardsPlaced).text(playerStatData.averageWardsPlaced)
 
     playerStatElement.appendChild(playerStatType)
     playerStatElement.appendChild(winPercentage)
@@ -199,7 +199,7 @@ function buildchampionStatElement(championStatData) {
     championStatElement.id = 'championStatElement'
     var championStatType = document.createElement('p')
     championStatType.id = 'championStatType'
-    $(championStatType).html(championStatData.championStatType)
+    $(championStatType).text(championStatData.championStatType)
 
     if (championStatData.mostPlayedChampions) {
         var mostPlayedChampions = document.createElement('div')
@@ -213,10 +213,10 @@ function buildchampionStatElement(championStatData) {
             $(championImage).css('border', '3px solid ' + currentChampion.championBorder)
             var championName = document.createElement('p')
             championName.id = 'championName'
-            $(championName).html(currentChampion.championName)
+            $(championName).text(currentChampion.championName)
             var championWinLossPercentage = document.createElement('p')
             championWinLossPercentage.id = 'championWinLossPercentage'
-            $(championWinLossPercentage).html(currentChampion.championGamesPlayed)
+            $(championWinLossPercentage).text(currentChampion.championGamesPlayed)
             mostPlayedChampion.appendChild(championImage)
             mostPlayedChampion.appendChild(championName)
             mostPlayedChampion.appendChild(championWinLossPercentage)
@@ -237,13 +237,13 @@ function buildchampionStatElement(championStatData) {
             $(championImage).css('border', '3px solid ' + currentChampion.masteryBorder)
             var championName = document.createElement('p')
             championName.id = 'championName'
-            $(championName).html(currentChampion.championName)
+            $(championName).text(currentChampion.championName)
             var championLevel = document.createElement('p')
             championLevel.id = 'championLevel'
-            $(championLevel).html(currentChampion.championLevel)
+            $(championLevel).text(currentChampion.championLevel)
             var championPoints = document.createElement('p')
             championPoints.id = 'championPoints'
-            $(championPoints).html(currentChampion.championPoints)
+            $(championPoints).text(currentChampion.championPoints)
 
             topChampion.appendChild(championImage)
             topChampion.appendChild(championName)
@@ -266,13 +266,13 @@ function buildMatchDetailBarElement(matchDetailData) {
     matchResult.id = 'matchResult'
     var matchDate = document.createElement('div')
     matchDate.id = 'matchDate'
-    $(matchDate).html(formatTimestamp(matchDetailData.matchDate))
+    $(matchDate).text(formatTimestamp(matchDetailData.matchDate))
     var matchGameType = document.createElement('div')
     matchGameType.id = 'matchGameType'
-    $(matchGameType).html(matchDetailData.matchQueueType)
+    $(matchGameType).text(matchDetailData.matchQueueType)
     var matchDuration = document.createElement('div')
     matchDuration.id = 'matchDuration'
-    $(matchDuration).html(matchDetailData.matchDuration)
+    $(matchDuration).text(matchDetailData.matchDuration)
 
     matchDetailBarElement.appendChild(matchResult)
     matchDetailBarElement.appendChild(matchDate)
@@ -286,10 +286,10 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     var selectedSummoner = getSelectedSummoner(matchDetailData.matchId)
 
     if (matchDetailData.isRanked) {
-        $('#matchResult').html(selectedSummoner.win ? 'Victory' : 'Defeat')
+        $('#matchResult').text(selectedSummoner.win ? 'Victory' : 'Defeat')
         $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
     } else {
-        $('#matchResult').html('Details')
+        $('#matchResult').text('Details')
         $('#matchResult').css('color', '#5E606E')
     }
 
@@ -330,27 +330,27 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     stats2.id = 'stats2'
     var kdaLong = document.createElement('p')
     kdaLong.id = 'kdaLong'
-    $(kdaLong).html(selectedSummoner.kdaLong)
+    $(kdaLong).text(selectedSummoner.kdaLong)
     stats1.appendChild(kdaLong)
     var damageContribution = document.createElement('p')
     damageContribution.id = 'damageContribution'
-    $(damageContribution).html(selectedSummoner.damageContribution)
+    $(damageContribution).text(selectedSummoner.damageContribution)
     stats1.appendChild(damageContribution)
     var level = document.createElement('p')
     level.id = 'level'
-    $(level).html(selectedSummoner.level)
+    $(level).text(selectedSummoner.level)
     stats1.appendChild(level)
     var cs = document.createElement('p')
     cs.id = 'cs'
-    $(cs).html(selectedSummoner.cs)
+    $(cs).text(selectedSummoner.cs)
     stats2.appendChild(cs)
     var gold = document.createElement('p')
     gold.id = 'gold'
-    $(gold).html(selectedSummoner.gold)
+    $(gold).text(selectedSummoner.gold)
     stats2.appendChild(gold)
     var kp = document.createElement('p')
     kp.id = 'kp'
-    $(kp).html(selectedSummoner.killParticipation)
+    $(kp).text(selectedSummoner.killParticipation)
     stats2.appendChild(kp)
 
     var spellList = document.createElement('div')
@@ -369,16 +369,16 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     var summonerName = document.createElement('p')
     summonerName.id = 'summonerName'
     if (matchDetailData.isRanked) {
-        $(summonerName).html(selectedSummoner.summonerName ? selectedSummoner.summonerName + ' ' : 'Loading...')
+        $(summonerName).text(selectedSummoner.summonerName ? selectedSummoner.summonerName + ' ' : 'Loading...')
     }
     playerInfo.appendChild(summonerName)
     var rank = document.createElement('p')
     rank.id = 'rank'
     playerInfo.appendChild(rank)
-    $(rank).html(selectedSummoner.rank ? selectedSummoner.rank : '')
+    $(rank).text(selectedSummoner.rank ? selectedSummoner.rank : '')
     var championName = document.createElement('p')
     championName.id = 'championName'
-    $(championName).html(selectedSummoner.championName)
+    $(championName).text(selectedSummoner.championName)
     playerInfo.appendChild(championName)
 
     var wrapPlayerInfo = document.createElement('a')
@@ -395,7 +395,7 @@ function buildMatchDetailSelectionElement(matchDetailData) {
         badge.id = 'badge'
         var badgeText = document.createElement('p')
         badgeText.id = 'badgeText'
-        $(badgeText).html(selectedSummoner.badges[j].big)
+        $(badgeText).text(selectedSummoner.badges[j].big)
         var badgeColor = selectedSummoner.badges[j]['color']
         $(badgeText).css('border', '1px solid ' + badgeColor)
         $(badgeText).css('color', badgeColor)
@@ -424,7 +424,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     matchDetailResult.id = 'matchDetailResult'
     var matchDetailResultText = document.createElement('p')
     var teamWin = matchDetailData['team' + teamNumber + 'Win']
-    $(matchDetailResultText).html(teamWin ? 'Victory  ' : 'Defeat  ')
+    $(matchDetailResultText).text(teamWin ? 'Victory  ' : 'Defeat  ')
     matchDetailResult.appendChild(matchDetailResultText)
 
     var towerKills = document.createElement('div')
@@ -435,7 +435,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     towerKills.appendChild(towerKillIcon)
     var towerKillCount = document.createElement('p')
     towerKillCount.id = 'towerKillCount'
-    $(towerKillCount).html(matchDetailData.teams[teamNumber - 1].towerKills)
+    $(towerKillCount).text(matchDetailData.teams[teamNumber - 1].towerKills)
     towerKills.appendChild(towerKillCount)
     $(matchDetailResult).append(towerKills)
 
@@ -447,7 +447,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     dragonKills.appendChild(dragonKillIcon)
     var dragonKillCount = document.createElement('p')
     dragonKillCount.id = 'dragonKillCount'
-    $(dragonKillCount).html(matchDetailData.teams[teamNumber - 1].dragonKills)
+    $(dragonKillCount).text(matchDetailData.teams[teamNumber - 1].dragonKills)
     dragonKills.appendChild(dragonKillCount)
     $(matchDetailResult).append(dragonKills)
 
@@ -459,18 +459,18 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     baronKills.appendChild(baronKillIcon)
     var baronKillCount = document.createElement('p')
     baronKillCount.id = 'baronKillCount'
-    $(baronKillCount).html(matchDetailData.teams[teamNumber - 1].baronKills)
+    $(baronKillCount).text(matchDetailData.teams[teamNumber - 1].baronKills)
     baronKills.appendChild(baronKillCount)
     $(matchDetailResult).append(baronKills)
 
     var teamKda = document.createElement('p')
     teamKda.id = 'teamKda'
-    $(teamKda).html(matchDetailData.teams[teamNumber - 1].kda)
+    $(teamKda).text(matchDetailData.teams[teamNumber - 1].kda)
     $(matchDetailResult).append(teamKda)
 
     var teamGold = document.createElement('p')
     teamGold.id = 'teamGold'
-    $(teamGold).html('$' + matchDetailData.teams[teamNumber - 1].gold)
+    $(teamGold).text('$' + matchDetailData.teams[teamNumber - 1].gold)
     $(matchDetailResult).append(teamGold)
 
     var matchDetailTeam = document.createElement('div')
@@ -495,20 +495,20 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
         setSelectedSummonerUI(matchDetailSummoner, currentSummoner, selectedSummoner)
         var summonerKda = document.createElement('div')
         summonerKda.id = 'summonerKda'
-        $(summonerKda).html(currentSummoner.kdaLong)
+        $(summonerKda).text(currentSummoner.kdaLong)
         var namerank = document.createElement('div')
         namerank.id = 'namerank'
         var summonerName = document.createElement('span')
         summonerName.id = 'summonerName'
         if (matchDetailData.isRanked) {
-            $(summonerName).html(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
+            $(summonerName).text(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
         } else {
-            $(summonerName).html(currentSummoner.championName)
+            $(summonerName).text(currentSummoner.championName)
         }
         $(summonerName).css('color', (teamWin ? '#22A8CE' : '#B2281D'))
         var rank = document.createElement('span')
         rank.id = 'rank'
-        $(rank).html(currentSummoner.rank ? currentSummoner.rank : '')
+        $(rank).text(currentSummoner.rank ? currentSummoner.rank : '')
         namerank.appendChild(summonerName)
         namerank.appendChild(rank)
         var itemList = document.createElement('ul')
@@ -559,7 +559,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
             badge.id = 'badge'
             var badgeText = document.createElement('p')
             badgeText.id = 'badgeText'
-            $(badgeText).html(currentSummoner.badges[j].small)
+            $(badgeText).text(currentSummoner.badges[j].small)
             var badgeColor = currentSummoner.badges[j]['color']
             $(badgeText).css('border', '1px solid ' + badgeColor)
             $(badgeText).css('color', badgeColor)
