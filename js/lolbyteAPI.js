@@ -40,9 +40,7 @@ function retrieveMatchData(matchId) {
         $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() +
                   '/match-id/' + matchId, function(matchDetailData) {
             addMatchData(matchDetailData.matchDetailPage)
-            if (matchDetailData.matchDetailPage.isRanked) {
-                initMatchDetailNameRanks(matchDetailData.matchDetailPage.matchId)
-            }
+            initMatchDetailNameRanks(matchDetailData.matchDetailPage.matchId)
         });
     } else {
         setSelectedSummonerBySummonerId(matchId, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId)

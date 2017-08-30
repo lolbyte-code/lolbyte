@@ -78,27 +78,18 @@ function buildRecentGameElement(gameData, gameNumber) {
     var champion = document.createElement('img')
     champion.src = 'img/resources/champions/' + gameData.championId + '.png'
     recentGameElement.appendChild(champion)
-    if (gameData.isRanked) {
-        champion.style = gameData.win ? 'border: 2px solid #22A8CE;' : 'border: 2px solid #B2281D;'
-        var gameResult = document.createElement('p')
-        gameResult.id = 'recentGameResult'
-        $(gameResult).text(gameData.win ? 'W' : 'L')
-        var gameKDA = document.createElement('p')
-        gameKDA.id = 'recentGameKDA'
-        $(gameKDA).text(gameData.kda)
-        recentGameElement.appendChild(gameResult)
-        recentGameElement.appendChild(gameKDA)
-    } else {
-        champion.style = 'border: 2px solid #38B171'
-    }
-
+    champion.style = gameData.win ? 'border: 2px solid #22A8CE;' : 'border: 2px solid #B2281D;'
+    var gameResult = document.createElement('p')
+    gameResult.id = 'recentGameResult'
+    $(gameResult).text(gameData.win ? 'W' : 'L')
+    var gameKDA = document.createElement('p')
+    gameKDA.id = 'recentGameKDA'
+    $(gameKDA).text(gameData.kda)
+    recentGameElement.appendChild(gameResult)
+    recentGameElement.appendChild(gameKDA)
     var wrapRecentGameElement = document.createElement('a')
     wrapRecentGameElement.href = '#'
-    if (gameData.isRanked) {
-        wrapRecentGameElement.id = gameData.win ? 1 : 0
-    } else {
-        wrapRecentGameElement.id = -1
-    }
+    wrapRecentGameElement.id = gameData.win ? 1 : 0
     wrapRecentGameElement.className = 'recentGame' + gameNumber
     wrapRecentGameElement.appendChild(recentGameElement)
 
@@ -284,15 +275,8 @@ function buildMatchDetailBarElement(matchDetailData) {
 
 function buildMatchDetailSelectionElement(matchDetailData) {
     var selectedSummoner = getSelectedSummoner(matchDetailData.matchId)
-
-    if (matchDetailData.isRanked) {
-        $('#matchResult').text(selectedSummoner.win ? 'Victory' : 'Defeat')
-        $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
-    } else {
-        $('#matchResult').text('Details')
-        $('#matchResult').css('color', '#5E606E')
-    }
-
+    $('#matchResult').text(selectedSummoner.win ? 'Victory' : 'Defeat')
+    $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
     var matchDetailSelectionElement = document.createElement('div')
     matchDetailSelectionElement.id = 'matchDetailSelection'
     $(matchDetailSelectionElement).addClass('matchDetailSelection' + selectedSummoner.championId)
@@ -368,9 +352,7 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     playerInfo.id = 'playerInfo'
     var summonerName = document.createElement('p')
     summonerName.id = 'summonerName'
-    if (matchDetailData.isRanked) {
-        $(summonerName).text(selectedSummoner.summonerName ? selectedSummoner.summonerName + ' ' : 'Loading...')
-    }
+    $(summonerName).text(selectedSummoner.summonerName ? selectedSummoner.summonerName + ' ' : 'Loading...')
     playerInfo.appendChild(summonerName)
     var rank = document.createElement('p')
     rank.id = 'rank'
@@ -500,11 +482,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
         namerank.id = 'namerank'
         var summonerName = document.createElement('span')
         summonerName.id = 'summonerName'
-        if (matchDetailData.isRanked) {
-            $(summonerName).text(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
-        } else {
-            $(summonerName).text(currentSummoner.championName)
-        }
+        $(summonerName).text(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
         $(summonerName).css('color', (teamWin ? '#22A8CE' : '#B2281D'))
         var rank = document.createElement('span')
         rank.id = 'rank'
