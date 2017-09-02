@@ -1,6 +1,5 @@
 /*** CONSTANTS ***/
-// var API_BASE_URL = 'http://gg.lolbyte.me:8080/api/v3/';
-var API_BASE_URL = 'http://localhost:8080/api/v3/';
+var API_BASE_URL = 'http://gg.lolbyte.me:8080/api/v3/';
 var MAX_SUMMONER_LIST_SIZE = 20
 var MAX_GAME_COUNT = 20
 
