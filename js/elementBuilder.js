@@ -459,106 +459,104 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     matchDetailTeam.id = 'matchDetailTeam'
     $('#matchDetailTeam' + teamNumber + ' #matchDetailResult').css('background-color', teamWin ? '#38B171' : '#B2281D')
 
-    for (var i = 0; i < matchDetailData.players.length / 2; i++) {
-        var teamOffset = teamNumber == 1 ? i : i + (matchDetailData.players.length / 2)
-        // Handle teams with uneven number of players
-        teamOffset = Math.floor(teamOffset)
-        if (matchDetailData.players[teamOffset].teamId != teamNumber + '00') { break }
-        var currentSummoner = matchDetailData.players[teamOffset]
-        var countMatchDetailSummoner = document.createElement('div')
-        countMatchDetailSummoner.id = 'summoner' + currentSummoner.participantId
-        var matchDetailSummoner = document.createElement('div')
-        matchDetailSummoner.id = 'matchDetailSummoner'
-        var matchDetailSummonerChampion = document.createElement('img')
-        matchDetailSummonerChampion.id = 'matchDetailSummonerChampion'
-        matchDetailSummonerChampion.src = 'img/resources/champions/' + currentSummoner.championId + '.png'
-        $(matchDetailSummoner).click({'participantId': currentSummoner.participantId, 'matchId': matchDetailData.matchId}, matchDetailSummonerClicked)
-        $(matchDetailSummonerChampion).css('border', '2px solid ' + (teamWin ? '#22A8CE' : '#B2281D'))
-        setSelectedSummonerUI(matchDetailSummoner, currentSummoner, selectedSummoner)
-        var summonerKda = document.createElement('div')
-        summonerKda.id = 'summonerKda'
-        $(summonerKda).text(currentSummoner.kdaLong)
-        var namerank = document.createElement('div')
-        namerank.id = 'namerank'
-        var summonerName = document.createElement('span')
-        summonerName.id = 'summonerName'
-        $(summonerName).text(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
-        $(summonerName).css('color', (teamWin ? '#22A8CE' : '#B2281D'))
-        var rank = document.createElement('span')
-        rank.id = 'rank'
-        $(rank).text(currentSummoner.rank ? currentSummoner.rank : '')
-        namerank.appendChild(summonerName)
-        namerank.appendChild(rank)
-        var itemList = document.createElement('ul')
-        itemList.id = 'itemList'
-        var trinket = document.createElement('li')
-        trinket.id = 'trinket'
-        var trinketImage = document.createElement('img')
-        trinketImage.src = 'img/resources/items/' + currentSummoner.trinket + '.png'
-        trinket.appendChild(trinketImage)
-        itemList.appendChild(trinket)
-        for (var j = 0; j < currentSummoner.items.length; j++) {
-            var item = document.createElement('li')
-            item.id = 'item'
-            if (currentSummoner.items[j]['id']) {
-                $(item).qtip({
-                    content: {
-                        title: currentSummoner.items[j]['name'],
-                        text: currentSummoner.items[j]['description']
-                    },
-                    style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
-                    position: { viewport: $('.lolbyte') }
-                });
+    for (var i = 0; i < matchDetailData.players.length; i++) {
+        if (matchDetailData.players[i].teamId == (teamNumber + '00')) {
+            var currentSummoner = matchDetailData.players[i]
+            var countMatchDetailSummoner = document.createElement('div')
+            countMatchDetailSummoner.id = 'summoner' + currentSummoner.participantId
+            var matchDetailSummoner = document.createElement('div')
+            matchDetailSummoner.id = 'matchDetailSummoner'
+            var matchDetailSummonerChampion = document.createElement('img')
+            matchDetailSummonerChampion.id = 'matchDetailSummonerChampion'
+            matchDetailSummonerChampion.src = 'img/resources/champions/' + currentSummoner.championId + '.png'
+            $(matchDetailSummoner).click({'participantId': currentSummoner.participantId, 'matchId': matchDetailData.matchId}, matchDetailSummonerClicked)
+            $(matchDetailSummonerChampion).css('border', '2px solid ' + (teamWin ? '#22A8CE' : '#B2281D'))
+            setSelectedSummonerUI(matchDetailSummoner, currentSummoner, selectedSummoner)
+            var summonerKda = document.createElement('div')
+            summonerKda.id = 'summonerKda'
+            $(summonerKda).text(currentSummoner.kdaLong)
+            var namerank = document.createElement('div')
+            namerank.id = 'namerank'
+            var summonerName = document.createElement('span')
+            summonerName.id = 'summonerName'
+            $(summonerName).text(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
+            $(summonerName).css('color', (teamWin ? '#22A8CE' : '#B2281D'))
+            var rank = document.createElement('span')
+            rank.id = 'rank'
+            $(rank).text(currentSummoner.rank ? currentSummoner.rank : '')
+            namerank.appendChild(summonerName)
+            namerank.appendChild(rank)
+            var itemList = document.createElement('ul')
+            itemList.id = 'itemList'
+            var trinket = document.createElement('li')
+            trinket.id = 'trinket'
+            var trinketImage = document.createElement('img')
+            trinketImage.src = 'img/resources/items/' + currentSummoner.trinket + '.png'
+            trinket.appendChild(trinketImage)
+            itemList.appendChild(trinket)
+            for (var j = 0; j < currentSummoner.items.length; j++) {
+                var item = document.createElement('li')
+                item.id = 'item'
+                if (currentSummoner.items[j]['id']) {
+                    $(item).qtip({
+                        content: {
+                            title: currentSummoner.items[j]['name'],
+                            text: currentSummoner.items[j]['description']
+                        },
+                        style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
+                        position: { viewport: $('.lolbyte') }
+                    });
+                }
+                var itemImage = document.createElement('img')
+                itemImage.src = 'img/resources/items/' + currentSummoner.items[j]['id'] + '.png'
+                item.appendChild(itemImage)
+                itemList.appendChild(item)
             }
-            var itemImage = document.createElement('img')
-            itemImage.src = 'img/resources/items/' + currentSummoner.items[j]['id'] + '.png'
-            item.appendChild(itemImage)
-            itemList.appendChild(item)
+
+            var spellList = document.createElement('div')
+            spellList.id = 'spellList'
+            var spell1 = document.createElement('img')
+            spell1.id = 'spell1'
+            spell1.src = 'img/resources/spells/' + currentSummoner.spells[0] + '.png'
+            spellList.appendChild(spell1)
+            var spell2 = document.createElement('img')
+            spell2.id = 'spell2'
+            spell2.src = 'img/resources/spells/' + currentSummoner.spells[1] + '.png'
+            spellList.appendChild(spell2)
+
+            var wrapBadgeList = document.createElement('div')
+            wrapBadgeList.id = 'wrapBadgeList'
+            var badgeList = document.createElement('div')
+            badgeList.id = 'badgeList'
+
+            for (var j = 0; j < currentSummoner.badges.length; j++) {
+                var badge = document.createElement('div')
+                badge.id = 'badge'
+                var badgeText = document.createElement('p')
+                badgeText.id = 'badgeText'
+                $(badgeText).text(currentSummoner.badges[j].small)
+                var badgeColor = currentSummoner.badges[j]['color']
+                $(badgeText).css('border', '1px solid ' + badgeColor)
+                $(badgeText).css('color', badgeColor)
+                badge.appendChild(badgeText)
+                badgeList.appendChild(badge)
+            }
+
+            wrapBadgeList.appendChild(badgeList)
+
+            matchDetailSummoner.appendChild(matchDetailSummonerChampion)
+            matchDetailSummoner.appendChild(summonerKda)
+            matchDetailSummoner.appendChild(namerank)
+            matchDetailSummoner.appendChild(itemList)
+            matchDetailSummoner.appendChild(spellList)
+            matchDetailSummoner.appendChild(wrapBadgeList)
+
+            var wrapMatchDetailsSummonerElement = document.createElement('a')
+            wrapMatchDetailsSummonerElement.href = '#'
+            wrapMatchDetailsSummonerElement.appendChild(matchDetailSummoner)
+            countMatchDetailSummoner.appendChild(wrapMatchDetailsSummonerElement)
+            matchDetailTeam.appendChild(countMatchDetailSummoner)
         }
-
-        var spellList = document.createElement('div')
-        spellList.id = 'spellList'
-        var spell1 = document.createElement('img')
-        spell1.id = 'spell1'
-        spell1.src = 'img/resources/spells/' + currentSummoner.spells[0] + '.png'
-        spellList.appendChild(spell1)
-        var spell2 = document.createElement('img')
-        spell2.id = 'spell2'
-        spell2.src = 'img/resources/spells/' + currentSummoner.spells[1] + '.png'
-        spellList.appendChild(spell2)
-
-        var wrapBadgeList = document.createElement('div')
-        wrapBadgeList.id = 'wrapBadgeList'
-        var badgeList = document.createElement('div')
-        badgeList.id = 'badgeList'
-
-        for (var j = 0; j < currentSummoner.badges.length; j++) {
-            var badge = document.createElement('div')
-            badge.id = 'badge'
-            var badgeText = document.createElement('p')
-            badgeText.id = 'badgeText'
-            $(badgeText).text(currentSummoner.badges[j].small)
-            var badgeColor = currentSummoner.badges[j]['color']
-            $(badgeText).css('border', '1px solid ' + badgeColor)
-            $(badgeText).css('color', badgeColor)
-            badge.appendChild(badgeText)
-            badgeList.appendChild(badge)
-        }
-
-        wrapBadgeList.appendChild(badgeList)
-
-        matchDetailSummoner.appendChild(matchDetailSummonerChampion)
-        matchDetailSummoner.appendChild(summonerKda)
-        matchDetailSummoner.appendChild(namerank)
-        matchDetailSummoner.appendChild(itemList)
-        matchDetailSummoner.appendChild(spellList)
-        matchDetailSummoner.appendChild(wrapBadgeList)
-
-        var wrapMatchDetailsSummonerElement = document.createElement('a')
-        wrapMatchDetailsSummonerElement.href = '#'
-        wrapMatchDetailsSummonerElement.appendChild(matchDetailSummoner)
-        countMatchDetailSummoner.appendChild(wrapMatchDetailsSummonerElement)
-        matchDetailTeam.appendChild(countMatchDetailSummoner)
     }
 
     matchDetailTeamXElement.appendChild(matchDetailResult)
