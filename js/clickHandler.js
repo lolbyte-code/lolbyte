@@ -63,18 +63,26 @@ function headerSummonerNameClicked() {
 
 function recentGameClicked(recentGameClickedData) {
     clearRecentGameWhiteBorders()
+    minimizeRecentGame()
 
     var matchId = recentGameClickedData.data.matchId
     var teamId = recentGameClickedData.data.teamId
     var championId = recentGameClickedData.data.championId
 
     if (matchId == SELECTED_MATCH) {
-        minimizeRecentGame()
         SELECTED_MATCH = 0
+    } else if (getMatchData(matchId)) {
+        $('.matchId' + matchId + ' img').css('border', '2px solid white')
+        matchDetailPage(matchId, championId, teamId)
     } else {
-        matchDetailPage(matchId, teamId, championId)
-        SELECTED_MATCH = matchId
-        $('.matchId' + recentGameClickedData.data.matchId + ' img').css('border', '2px solid white')
+        $('.matchId' + matchId + ' img').css('border', '2px solid white')
+        $('.matchId' + matchId + ' img').playKeyframe({
+            name: 'spin',
+            duration: '2s',
+            timingFunction: 'ease',
+            iterationCount: 'infinite'
+        });
+        retrieveMatchData(matchId, teamId, championId)
     }
 };
 

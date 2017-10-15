@@ -16,11 +16,6 @@ function summonerPage(noUpdateQueue, summonerSearchOverride) {
                 !noUpdateQueue ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
                 updateRecentSummoners(summonerData.searchSummonerPage.summonerObject)
                 loadLolByte(summonerData)
-
-                // Kick off call to server for game data!
-                for (var i = 0; i < summonerData.searchSummonerPage.recentGames.length; i++) {
-                    retrieveMatchData(summonerData.searchSummonerPage.recentGames[i].matchId)
-                }
             } else {
                 updateSummonerQueue({'summonerName': summonerQuery.summonerName, 'region': summonerQuery.region, 'summonerIcon': 0})
                 loadLolByte({'summonerNotFoundPage': {}})
@@ -34,44 +29,23 @@ function updateSummonerQueue(summonerObject) {
     SEARCH_SUMMONER_QUEUE.push(summonerObject)
 };
 
-function retrieveMatchData(matchId) {
+function retrieveMatchData(matchId, teamId, championId) {
     var targetGame = getMatchData(matchId)
     if (!targetGame) {
         $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() +
-                  '/match-id/' + matchId, function(matchDetailData) {
+                  '/match-id/' + matchId + '?summonerId=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(matchDetailData) {
             addMatchData(matchDetailData.matchDetailPage)
-            initMatchDetailNameRanks(matchDetailData.matchDetailPage.matchId)
+            matchDetailPage(matchId, teamId, championId)
+            $('.matchId' + matchId + ' img').resetKeyframe();
+            $('.matchId' + matchId + ' img').pauseKeyframe();
         });
-    } else {
-        setSelectedSummonerBySummonerId(matchId, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId)
     }
 };
 
 function matchDetailPage(matchId, teamId, championId) {
-    // Only show page if the match exists
-    if (getMatchData(matchId)) {
-        setSelectedSummonerByChampionTeamId(matchId, championId, teamId)
-        loadLolByte({'matchDetailPage': getMatchData(matchId)})
-    }
-};
-
-function initMatchDetailNameRanks(matchId) {
-    $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/match-id/' + matchId + '/details' +
-              '?summonerId=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(matchDetailData) {
-        var targetGame = getMatchData(matchDetailData.matchId)
-        if (targetGame) {
-            for (var i = 0; i < targetGame.players.length; i++) {
-                targetGame.players[i].summonerName = matchDetailData.players[targetGame.players[i].participantId - 1].summonerName
-                targetGame.players[i].rank = matchDetailData.players[targetGame.players[i].participantId - 1].rank
-            }
-
-            setMatchData(targetGame)
-            if (SELECTED_MATCH == matchDetailData.matchId) {
-                updateMatchDetailSelection(matchDetailData.matchId)
-                updateMatchDetailTeam(matchDetailData.matchId)
-            }
-        }
-    });
+    setSelectedSummonerBySummonerId(matchId, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId)
+    loadLolByte({'matchDetailPage': getMatchData(matchId)})
+    SELECTED_MATCH = matchId
 };
 
 function initCurrentGamePage() {

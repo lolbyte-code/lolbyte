@@ -79,18 +79,6 @@ function setSelectedSummonerBySummonerId(matchId, summonerId) {
     setMatchData(targetRecentGame)
 };
 
-function setSelectedSummonerByChampionTeamId(matchId, championId, teamId) {
-    var targetRecentGame = getMatchData(matchId)
-    for (var i = 0; i < targetRecentGame.players.length; i++) {
-        if (targetRecentGame.players[i].championId == championId) {
-            targetRecentGame.players[i]['selectedSummoner'] = true
-        } else {
-            targetRecentGame.players[i]['selectedSummoner'] = false
-        }
-    }
-    setMatchData(targetRecentGame)
-};
-
 function getSelectedSummoner(matchId) {
     var targetGame = getMatchData(matchId)
     for (var i = 0; i < targetGame.players.length; i++) {
