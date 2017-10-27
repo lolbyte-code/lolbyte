@@ -78,7 +78,7 @@ function recentGameClicked(recentGameClickedData) {
         $('.matchId' + matchId + ' img').css('border', '2px solid white')
         $('.matchId' + matchId + ' img').playKeyframe({
             name: 'spin',
-            duration: '2s',
+            duration: '1.5s',
             timingFunction: 'ease',
             iterationCount: 'infinite'
         });
