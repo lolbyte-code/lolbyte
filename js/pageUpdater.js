@@ -2,8 +2,8 @@
 function updateMostPlayedChampionsSection(rankedData) {
     refreshOwlList($('#championStatsList'), 'championStatsList', $('.championStats'))
 
-    for (var championStat in rankedData.championStats) {
-        $('.championStats #championStatsList').append(buildchampionStatElement(rankedData.championStats[championStat]))
+    for (var championStat in rankedData) {
+        $('.championStats #championStatsList').append(buildchampionStatElement(rankedData[championStat]))
     }
 
     loadOwlCarousel('championStats', 'championStatsList', {'items': 1})
@@ -13,8 +13,8 @@ function updateMostPlayedChampionsSection(rankedData) {
 function updateLeaguePage(leagueData) {
     refreshOwlList($('#leagueStatsList'), 'leagueStatsList', $('.leagueStats'))
 
-    for (var league in leagueData.leagueStats)
-        $('.leagueStats #leagueStatsList').append(buildLeagueElement(leagueData.leagueStats[league]))
+    for (var league in leagueData)
+        $('.leagueStats #leagueStatsList').append(buildLeagueElement(leagueData[league]))
 
     loadOwlCarousel('leagueStats', 'leagueStatsList', {'items': 1})
     setOwlVisibility('leagueStats', 'leagueStatsList', 1)

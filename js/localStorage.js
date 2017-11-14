@@ -67,6 +67,8 @@ function getMatchData(matchId) {
     var recentGames = getLocal('matchesData')
     for (var game in recentGames) {
         if (recentGames[game].matchId == matchId) {
+            //hack
+            recentGames[game].matchDetailPage = true
             return recentGames[game]
         }
     }
