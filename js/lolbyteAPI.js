@@ -12,7 +12,7 @@ function summonerPage(noUpdateQueue, summonerSearchOverride) {
     if (summonerQuery.region && summonerQuery.summonerName) {
         $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
                   '?rankedOnly=' + RANKED_MODE, function(summonerData) {
-            if (!$.isEmptyObject(summonerData)) {
+            if (summonerData.summonerLevel != 0) {
                 !noUpdateQueue ? updateSummonerQueue(summonerData.summonerObject):''
                 updateRecentSummoners(summonerData.summonerObject)
                 // hack
