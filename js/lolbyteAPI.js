@@ -12,9 +12,10 @@ function summonerPage(noUpdateQueue, summonerSearchOverride) {
     if (summonerQuery.region && summonerQuery.summonerName) {
         $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
                   '?rankedOnly=' + RANKED_MODE, function(summonerData) {
-            if (!$.isEmptyObject(summonerData)) {
-                !noUpdateQueue ? updateSummonerQueue(summonerData.searchSummonerPage.summonerObject):''
-                updateRecentSummoners(summonerData.searchSummonerPage.summonerObject)
+            if (summonerData.summonerLevel != 0) {
+                !noUpdateQueue ? updateSummonerQueue(summonerData.summonerObject):''
+                updateRecentSummoners(summonerData.summonerObject)
+                summonerData.searchSummonerPage = true
                 loadLolByte(summonerData)
             } else {
                 updateSummonerQueue({'summonerName': summonerQuery.summonerName, 'region': summonerQuery.region, 'summonerIcon': 0})
@@ -34,7 +35,7 @@ function retrieveMatchData(matchId, teamId, championId) {
     if (!targetGame) {
         $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() +
                   '/match-id/' + matchId + '?summonerId=' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(matchDetailData) {
-            addMatchData(matchDetailData.matchDetailPage)
+            addMatchData(matchDetailData)
             matchDetailPage(matchId, teamId, championId)
             $('.matchId' + matchId + ' img').resetKeyframe();
             $('.matchId' + matchId + ' img').pauseKeyframe();
@@ -44,14 +45,14 @@ function retrieveMatchData(matchId, teamId, championId) {
 
 function matchDetailPage(matchId, teamId, championId) {
     setSelectedSummonerBySummonerId(matchId, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId)
-    loadLolByte({'matchDetailPage': getMatchData(matchId)})
+    loadLolByte(getMatchData(matchId))
     SELECTED_MATCH = matchId
 };
 
 function initCurrentGamePage() {
     $.getJSON(API_BASE_URL + 'current/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/' +
               SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(currentGameData) {
-        if (!$.isEmptyObject(currentGameData)) {
+        if (currentGameData.summoners.length !== 0) {
             updateCurrentGamePage(currentGameData)
         }
     });

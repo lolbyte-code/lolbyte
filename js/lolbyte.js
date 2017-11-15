@@ -25,12 +25,12 @@ function loadLolByte(inputObject) {
         showPage('landingPage')
     } else if (inputObject.searchSummonerPage) {
         SELECTED_MATCH = 0
-        buildSummonerPage(inputObject.searchSummonerPage)
-        buildStatsPage(inputObject.searchSummonerPage)
+        buildSummonerPage(inputObject)
+        buildStatsPage(inputObject)
         showPage('summonerPage')
         showPage('statsPage')
     } else if (inputObject.matchDetailPage) {
-        buildMatchDetailsPage(inputObject.matchDetailPage)
+        buildMatchDetailsPage(inputObject)
         showPage('summonerPage')
         showPage('matchDetailPage')
     } else if (inputObject.summonerNotFoundPage) {
