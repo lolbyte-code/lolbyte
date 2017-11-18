@@ -63,12 +63,12 @@
 }
 
 .navigationBar #feedbackButton {
-    left: 251px;
+    left: 245px;
     position: absolute;
 }
 
 .navigationBar #donationButton {
-    left: 289px;
+    left: 205px;
     position: absolute;
 }
 
