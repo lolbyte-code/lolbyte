@@ -12,6 +12,7 @@ body {
     position: relative;
     color: #B2B4BB;
     font-size: 100%;
+    overflow: hidden
 }
 
 @font-face {
