@@ -60,14 +60,14 @@ function initCurrentGamePage() {
 
 function initMostPlayedChampions() {
     $.getJSON(API_BASE_URL + 'summoners/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/'+
-              formatText(SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId) +'/champions', function(rankedData) {
+              SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId +'/champions', function(rankedData) {
         updateMostPlayedChampionsSection(rankedData)
     });
 };
 
 function initLeaguePage() {
     $.getJSON(API_BASE_URL + 'summoners/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/'+
-              formatText(SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId) +'/rank', function(leagueData) {
+              SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId +'/rank', function(leagueData) {
         updateLeaguePage(leagueData)
     });
 };
