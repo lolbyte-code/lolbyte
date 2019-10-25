@@ -8,6 +8,7 @@ function landingPage() {
 };
 
 function summonerPage(noUpdateQueue, summonerSearchOverride) {
+    rgeaLog()
     var summonerQuery = getSearch(summonerSearchOverride)
     if (summonerQuery.region && summonerQuery.summonerName) {
         $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
@@ -31,6 +32,7 @@ function updateSummonerQueue(summonerObject) {
 };
 
 function retrieveMatchData(matchId, teamId, championId) {
+    rgeaLog()
     var targetGame = getMatchData(matchId)
     if (!targetGame) {
         $.getJSON(API_BASE_URL + 'matches/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() +
@@ -50,6 +52,7 @@ function matchDetailPage(matchId, teamId, championId) {
 };
 
 function initCurrentGamePage() {
+    rgeaLog()
     $.getJSON(API_BASE_URL + 'current/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/' +
               SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(currentGameData) {
         if (currentGameData.summoners.length !== 0) {
@@ -59,6 +62,7 @@ function initCurrentGamePage() {
 };
 
 function initMostPlayedChampions() {
+    rgeaLog()
     $.getJSON(API_BASE_URL + 'summoners/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/'+
               SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId +'/champions', function(rankedData) {
         updateMostPlayedChampionsSection(rankedData)
@@ -66,6 +70,7 @@ function initMostPlayedChampions() {
 };
 
 function initLeaguePage() {
+    rgeaLog()
     $.getJSON(API_BASE_URL + 'summoners/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/'+
               SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId +'/rank', function(leagueData) {
         updateLeaguePage(leagueData)

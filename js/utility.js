@@ -178,6 +178,39 @@ function getSearch(summonerOverride) {
     return {"summonerName": formatText(searchedSummoner), "region": selectedRegion}
 };
 
+function getPlatformId() {
+    switch ($('#regionSelector').val()) {
+        case "NA":
+            return "NA1"
+        case "EUW":
+            return "EUW1"
+        case "EUNE":
+            return "EUN1"
+        case "KR":
+            return "KR"
+        case "LAN":
+            return "LA1"
+        case "LAS":
+            return "LA2"
+        case "BR":
+            return "BR1"
+        case "OCE":
+            return "OC1"
+        case "TR":
+            return "TR1"
+        case "RU":
+            return "RU"
+        case "JP":
+            return "JP1"
+    }
+};
+
+function rgeaLog() {
+    rgea("propertyId", "RGEA0002-f9c08381-a055-451b-8f33-32744848cf47")
+    rgea("lolpid", getPlatformId())
+    rgea("anonymous", false)
+}
+
 function minimizeRecentGame() {
     loadLolByte({'minimizeRecentGame': {}})
 };
