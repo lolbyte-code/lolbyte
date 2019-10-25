@@ -206,6 +206,11 @@ function getPlatformId() {
 };
 
 function rgeaLog() {
+    (function(t,l){
+        let w=window,d=document,s=d.createElement('script'),f=d.getElementsByTagName('script')[0];
+        w[t]=w[t]||function(){(w["_rgea"]=w["_rgea"]||[["uts",new Date()]]).push(Array.prototype.slice.call(arguments));w.RGEA&&w.RGEA.p();};
+        s.type='text/javascript'; s.async=true; s.defer=true; s.src=l; f.parentNode.insertBefore(s,f);
+    })("rgea", "https://static.developer.riotgames.com/js/rgea.min.js");
     rgea("propertyId", "RGEA0002-f9c08381-a055-451b-8f33-32744848cf47")
     rgea("lolpid", getPlatformId())
     rgea("anonymous", false)
