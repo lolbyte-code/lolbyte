@@ -15,7 +15,7 @@
 }
 
 .leagueStats #leagueRankStats {
-    top: -6px;
+    top: 19px;
 }
 
 .leagueStats #leagueStatsLabel {
@@ -24,6 +24,7 @@
 
 .leagueStats #rankBadge {
     width: 90%;
+    top: 25px;
     left: 5%;
 }
 
