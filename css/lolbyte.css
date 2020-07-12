@@ -78,11 +78,6 @@ a {
     filter: brightness(150%);
 }
 
-#rankedToggleButton:hover, #summonerFavoriteButton:hover {
-    -webkit-filter: brightness(120%);
-    filter: brightness(120%);
-}
-
 /* Labels */
 #playerStatsLabel, #championStatsLabel, #leagueStatsLabel {
     font-size: 120%;

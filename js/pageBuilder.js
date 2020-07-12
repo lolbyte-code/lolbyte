@@ -37,9 +37,6 @@ function buildSummonerPage(pageData) {
     for (var game in pageData.recentGames)
         $('.recentGames #recentGamesList').append(buildRecentGameElement(pageData.recentGames[game], game))
 
-    // Build ranked toggle button
-    $('.recentGames #wrapRankedToggleButton').html(buildRankedToggleButtonElement())
-
     if (isFirefox && OSName == 'Windows') {
         $('.recentGames #recentGamesList #recentGameKDA').css('top', '-30px')
         $('.recentGames #recentGamesList #recentGameResult').css('top', '-35px')

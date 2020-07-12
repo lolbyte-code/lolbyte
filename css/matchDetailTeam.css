@@ -18,7 +18,7 @@
 .matchDetailPage #towerKills {
     height: 100%;
     display: inline-flex;
-    left: 16px;
+    left: 8px;
     top: 1px;
 }
 
@@ -36,7 +36,7 @@
 .matchDetailPage #dragonKills {
     height: 100%;
     display: inline-flex;
-    left: 26px;
+    left: 18px;
     top: 1px;
 }
 
@@ -54,7 +54,7 @@
 .matchDetailPage #baronKills {
     height: 100%;
     display: inline-flex;
-    left: 36px;
+    left: 25px;
     top: 1px;
 }
 
@@ -69,15 +69,26 @@
     font-size: 85%;
 }
 
+.matchDetailPage #bans {
+    top: 2px;
+    left: 32px;
+}
+
+.matchDetailPage #bans img {
+    width: 17px;
+    height: 18px;
+    padding: 1px;
+}
+
 .matchDetailPage #teamKda {
-    left: 118px;
+    left: 37px;
     top: -2px;
     font-size: 85%;
 }
 
 .matchDetailPage #teamGold {
-    left: 125px;
-    top: 0px;
+    left: 39px;
+    top: 1px;
     font-size: 69%;
 }
 

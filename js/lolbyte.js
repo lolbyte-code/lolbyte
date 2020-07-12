@@ -7,7 +7,6 @@ var MAX_GAME_COUNT = 20
 var SELECTED_MATCH
 var SEARCH_SUMMONER_QUEUE = []
 var CURRENT_SUMMONER = -1
-var RANKED_MODE = false
 
 /* INIT CODE */
 clearInvalidSavedSummoners()

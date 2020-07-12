@@ -40,9 +40,21 @@
     top: -28px;
 }
 
-.recentGames #rankedToggleButton {
-    width: 10%;
-    top: 2px;
-    left: 528px;
-    z-index: 2;
+.recentGames #recentGamesType {
+    height: 14px;
+    border-color: #B2B4BB;
+    background-color: #50525D;
+    font-size: 78%;
+    outline: none;
+    left: 634px;
+    top: 5px;
+    position: absolute;
+}
+
+.recentGames #recentGamesType option {
+    background-color: #04070E;
+}
+
+.recentGames #recentGamesType:hover {
+    border: 1px solid #B2B4BB;
 }

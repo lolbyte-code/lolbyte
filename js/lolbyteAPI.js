@@ -10,9 +10,10 @@ function landingPage() {
 function summonerPage(noUpdateQueue, summonerSearchOverride) {
     rgeaLog()
     var summonerQuery = getSearch(summonerSearchOverride)
+    var gameType = document.getElementById("recentGamesType").value
     if (summonerQuery.region && summonerQuery.summonerName) {
         $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
-                  '?rankedOnly=' + RANKED_MODE, function(summonerData) {
+                  '?gameType=' + gameType, function(summonerData) {
             if (summonerData.summonerLevel != 0) {
                 !noUpdateQueue ? updateSummonerQueue(summonerData.summonerObject):''
                 updateRecentSummoners(summonerData.summonerObject)

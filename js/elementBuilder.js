@@ -96,15 +96,6 @@ function buildRecentGameElement(gameData, gameNumber) {
     return wrapRecentGameElement
 };
 
-function buildRankedToggleButtonElement() {
-        var rankedToggleButton = document.createElement('img')
-        rankedToggleButton.id = 'rankedToggleButton'
-        rankedToggleButton.src = RANKED_MODE ? 'img/assets/rankedToggleOff.png' : 'img/assets/rankedToggleOn.png'
-        $(rankedToggleButton).click(function() { rankedToggleButtonClicked() })
-
-        return rankedToggleButton
-};
-
 function buildLeagueElement(leagueData) {
     var leagueElement = document.createElement('div')
     var rankBadge = document.createElement('img')
@@ -444,6 +435,17 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     $(baronKillCount).text(matchDetailData.teams[teamNumber - 1].baronKills)
     baronKills.appendChild(baronKillCount)
     $(matchDetailResult).append(baronKills)
+
+    var bans = document.createElement('div')
+    bans.id = 'bans'
+    for (var i = 0; i < matchDetailData.teams[teamNumber - 1].bans.length; i++) {
+        var bansIcon = document.createElement('img')
+        var bannedChampId = matchDetailData.teams[teamNumber - 1].bans[i]
+        bansIcon.src = 'img/resources/champions/' + bannedChampId + '.png'
+        bansIcon.title = 'Ban ' + (i + 1)
+        bans.appendChild(bansIcon)
+    }
+    $(matchDetailResult).append(bans)
 
     var teamKda = document.createElement('p')
     teamKda.id = 'teamKda'

@@ -52,3 +52,7 @@ $('#summonerFavoriteButton2').click(function() {
 $('#inGameButton').click(function() {
     inGameButtonClicked()
 });
+
+$('#recentGamesType').change(function() {
+    summonerPage(true, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER])
+});
