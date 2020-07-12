@@ -441,6 +441,9 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     for (var i = 0; i < matchDetailData.teams[teamNumber - 1].bans.length; i++) {
         var bansIcon = document.createElement('img')
         var bannedChampId = matchDetailData.teams[teamNumber - 1].bans[i]
+        if (bannedChampId == -1) {
+            continue
+        }
         bansIcon.src = 'img/resources/champions/' + bannedChampId + '.png'
         bansIcon.title = 'Ban ' + (i + 1)
         bans.appendChild(bansIcon)
