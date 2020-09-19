@@ -18,11 +18,11 @@ if (OSName == 'Mac') {
 if (isFirefox) {
     $('body').css('overflow-y', 'hidden')
     $('body').css('overflow-x', 'hidden')
-    $('#inGameButton').css('top', '-98px')
+    $('#inGameButton').css('top', '-140px')
 }
 
 if (isFirefox && OSName == 'Windows') {
     $('#searchSummoner').attr('size', 20)
     $('#searchButton').css('top', '-23px')
-    $('#inGameButton').css('top', '-95px')
+    $('#inGameButton').css('top', '-137px')
 }
