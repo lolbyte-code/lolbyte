@@ -3,14 +3,6 @@ function alertButtonClicked() {
     togglePage('alertPage')
 };
 
-function feedbackButtonClicked() {
-    window.open('mailto:crxlolbyte@gmail.com?Subject=LolByte Feedback')
-};
-
-function donationButtonClicked() {
-    window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L3HYQR8RNYPU8&lc=US&item_name+=LolByte%20Development&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted')
-};
-
 function backButtonClicked() {
     if (CURRENT_SUMMONER > 0) {
         var targetSummoner = SEARCH_SUMMONER_QUEUE[--CURRENT_SUMMONER]

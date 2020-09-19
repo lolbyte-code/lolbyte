@@ -65,13 +65,13 @@ a {
 }
 
 /* Buttons */
-#feedbackButton, #favoriteButton, #donationButton, #alertButton,
+#favoriteButton, #alertButton,
 #backButton, #backButton2, #forwardButton, #homeButton, #homeButton2,
 #summonerFavoriteButton, #summonerFavoriteButton2 {
     width: 35px;
 }
 
-#feedbackButton:hover, #donationButton:hover, #alertButton:hover,
+#alertButton:hover,
 #backButton:hover, #backButton2:hover, #forwardButton:hover, #homeButton:hover,
 #homeButton2:hover,  #inGameButton:hover, #summonerFavoriteButton2:hover {
     -webkit-filter: brightness(1000%);

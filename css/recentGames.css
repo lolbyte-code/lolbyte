@@ -43,10 +43,10 @@
 .recentGames #recentGamesType {
     border-color: #B2B4BB;
     background-color: #50525D;
-    font-size: 50%;
+    font-size: 90%;
     outline: none;
-    left: 647px;
-    top: 6px;
+    left: 612px;
+    top: -33px;
     position: absolute;
 }
 

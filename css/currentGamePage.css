@@ -5,13 +5,13 @@
     background-color: #04070E;
     border: 2px solid #38B171;
     position: absolute;
-    top: 95px;
+    top: 44px;
     z-index: 2;
 }
 
 #inGameButton {
-    left: 459px;
-    top: -110px;
+    left: 427px;
+    top: -153px;
     width: 120px;
     height: 30px;
     border: 1px solid #38B171;

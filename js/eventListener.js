@@ -13,14 +13,6 @@ $('#alertButton').click(function() {
     alertButtonClicked()
 });
 
-$('#feedbackButton').click(function() {
-    feedbackButtonClicked()
-});
-
-$('#donationButton').click(function() {
-    donationButtonClicked()
-});
-
 $('#backButton').click(function() {
     backButtonClicked()
 });

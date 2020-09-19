@@ -99,7 +99,7 @@ function buildRecentGameElement(gameData, gameNumber) {
 function buildLeagueElement(leagueData) {
     var leagueElement = document.createElement('div')
     var rankBadge = document.createElement('img')
-    rankBadge.id = 'rankBadge'
+    rankBadge.id =  leagueData.tier + 'RankBadge'
     rankBadge.src = 'img/ranks/' + leagueData.tier + '.png'
     var leagueRankStats = document.createElement('div')
     leagueRankStats.id = 'leagueRankStats'

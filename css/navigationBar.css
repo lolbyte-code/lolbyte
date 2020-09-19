@@ -61,19 +61,3 @@
     left: 115px;
     position: absolute;
 }
-
-.navigationBar #feedbackButton {
-    left: 251px;
-    position: absolute;
-}
-
-.navigationBar #donationButton {
-    left: 289px;
-    position: absolute;
-}
-
-.navigationBar #lolbyteLogo {
-    left: 586px;
-    width: 15%;
-    position: absolute;
-}

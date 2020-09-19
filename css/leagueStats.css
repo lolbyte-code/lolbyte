@@ -22,8 +22,62 @@
     top: 14px;
 }
 
-.leagueStats #rankBadge {
-    width: 90%;
+.leagueStats #unrankedRankBadge {
+    width: 43%;
+    top: 25px;
+    left: 28%;
+}
+
+.leagueStats #ironRankBadge {
+    width: 49%;
+    top: 25px;
+    left: 26%;
+}
+
+.leagueStats #bronzeRankBadge {
+    width: 55%;
+    top: 25px;
+    left: 23%;
+}
+
+.leagueStats #silverRankBadge {
+    width: 58%;
+    top: 25px;
+    left: 21%;
+}
+
+.leagueStats #goldRankBadge {
+    width: 62%;
+    top: 25px;
+    left: 19%;
+}
+
+.leagueStats #platinumRankBadge {
+    width: 73%;
+    top: 25px;
+    left: 14%;
+}
+
+.leagueStats #diamondRankBadge {
+    width: 81%;
+    top: 25px;
+    left: 10%;
+}
+
+.leagueStats #masterRankBadge {
+    width: 83%;
+    top: 25px;
+    left: 8%;
+}
+
+.leagueStats #grandmasterRankBadge {
+    width: 83%;
+    top: 25px;
+    left: 9%;
+}
+
+.leagueStats #challengerRankBadge {
+    width: 91%;
     top: 25px;
     left: 5%;
 }

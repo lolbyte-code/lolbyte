@@ -23,19 +23,19 @@
 }
 
 .summonerNotFoundPage #backButton2 {
-    top: 12px;
+    top: -29px;
     left: -8px;
     float: right;
 }
 
 .summonerNotFoundPage #homeButton2 {
-    top: 12px;
+    top: -29px;
     left: -5px;
     float: right;
 }
 
 .summonerNotFoundPage #summonerFavoriteButton2 {
-    top: 12px;
+    top: -29px;
     left: -11px;
     float: right;
 }

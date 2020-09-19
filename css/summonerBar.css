@@ -22,19 +22,19 @@
 }
 
 .summonerBar #backButton {
-    top: 8px;
+    top: -33px;
     left: -79px;
     float: right;
 }
 
 .summonerBar #forwardButton {
     left: -7px;
-    top: 8px;
+    top: -33px;
     float: right;
 }
 
 .summonerBar #homeButton {
-    top: 8px;
+    top: -33px;
     left: 65px;
     float: right;
 }

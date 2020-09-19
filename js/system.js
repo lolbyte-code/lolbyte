@@ -19,8 +19,6 @@ if (isFirefox) {
     $('body').css('overflow-y', 'hidden')
     $('body').css('overflow-x', 'hidden')
     $('#inGameButton').css('top', '-98px')
-    $('.navigationBar #feedbackButton').css('left', '205px')
-    $('.navigationBar #donationButton').css('left', '245px')
 }
 
 if (isFirefox && OSName == 'Windows') {
