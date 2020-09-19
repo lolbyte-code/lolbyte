@@ -2,6 +2,13 @@
 var API_BASE_URL = 'http://lolbyte.me:8080/api/v3/';
 var MAX_SUMMONER_LIST_SIZE = 20
 var MAX_GAME_COUNT = 20
+var CDRAGON_BASE_URL = 'https://cdn.communitydragon.org/latest/'
+var DDRAGON_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn/'
+
+$.getJSON('https://ddragon.leagueoflegends.com/api/versions.json', function(versionsData) {
+    var latestVersion = versionsData[0]
+    DDRAGON_BASE_URL = DDRAGON_BASE_URL + latestVersion + '/'
+});
 
 /*** APP VARIABLES ***/
 var SELECTED_MATCH

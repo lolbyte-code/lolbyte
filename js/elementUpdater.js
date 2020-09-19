@@ -4,7 +4,7 @@ function updateMatchDetailSelectionElement(matchId) {
     $('#matchResult').html(selectedSummoner.win ? 'Victory' : 'Defeat')
     $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
 
-    $('#matchDetailSelection').css('background-image', 'url("img/resources/splashes/' + selectedSummoner.championId + '.jpg")')
+    $('#matchDetailSelection').css('background-image', 'url("' + CDRAGON_BASE_URL + 'champion/' + selectedSummoner.championId + '/splash-art")')
     $('#matchDetailSelection').removeClass()
     $('#matchDetailSelection').addClass('matchDetailSelection' + selectedSummoner.championId)
     $('#matchDetailSelection #itemList').empty()
@@ -22,14 +22,18 @@ function updateMatchDetailSelectionElement(matchId) {
             });
         }
         var itemImage = document.createElement('img')
-        itemImage.src = 'img/resources/items/' + selectedSummoner.items[i]['id'] + '.png'
+        if (selectedSummoner.items[i]['id'] == 0) {
+            itemImage.src = 'img/resources/items/0.png'
+        } else {
+            itemImage.src = DDRAGON_BASE_URL + 'img/item/' + selectedSummoner.items[i]['id'] + '.png'
+        }
         item.appendChild(itemImage)
         $('#matchDetailSelection #itemList').append(item)
     }
     var trinket = document.createElement('li')
     trinket.id = 'trinket'
     var trinketImage = document.createElement('img')
-    trinketImage.src = 'img/resources/items/' + selectedSummoner.trinket + '.png'
+    trinketImage.src = DDRAGON_BASE_URL + 'img/item/' + selectedSummoner.trinket + '.png'
     trinket.appendChild(trinketImage)
     $('#matchDetailSelection #itemList').append(trinket)
 
