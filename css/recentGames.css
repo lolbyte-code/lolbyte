@@ -45,15 +45,14 @@
     background-color: #50525D;
     font-size: 90%;
     outline: none;
-    left: 612px;
+    left: 588px;
     top: -33px;
     position: absolute;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .recentGames #recentGamesType option {
     background-color: #04070E;
 }
 
-.recentGames #recentGamesType:hover {
-    border: 1px solid #B2B4BB;
-}

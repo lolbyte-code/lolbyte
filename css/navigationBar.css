@@ -29,10 +29,6 @@
     background-color: #04070E;
 }
 
-.navigationBar #regionSelector:hover {
-    border: 1px solid #B2B4BB;
-}
-
 .navigationBar #searchButton {
     width: 105px;
     position: absolute;
