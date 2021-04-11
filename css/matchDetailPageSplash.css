@@ -1,4 +1,19 @@
 /* Custom adjustments for champion splash in match detail selection */
+.matchDetailPage .matchDetailSelection234 {
+    background-position: 223px -17px;
+    background-size: 55%;
+}
+
+.matchDetailPage .matchDetailSelection526 {
+    background-position: 223px -17px;
+    background-size: 55%;
+}
+
+.matchDetailPage .matchDetailSelection147 {
+    background-position: 283px -11px;
+    background-size: 55%;
+}
+
 .matchDetailPage .matchDetailSelection360 {
     background-position: 223px -17px;
     background-size: 55%;
