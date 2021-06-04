@@ -248,13 +248,13 @@ function buildMatchDetailBarElement(matchDetailData) {
     matchResult.id = 'matchResult'
     var matchDate = document.createElement('div')
     matchDate.id = 'matchDate'
-    $(matchDate).text(formatTimestamp(matchDetailData.matchDate))
+    $(matchDate).text(formatTimestamp(matchDetailData.timestamp))
     var matchGameType = document.createElement('div')
     matchGameType.id = 'matchGameType'
-    $(matchGameType).text(matchDetailData.matchQueueType)
+    $(matchGameType).text(matchDetailData.queueName)
     var matchDuration = document.createElement('div')
     matchDuration.id = 'matchDuration'
-    $(matchDuration).text(matchDetailData.matchDuration)
+    $(matchDuration).text(matchDetailData.duration + " min")
 
     matchDetailBarElement.appendChild(matchResult)
     matchDetailBarElement.appendChild(matchDate)
@@ -265,13 +265,13 @@ function buildMatchDetailBarElement(matchDetailData) {
 };
 
 function buildMatchDetailSelectionElement(matchDetailData) {
-    var selectedSummoner = getSelectedSummoner(matchDetailData.matchId)
+    var selectedSummoner = getSelectedSummoner(matchDetailData.id)
     $('#matchResult').text(selectedSummoner.win ? 'Victory' : 'Defeat')
     $('#matchResult').css('color', selectedSummoner.win ? '#22A8CE' : '#B2281D')
     var matchDetailSelectionElement = document.createElement('div')
     matchDetailSelectionElement.id = 'matchDetailSelection'
-    $(matchDetailSelectionElement).addClass('matchDetailSelection' + selectedSummoner.championId)
-    $(matchDetailSelectionElement).css('background-image', 'url("' + CDRAGON_BASE_URL + 'champion/' + selectedSummoner.championId + '/splash-art")')
+    $(matchDetailSelectionElement).addClass('matchDetailSelection' + selectedSummoner.champId)
+    $(matchDetailSelectionElement).css('background-image', 'url("' + CDRAGON_BASE_URL + 'champion/' + selectedSummoner.champId + '/splash-art")')
     var itemList = document.createElement('ul')
     itemList.id = 'itemList'
     for (var i = 0; i < selectedSummoner.items.length; i++) {
@@ -281,7 +281,7 @@ function buildMatchDetailSelectionElement(matchDetailData) {
             $(item).qtip({
                 content: {
                     title: selectedSummoner.items[i]['name'],
-                    text: selectedSummoner.items[i]['description']
+                    text: selectedSummoner.items[i]['desc']
                 },
                 style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
                 position: { viewport: $('.lolbyte') }
@@ -309,27 +309,27 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     stats2.id = 'stats2'
     var kdaLong = document.createElement('p')
     kdaLong.id = 'kdaLong'
-    $(kdaLong).text(selectedSummoner.kdaLong)
+    $(kdaLong).text(`${selectedSummoner.kills}/${selectedSummoner.deaths}/${selectedSummoner.assists}`)
     stats1.appendChild(kdaLong)
     var damageContribution = document.createElement('p')
     damageContribution.id = 'damageContribution'
-    $(damageContribution).text(selectedSummoner.damageContribution)
+    $(damageContribution).text("Dmg Cont: " + selectedSummoner.damageContribution + "%")
     stats1.appendChild(damageContribution)
     var level = document.createElement('p')
     level.id = 'level'
-    $(level).text(selectedSummoner.level)
+    $(level).text("Level " + selectedSummoner.level)
     stats1.appendChild(level)
     var cs = document.createElement('p')
     cs.id = 'cs'
-    $(cs).text(selectedSummoner.cs)
+    $(cs).text(selectedSummoner.cs + " CS, ")
     stats2.appendChild(cs)
     var gold = document.createElement('p')
     gold.id = 'gold'
-    $(gold).text(selectedSummoner.gold)
+    $(gold).text((selectedSummoner.gold / 1000).toFixed(1) + "k Gold, ")
     stats2.appendChild(gold)
     var kp = document.createElement('p')
     kp.id = 'kp'
-    $(kp).text(selectedSummoner.killParticipation)
+    $(kp).text("Kill Participation: " + selectedSummoner.killParticipation + "%")
     stats2.appendChild(kp)
 
     var spellList = document.createElement('div')
@@ -347,7 +347,7 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     playerInfo.id = 'playerInfo'
     var summonerName = document.createElement('p')
     summonerName.id = 'summonerName'
-    $(summonerName).text(selectedSummoner.summonerName ? selectedSummoner.summonerName + ' ' : 'Loading...')
+    $(summonerName).text(selectedSummoner.name ? selectedSummoner.name + ' ' : 'Loading...')
     playerInfo.appendChild(summonerName)
     var rank = document.createElement('p')
     rank.id = 'rank'
@@ -355,7 +355,7 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     $(rank).text(selectedSummoner.rank ? selectedSummoner.rank : '')
     var championName = document.createElement('p')
     championName.id = 'championName'
-    $(championName).text(selectedSummoner.championName)
+    $(championName).text(selectedSummoner.champName)
     playerInfo.appendChild(championName)
 
     var wrapPlayerInfo = document.createElement('a')
@@ -368,12 +368,13 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     badgeList.id = 'badgeList'
 
     for (var j = 0; j < selectedSummoner.badges.length; j++) {
+        var badgeMetadata = getBadge(selectedSummoner.badges[j])
         var badge = document.createElement('div')
         badge.id = 'badge'
         var badgeText = document.createElement('p')
         badgeText.id = 'badgeText'
-        $(badgeText).text(selectedSummoner.badges[j].big)
-        var badgeColor = selectedSummoner.badges[j]['color']
+        $(badgeText).text(badgeMetadata.big)
+        var badgeColor = badgeMetadata.color
         $(badgeText).css('border', '1px solid ' + badgeColor)
         $(badgeText).css('color', badgeColor)
         badge.appendChild(badgeText)
@@ -393,14 +394,15 @@ function buildMatchDetailSelectionElement(matchDetailData) {
 };
 
 function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
-    var selectedSummoner = getSelectedSummoner(matchDetailData.matchId)
+    var selectedSummoner = getSelectedSummoner(matchDetailData.id)
+    var targetTeam = matchDetailData[teamNumber == 1 ? "blueTeam" : "redTeam"]
 
     var matchDetailTeamXElement = document.createElement('div')
     matchDetailTeamXElement.id = 'matchDetailTeam' + teamNumber
     var matchDetailResult = document.createElement('div')
     matchDetailResult.id = 'matchDetailResult'
     var matchDetailResultText = document.createElement('p')
-    var teamWin = matchDetailData['team' + teamNumber + 'Win']
+    var teamWin = targetTeam.win
     $(matchDetailResultText).text(teamWin ? 'Victory  ' : 'Defeat  ')
     matchDetailResult.appendChild(matchDetailResultText)
 
@@ -412,7 +414,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     towerKills.appendChild(towerKillIcon)
     var towerKillCount = document.createElement('p')
     towerKillCount.id = 'towerKillCount'
-    $(towerKillCount).text(matchDetailData.teams[teamNumber - 1].towerKills)
+    $(towerKillCount).text(targetTeam.towers)
     towerKills.appendChild(towerKillCount)
     $(matchDetailResult).append(towerKills)
 
@@ -424,7 +426,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     dragonKills.appendChild(dragonKillIcon)
     var dragonKillCount = document.createElement('p')
     dragonKillCount.id = 'dragonKillCount'
-    $(dragonKillCount).text(matchDetailData.teams[teamNumber - 1].dragonKills)
+    $(dragonKillCount).text(targetTeam.dragons)
     dragonKills.appendChild(dragonKillCount)
     $(matchDetailResult).append(dragonKills)
 
@@ -436,15 +438,15 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
     baronKills.appendChild(baronKillIcon)
     var baronKillCount = document.createElement('p')
     baronKillCount.id = 'baronKillCount'
-    $(baronKillCount).text(matchDetailData.teams[teamNumber - 1].baronKills)
+    $(baronKillCount).text(targetTeam.barons)
     baronKills.appendChild(baronKillCount)
     $(matchDetailResult).append(baronKills)
 
     var bans = document.createElement('div')
     bans.id = 'bans'
-    for (var i = 0; i < matchDetailData.teams[teamNumber - 1].bans.length; i++) {
+    for (var i = 0; i < targetTeam.bans.length; i++) {
         var bansIcon = document.createElement('img')
-        var bannedChampId = matchDetailData.teams[teamNumber - 1].bans[i]
+        var bannedChampId = targetTeam.bans[i]
         if (bannedChampId == -1) {
             continue
         }
@@ -456,12 +458,12 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
 
     var teamKda = document.createElement('p')
     teamKda.id = 'teamKda'
-    $(teamKda).text(matchDetailData.teams[teamNumber - 1].kda)
+    $(teamKda).text(`${targetTeam.kills}/${targetTeam.deaths}/${targetTeam.assists}`)
     $(matchDetailResult).append(teamKda)
 
     var teamGold = document.createElement('p')
     teamGold.id = 'teamGold'
-    $(teamGold).text('$' + matchDetailData.teams[teamNumber - 1].gold)
+    $(teamGold).text('$' + (targetTeam.gold / 1000).toFixed(1) + "k")
     $(matchDetailResult).append(teamGold)
 
     var matchDetailTeam = document.createElement('div')
@@ -477,18 +479,18 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
             matchDetailSummoner.id = 'matchDetailSummoner'
             var matchDetailSummonerChampion = document.createElement('img')
             matchDetailSummonerChampion.id = 'matchDetailSummonerChampion'
-            matchDetailSummonerChampion.src = CDRAGON_BASE_URL + 'champion/' + currentSummoner.championId + '/square'
-            $(matchDetailSummoner).click({'participantId': currentSummoner.participantId, 'matchId': matchDetailData.matchId}, matchDetailSummonerClicked)
+            matchDetailSummonerChampion.src = CDRAGON_BASE_URL + 'champion/' + currentSummoner.champId + '/square'
+            $(matchDetailSummoner).click({'participantId': currentSummoner.participantId, 'matchId': matchDetailData.id}, matchDetailSummonerClicked)
             $(matchDetailSummonerChampion).css('border', '2px solid ' + (teamWin ? '#22A8CE' : '#B2281D'))
             setSelectedSummonerUI(matchDetailSummoner, currentSummoner, selectedSummoner)
             var summonerKda = document.createElement('div')
             summonerKda.id = 'summonerKda'
-            $(summonerKda).text(currentSummoner.kdaLong)
+            $(summonerKda).text(`${currentSummoner.kills}/${currentSummoner.deaths}/${currentSummoner.assists}`)
             var namerank = document.createElement('div')
             namerank.id = 'namerank'
             var summonerName = document.createElement('span')
             summonerName.id = 'summonerName'
-            $(summonerName).text(currentSummoner.summonerName ? currentSummoner.summonerName + ' ' : 'Loading...')
+            $(summonerName).text(currentSummoner.name ? currentSummoner.name + ' ' : 'Loading...')
             $(summonerName).css('color', (teamWin ? '#22A8CE' : '#B2281D'))
             var rank = document.createElement('span')
             rank.id = 'rank'
@@ -510,7 +512,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
                     $(item).qtip({
                         content: {
                             title: currentSummoner.items[j]['name'],
-                            text: currentSummoner.items[j]['description']
+                            text: currentSummoner.items[j]['desc']
                         },
                         style: { classes: 'qtip-dark qtip-rounded qtip-shadow' },
                         position: { viewport: $('.lolbyte') }
@@ -543,12 +545,13 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
             badgeList.id = 'badgeList'
 
             for (var j = 0; j < currentSummoner.badges.length; j++) {
+                var badgeMetadata = getBadge(currentSummoner.badges[j])
                 var badge = document.createElement('div')
                 badge.id = 'badge'
                 var badgeText = document.createElement('p')
                 badgeText.id = 'badgeText'
-                $(badgeText).text(currentSummoner.badges[j].small)
-                var badgeColor = currentSummoner.badges[j]['color']
+                $(badgeText).text(badgeMetadata.small)
+                var badgeColor = badgeMetadata.color
                 $(badgeText).css('border', '1px solid ' + badgeColor)
                 $(badgeText).css('color', badgeColor)
                 badge.appendChild(badgeText)

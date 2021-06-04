@@ -67,10 +67,10 @@ function setSelectedSummonerByParticipantId(matchId, participantId) {
     setMatchData(targetRecentGame)
 };
 
-function setSelectedSummonerBySummonerId(matchId, summonerId) {
+function setSelectedSummonerBySummonerName(matchId, summonerName) {
     var targetRecentGame = getMatchData(matchId)
     for (var i = 0; i < targetRecentGame.players.length; i++) {
-        if (targetRecentGame.players[i].summonerId == summonerId) {
+        if (targetRecentGame.players[i].name == summonerName) {
             targetRecentGame.players[i]['selectedSummoner'] = true
         } else {
             targetRecentGame.players[i]['selectedSummoner'] = false
@@ -218,4 +218,25 @@ function rgeaLog() {
 
 function minimizeRecentGame() {
     loadLolByte({'minimizeRecentGame': {}})
+};
+
+function getBadge(badge) {
+    switch (badge) {
+        case 'FIRST_BLOOD':
+          return {big: "first blood", small: "f", color: "#C42323"}
+        case 'HIGHEST_KDA':
+          return {big: "highest kda", small: "k", color: "#9435f4"}
+        case 'MOST_WARDS':
+            return {big: "most wards", small: "w", color: "#B2B4BB"}
+        case 'MOST_DAMAGE':
+            return {big: "most damage", small: "d", color: "white"}
+        case 'MOST_GOLD':
+            return {big: "most gold", small: "g", color: "#fbb03b"}
+        case 'PENTA_KILL':
+            return {big: "penta kill", small: "5", color: "#38B171"}
+        case 'QUADRA_KILL':
+            return {big: "quadra kill", small: "4", color: "#38B171"}
+        default:
+            return {big: "triple kill", small: "3", color: "#38B171"}
+      }
 };

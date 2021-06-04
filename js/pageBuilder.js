@@ -77,8 +77,8 @@ function buildMatchDetailsPage(pageData) {
 
     // Loading order means I can't find these elements until
     // they are initially rendered
-    var team1Win = pageData.team1Win
-    var team2Win = pageData.team2Win
+    var team1Win = pageData.blueTeam.win
+    var team2Win = pageData.redTeam.win
     $('#matchDetailTeam1 #matchDetailResult').css('background-color', team1Win ? '#22A8CE' : '#B2281D')
     $('#matchDetailTeam2 #matchDetailResult').css('background-color', team2Win ? '#22A8CE' : '#B2281D')
 

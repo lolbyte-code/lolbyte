@@ -66,7 +66,7 @@ function removeFavoriteSummoner(summonerObject) {
 function getMatchData(matchId) {
     var recentGames = getLocal('matchesData')
     for (var game in recentGames) {
-        if (recentGames[game].matchId == matchId) {
+        if (recentGames[game].id == matchId) {
             recentGames[game].matchDetailPage = true
             return recentGames[game]
         }

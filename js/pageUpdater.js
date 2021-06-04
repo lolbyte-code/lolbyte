@@ -29,10 +29,10 @@ function updateCurrentGamePage(currentGameData) {
 function updateMatchDetailSelection(matchId) {
     // Update match detail selection info
     var selectedSummoner = getSelectedSummoner(matchId)
-    $('#playerInfo #summonerName').html(selectedSummoner.summonerName)
+    $('#playerInfo #summonerName').html(selectedSummoner.name)
     $('#playerInfo #rank').html(selectedSummoner.rank)
     $('#matchDetailSelection #playerInfo').off('click')
-    $('#matchDetailSelection #playerInfo').click({'summonerName': selectedSummoner.summonerName}, matchDetailSummonerPlayerInfoClicked)
+    $('#matchDetailSelection #playerInfo').click({'summonerName': selectedSummoner.name}, matchDetailSummonerPlayerInfoClicked)
 };
 
 function updateMatchDetailTeam(matchId) {
