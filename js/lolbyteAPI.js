@@ -10,21 +10,23 @@ function landingPage() {
 function summonerPage(noUpdateQueue, summonerSearchOverride) {
     rgeaLog()
     var summonerQuery = getSearch(summonerSearchOverride)
-    var gameType = document.getElementById("recentGamesType").value
+    var success = false;
     if (summonerQuery.region && summonerQuery.summonerName) {
-        $.getJSON(API_BASE_URL + 'summoners/' + summonerQuery.region.toLowerCase() + '/name/' + summonerQuery.summonerName +
-                  '?gameType=' + gameType, function(summonerData) {
-            if (summonerData.summonerLevel != 0) {
-                !noUpdateQueue ? updateSummonerQueue(summonerData.summonerObject):''
-                updateRecentSummoners(summonerData.summonerObject)
-                summonerData.searchSummonerPage = true
-                loadLolByte(summonerData)
-            } else {
-                updateSummonerQueue({'summonerName': summonerQuery.summonerName, 'region': summonerQuery.region, 'summonerIcon': 0})
-                loadLolByte({'summonerNotFoundPage': {}})
-            }
+        $.getJSON(`${NEW_API_BASE_URL}/summoners/${summonerQuery.summonerName}?region=${summonerQuery.region.toLowerCase()}`, function(summonerData) {
+            success = true;
+            summonerObject = buildSummonerObject(summonerData)
+            !noUpdateQueue ? updateSummonerQueue(summonerObject):''
+            updateRecentSummoners(summonerObject)
+            summonerData.searchSummonerPage = true
+            loadLolByte(summonerData)
         });
     }
+    setTimeout(function() {
+        if (!success) {
+            updateSummonerQueue({'summonerName': summonerQuery.summonerName, 'region': summonerQuery.region, 'summonerIcon': 0})
+            loadLolByte({'summonerNotFoundPage': {}})
+        }
+    }, 5000);
 };
 
 function updateSummonerQueue(summonerObject) {
@@ -53,32 +55,34 @@ function matchDetailPage(matchId, teamId, championId) {
 
 function initCurrentGamePage() {
     rgeaLog()
-    $.getJSON(API_BASE_URL + 'current/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/' +
-              SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId, function(currentGameData) {
-        if (currentGameData.summoners.length !== 0) {
-            updateCurrentGamePage(currentGameData)
-        }
+    $.getJSON(`${NEW_API_BASE_URL}/current/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}`, function(currentGameData) {
+        updateCurrentGamePage(currentGameData)
     });
 };
 
-function initMostPlayedChampions() {
+function initRecentGamesPage() {
     rgeaLog()
-    $.getJSON(API_BASE_URL + 'summoners/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/'+
-              SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId +'/champions', function(rankedData) {
-        updateMostPlayedChampionsSection(rankedData)
+    $.getJSON(`${NEW_API_BASE_URL}/recentGames/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}`, function(gamesData) {
+        updateRecentGamesPage(gamesData)
     });
 };
 
 function initLeaguePage() {
     rgeaLog()
-    $.getJSON(API_BASE_URL + 'summoners/' + SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase() + '/summoner-id/'+
-              SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId +'/rank', function(leagueData) {
+    $.getJSON(`${NEW_API_BASE_URL}/ranks/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}`, function(leagueData) {
         updateLeaguePage(leagueData)
     });
 };
 
+function initStatsPage() {
+    rgeaLog()
+    $.getJSON(`${NEW_API_BASE_URL}/statistics/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}`, function(statsData) {
+        updateStatisticsPage(statsData)
+    });
+};
+
 function initAlertPage() {
-    $.getJSON(API_BASE_URL + 'notifications', function(alertData) {
+    $.getJSON(`${NEW_API_BASE_URL}/notifications`, function(alertData) {
         if (alertData['alert']) {
             var alertMessage = document.createElement('p')
             $(alertMessage).html(alertData['alert'])

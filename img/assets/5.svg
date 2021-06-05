@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 346.67 346.67">
+	<defs>
+		<style>
+			.cls-1{fill:#c42323;}.cls-2{fill:#22a8ce;}.cls-3{fill:#04070e;}.cls-4{font-size:70px;fill:#b2b4bb;font-family: Calibri;font-weight:300;}
+		</style>
+	</defs>
+	<g id="Layer_2" data-name="Layer 2">
+		<g id="Layer_3" data-name="Layer 3">
+			<circle class="cls-1" cx="173.33" cy="173.33" r="173.33" />
+			<path class="cls-2" d="M173.33,0V173.33L204.88,2.87A174.4,174.4,0,0,0,173.33,0Z" />
+			<circle class="cls-3" cx="173.33" cy="175.11" r="110.19" />
+			<text class="cls-4" transform="translate(137.12 190.67)">
+				5%
+			</text>
+		</g>
+	</g>
+</svg>

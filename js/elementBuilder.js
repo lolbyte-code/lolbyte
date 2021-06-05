@@ -28,7 +28,7 @@ function buildCurrentGameElement(currentGameData) {
     currentGameElement.id = 'currentGameInfo'
     var gameType = document.createElement('p')
     gameType.id = 'gameType'
-    $(gameType).text(currentGameData.gameType)
+    $(gameType).text(currentGameData.queueName)
     var wrapGameType = document.createElement('div')
     wrapGameType.id = 'wrapGameType'
     wrapGameType.appendChild(gameType)
@@ -44,18 +44,18 @@ function buildCurrentGameElement(currentGameData) {
 
         var currentGameSummoner = document.createElement('div')
         currentGameSummoner.id = 'currentGameSummoner'
-        $(currentGameSummoner).click({summonerName: currentSummoner.summonerName}, currentGameSummonerClicked)
+        $(currentGameSummoner).click({summonerName: currentSummoner.name}, currentGameSummonerClicked)
         var champion = document.createElement('img')
-        champion.src = CDRAGON_BASE_URL + 'champion/' + currentSummoner.championId + '/square'
+        champion.src = CDRAGON_BASE_URL + 'champion/' + currentSummoner.champId + '/square'
         var summonerName = document.createElement('p')
         summonerName.id = 'summonerName'
-        $(summonerName).text(currentSummoner.summonerName)
+        $(summonerName).text(currentSummoner.name)
         var rank = document.createElement('p')
         rank.id = 'rank'
         $(rank).text(currentSummoner.rank)
 
         $(currentGameSummoner).addClass('currentGameSummonerTeam' + currentSummoner.teamId)
-        currentSummoner.selectedSummoner ?  $(currentGameSummoner).addClass('selectedCurrentGameSummonerTeam' + currentSummoner.teamId):''
+        currentSummoner.selected ?  $(currentGameSummoner).addClass('selectedCurrentGameSummonerTeam' + currentSummoner.teamId):''
 
         currentGameSummoner.appendChild(champion)
         currentGameSummoner.appendChild(summonerName)
@@ -73,10 +73,10 @@ function buildCurrentGameElement(currentGameData) {
 function buildRecentGameElement(gameData, gameNumber) {
     var recentGameElement = document.createElement('div')
     recentGameElement.id = 'recentGame'
-    $(recentGameElement).attr('class', 'matchId' + gameData.matchId)
-    $(recentGameElement).click({'matchId': gameData.matchId, 'championId': gameData.championId, 'teamId': gameData.teamId}, recentGameClicked)
+    $(recentGameElement).attr('class', 'matchId' + gameData.id)
+    $(recentGameElement).click({'matchId': gameData.id, 'championId': gameData.champId, 'teamId': gameData.teamId}, recentGameClicked)
     var champion = document.createElement('img')
-    champion.src = CDRAGON_BASE_URL + 'champion/' + gameData.championId + '/square'
+    champion.src = CDRAGON_BASE_URL + 'champion/' + gameData.champId + '/square'
     recentGameElement.appendChild(champion)
     champion.style = gameData.win ? 'border: 2px solid #22A8CE;' : 'border: 2px solid #B2281D;'
     var gameResult = document.createElement('p')
@@ -84,7 +84,7 @@ function buildRecentGameElement(gameData, gameNumber) {
     $(gameResult).text(gameData.win ? 'W' : 'L')
     var gameKDA = document.createElement('p')
     gameKDA.id = 'recentGameKDA'
-    $(gameKDA).text(gameData.kda)
+    $(gameKDA).text(`${gameData.kills}/${gameData.deaths}/${gameData.assists}`)
     recentGameElement.appendChild(gameResult)
     recentGameElement.appendChild(gameKDA)
     var wrapRecentGameElement = document.createElement('a')
@@ -106,28 +106,22 @@ function buildLeagueElement(leagueData) {
 
     var rankQueueType = document.createElement('p')
     rankQueueType.id = 'rankQueueType'
-    $(rankQueueType).text(leagueData.rankQueueType)
+    $(rankQueueType).text(leagueData.queueName)
     var rank = document.createElement('p')
     rank.id = 'rank'
     $(rank).text(leagueData.rank)
     var leagueProgress = document.createElement('p')
     leagueProgress.id = 'leagueProgress'
-    $(leagueProgress).text(leagueData.leagueProgress)
+    $(leagueProgress).text(`${leagueData.lp} points`)
     var leagueName = document.createElement('p')
     leagueName.id = 'leagueName'
     $(leagueName).text(leagueData.leagueName)
     var calcMMR = document.createElement('p')
     calcMMR.id = 'calcMMR'
-    $(calcMMR).text(leagueData.mmr)
+    $(calcMMR).text(`LolByte Score: ${leagueData.score}`)
     var rankedWL = document.createElement('p')
     rankedWL.id = 'rankedWL'
-    $(rankedWL).text(leagueData.rankedWL)
-    var rankedWinRatio = document.createElement('p')
-    rankedWinRatio.id = 'rankedWinRatio'
-    $(rankedWinRatio).text(leagueData.rankedWinRatio)
-    var lastSeasonRank = document.createElement('p')
-    lastSeasonRank.id = 'lastSeasonRank'
-    $(lastSeasonRank).text(leagueData.lastSeasonRank)
+    $(rankedWL).text(`${leagueData.wins} wins`)
 
     leagueElement.appendChild(rankQueueType)
     leagueElement.appendChild(rankBadge)
@@ -138,10 +132,7 @@ function buildLeagueElement(leagueData) {
         leagueRankStats.appendChild(leagueName)
         leagueRankStats.appendChild(calcMMR)
         leagueRankStats.appendChild(rankedWL)
-        leagueRankStats.appendChild(rankedWinRatio)
     }
-
-    leagueRankStats.appendChild(lastSeasonRank)
 
     return leagueElement
 };
@@ -150,21 +141,24 @@ function buildPlayerStatElement(playerStatData) {
     var playerStatElement = document.createElement('div')
     var playerStatType = document.createElement('p')
     playerStatType.id = 'playerStatType'
-    $(playerStatType).text(playerStatData.playerStatType)
+    $(playerStatType).text(`Last ${playerStatData.games} Games`)
     var winPercentage = document.createElement('img')
     winPercentage.id = 'winPercentage'
-    winPercentage.src = 'img/assets/percent' + playerStatData.winPercentage + '.png'
+    winPercentage.src = 'img/assets/' + playerStatData.winPercentage + '.svg'
     var recentGamesStats = document.createElement('div')
     recentGamesStats.id = 'recentGamesStats'
     var kdaLong = document.createElement('p')
     kdaLong.id = 'kdaLong'
-    $(kdaLong).text(playerStatData.kdaLong)
+    $(kdaLong).text(`${playerStatData.kills.toFixed(1)}/${playerStatData.deaths.toFixed(1)}/${playerStatData.assists.toFixed(1)}`)
     var kdaShort = document.createElement('p')
     kdaShort.id = 'kdaShort'
-    $(kdaShort).text(playerStatData.kdaShort)
+    $(kdaShort).text(`${(
+        (playerStatData.kills + playerStatData.assists) /
+        Math.max(playerStatData.deaths, 1)
+      ).toFixed(2)} KDA`)
     var averageWardsPlaced = document.createElement('p')
     averageWardsPlaced.id = 'averageWardsPlaced'
-    $(averageWardsPlaced).text(playerStatData.averageWardsPlaced)
+    $(averageWardsPlaced).text(`${playerStatData.wards} Wards Placed`)
 
     playerStatElement.appendChild(playerStatType)
     playerStatElement.appendChild(winPercentage)
@@ -176,68 +170,81 @@ function buildPlayerStatElement(playerStatData) {
     return playerStatElement
 };
 
-function buildchampionStatElement(championStatData) {
+function buildMostPlayedChampsStatElement(championStatData) {
     var championStatElement = document.createElement('div')
     championStatElement.id = 'championStatElement'
     var championStatType = document.createElement('p')
     championStatType.id = 'championStatType'
-    $(championStatType).text(championStatData.championStatType)
+    $(championStatType).text("Most Played (Recent)")
 
-    if (championStatData.mostPlayedChampions) {
-        var mostPlayedChampions = document.createElement('div')
-        mostPlayedChampions.id = 'mostPlayedChampions'
-        for (champion in championStatData.mostPlayedChampions) {
-            var currentChampion = championStatData.mostPlayedChampions[champion]
-            var mostPlayedChampion = document.createElement('div')
-            mostPlayedChampion.id = 'mostPlayedChampion'
-            var championImage = document.createElement('img')
-            championImage.src = CDRAGON_BASE_URL + 'champion/' + currentChampion.championId + '/square'
-            $(championImage).css('border', '3px solid ' + currentChampion.championBorder)
-            var championName = document.createElement('p')
-            championName.id = 'championName'
-            $(championName).text(currentChampion.championName)
-            var championWinLossPercentage = document.createElement('p')
-            championWinLossPercentage.id = 'championWinLossPercentage'
-            $(championWinLossPercentage).text(currentChampion.championGamesPlayed)
-            mostPlayedChampion.appendChild(championImage)
-            mostPlayedChampion.appendChild(championName)
-            mostPlayedChampion.appendChild(championWinLossPercentage)
-            mostPlayedChampions.appendChild(mostPlayedChampion)
-        }
-
-        championStatElement.appendChild(championStatType)
-        championStatElement.appendChild(mostPlayedChampions)
-    } else {
-        var topChampions = document.createElement('div')
-        topChampions.id = 'topChampions'
-        for (champion in championStatData.topChampions) {
-            var currentChampion = championStatData.topChampions[champion]
-            var topChampion = document.createElement('div')
-            topChampion.id = 'topChampion'
-            var championImage = document.createElement('img')
-            championImage.src = CDRAGON_BASE_URL + 'champion/' + currentChampion.championId + '/square'
-            $(championImage).css('border', '3px solid ' + currentChampion.masteryBorder)
-            var championName = document.createElement('p')
-            championName.id = 'championName'
-            $(championName).text(currentChampion.championName)
-            var championLevel = document.createElement('p')
-            championLevel.id = 'championLevel'
-            $(championLevel).text(currentChampion.championLevel)
-            var championPoints = document.createElement('p')
-            championPoints.id = 'championPoints'
-            $(championPoints).text(currentChampion.championPoints)
-
-            topChampion.appendChild(championImage)
-            topChampion.appendChild(championName)
-            topChampion.appendChild(championLevel)
-            topChampion.appendChild(championPoints)
-            topChampions.appendChild(topChampion)
-        }
-
-        championStatElement.appendChild(championStatType)
-        championStatElement.appendChild(topChampions)
+    var mostPlayedChampions = document.createElement('div')
+    mostPlayedChampions.id = 'mostPlayedChampions'
+    for (champion in championStatData.champs) {
+        var currentChampion = championStatData.champs[champion]
+        var mostPlayedChampion = document.createElement('div')
+        mostPlayedChampion.id = 'mostPlayedChampion'
+        var championImage = document.createElement('img')
+        championImage.src = CDRAGON_BASE_URL + 'champion/' + currentChampion.id + '/square'
+        $(championImage).css('border', '3px solid white')
+        var championName = document.createElement('p')
+        championName.id = 'championName'
+        $(championName).text(currentChampion.name)
+        var championWinLossPercentage = document.createElement('p')
+        championWinLossPercentage.id = 'championWinLossPercentage'
+        $(championWinLossPercentage).text(`Games Played: ${currentChampion.gamesPlayed}`)
+        mostPlayedChampion.appendChild(championImage)
+        mostPlayedChampion.appendChild(championName)
+        mostPlayedChampion.appendChild(championWinLossPercentage)
+        mostPlayedChampions.appendChild(mostPlayedChampion)
     }
 
+    championStatElement.appendChild(championStatType)
+    championStatElement.appendChild(mostPlayedChampions)
+    return championStatElement
+};
+
+function buildTopChampsStatElement(championStatData) {
+    var championStatElement = document.createElement('div')
+    championStatElement.id = 'championStatElement'
+    var championStatType = document.createElement('p')
+    championStatType.id = 'championStatType'
+    $(championStatType).text("Top Champions (Mastery)")
+    
+    var topChampions = document.createElement('div')
+    topChampions.id = 'topChampions'
+    for (champion in championStatData.champs) {
+        var currentChampion = championStatData.champs[champion]
+        var topChampion = document.createElement('div')
+        topChampion.id = 'topChampion'
+        var championImage = document.createElement('img')
+        championImage.src = CDRAGON_BASE_URL + 'champion/' + currentChampion.id + '/square'
+        masteryBorder = currentChampion.level === 7
+            ? '#214076'
+            : currentChampion.level === 6
+            ? '#623474'
+            : currentChampion.level === 5
+            ? '#6B2120'
+            : '#6E5630'
+        $(championImage).css('border', '3px solid ' + masteryBorder)
+        var championName = document.createElement('p')
+        championName.id = 'championName'
+        $(championName).text(currentChampion.name)
+        var championLevel = document.createElement('p')
+        championLevel.id = 'championLevel'
+        $(championLevel).text(`Level: ${currentChampion.level}`)
+        var championPoints = document.createElement('p')
+        championPoints.id = 'championPoints'
+        $(championPoints).text(`Points: ${currentChampion.points}`)
+
+        topChampion.appendChild(championImage)
+        topChampion.appendChild(championName)
+        topChampion.appendChild(championLevel)
+        topChampion.appendChild(championPoints)
+        topChampions.appendChild(topChampion)
+    }
+
+    championStatElement.appendChild(championStatType)
+    championStatElement.appendChild(topChampions)
     return championStatElement
 };
 

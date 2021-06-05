@@ -54,7 +54,6 @@ function updateMatchDetailSelectionElement(matchId) {
     $('#wrapBadgeList').empty()
     var badgeList = document.createElement('div')
     badgeList.id = 'badgeList'
-
     for (var j = 0; j < selectedSummoner.badges.length; j++) {
         var badgeMetadata = getBadge(selectedSummoner.badges[j])
         var badge = document.createElement('div')

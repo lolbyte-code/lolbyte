@@ -14,32 +14,20 @@ function buildLandingPage(pageData) {
 };
 
 function buildSummonerPage(pageData) {
-    // Refresh lists using Owl
-    refreshOwlList($('#recentGamesList'), 'recentGamesList', $('.recentGames'))
-
     // Top summoner information
-    $('.summonerBar #summonerName').html(pageData.summonerName)
+    $('.summonerBar #summonerName').html(pageData.name)
     $('.summonerBar #summonerName').click(function() { headerSummonerNameClicked() })
-    $('.summonerBar #summonerLevel').html('Level ' + pageData.summonerLevel)
+    $('.summonerBar #summonerLevel').html('Level ' + pageData.level)
 
     // Hide in-game button if summoner isn't in game
     !pageData.inGame ? $('#inGameButton').hide():''
     initCurrentGamePage()
 
     // Determine if viewing a favorite summoner
-    if (getSummoner(pageData.summonerId, 'favoriteSummoners')) {
+    if (getSummoner(pageData.id, 'favoriteSummoners')) {
         $('.summonerBar #summonerFavoriteButton').attr('src', 'img/assets/favoriteButton.png')
     } else {
         $('.summonerBar #summonerFavoriteButton').attr('src', 'img/assets/favoriteButtonOff.png')
-    }
-
-    // Recent games section
-    for (var game in pageData.recentGames)
-        $('.recentGames #recentGamesList').append(buildRecentGameElement(pageData.recentGames[game], game))
-
-    if (isFirefox && OSName == 'Windows') {
-        $('.recentGames #recentGamesList #recentGameKDA').css('top', '-30px')
-        $('.recentGames #recentGamesList #recentGameResult').css('top', '-35px')
     }
 };
 
@@ -52,19 +40,15 @@ function buildSummonerNotFoundPage() {
     }
 };
 
-function buildStatsPage(pageData) {
-    // Refresh lists using Owl
-    refreshOwlList($('#playerStatsList'), 'playerStatsList', $('.playerStats'))
-
-    // Player stats section
-    for (var playerStat in pageData.playerStats)
-        $('.playerStats #playerStatsList').append(buildPlayerStatElement(pageData.playerStats[playerStat]))
+function buildStatsPage() {
+    // Recent games section
+    initRecentGamesPage()
 
     // League stats section
     initLeaguePage()
 
-    // Ranked stats section
-    initMostPlayedChampions()
+    // Player stats section
+    initStatsPage()
 };
 
 function buildMatchDetailsPage(pageData) {

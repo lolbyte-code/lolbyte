@@ -240,3 +240,13 @@ function getBadge(badge) {
             return {big: "triple kill", small: "3", color: "#38B171"}
       }
 };
+
+function buildSummonerObject(summonerResponse) {
+    return {
+        region: summonerResponse.region.toUpperCase(),
+        summonerId: summonerResponse.id,
+        summonerName: summonerResponse.name,
+        summonerLevel: summonerResponse.level,
+        summonerIcon: summonerResponse.icon
+    }
+};
