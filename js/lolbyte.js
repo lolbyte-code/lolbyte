@@ -1,5 +1,5 @@
 /*** CONSTANTS ***/
-var NEW_API_BASE_URL = 'http://localhost:8080/api/v4';
+var NEW_API_BASE_URL = 'https://lolbyte.services/api/v4';
 var MAX_SUMMONER_LIST_SIZE = 20
 var MAX_GAME_COUNT = 20
 var CDRAGON_BASE_URL = 'https://cdn.communitydragon.org/latest/'
