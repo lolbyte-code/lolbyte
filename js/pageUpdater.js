@@ -43,6 +43,8 @@ function updateStatisticsPage(statsData) {
     showPage('summonerPage')
     showPage('statsPage')
     hidePage('loader')
+
+    initCurrentGamePage()
 };
 
 function updateCurrentGamePage(currentGameData) {

@@ -21,7 +21,6 @@ function buildSummonerPage(pageData) {
 
     // Hide in-game button if summoner isn't in game
     !pageData.inGame ? $('#inGameButton').hide():''
-    initCurrentGamePage()
 
     // Determine if viewing a favorite summoner
     if (getSummoner(pageData.id, 'favoriteSummoners')) {
