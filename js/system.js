@@ -19,6 +19,10 @@ if (isFirefox) {
     $('body').css('overflow-y', 'hidden')
     $('body').css('overflow-x', 'hidden')
     $('#inGameButton').css('top', '-140px')
+    $('#inGameButton').css('left', '424px')
+    $('#inGameButton').css('width', '89px')
+    $('#recentGamesType').css('left', '524px')
+    $('#recentGamesType').css('top', '-67px')
 }
 
 if (isFirefox && OSName == 'Windows') {
