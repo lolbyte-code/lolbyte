@@ -112,7 +112,7 @@ function buildLeagueElement(leagueData) {
     $(rank).text(leagueData.rank)
     var leagueProgress = document.createElement('p')
     leagueProgress.id = 'leagueProgress'
-    $(leagueProgress).text(`${leagueData.lp} points`)
+    $(leagueProgress).text(leagueData.series === '' ? `${leagueData.lp} points` : `In Series: ${leagueData.series}`)
     var leagueName = document.createElement('p')
     leagueName.id = 'leagueName'
     $(leagueName).text(leagueData.leagueName)
