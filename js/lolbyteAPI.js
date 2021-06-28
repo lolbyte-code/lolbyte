@@ -61,8 +61,9 @@ function initCurrentGamePage() {
 };
 
 function initRecentGamesPage() {
+    var gameType = document.getElementById("recentGamesType").value
     rgeaLog()
-    $.getJSON(`${NEW_API_BASE_URL}/recentGames/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}`, function(gamesData) {
+    $.getJSON(`${NEW_API_BASE_URL}/recentGames/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}&queueId=${gameType}`, function(gamesData) {
         updateRecentGamesPage(gamesData)
     });
 };
@@ -75,8 +76,9 @@ function initLeaguePage() {
 };
 
 function initStatsPage() {
+    var gameType = document.getElementById("recentGamesType").value
     rgeaLog()
-    $.getJSON(`${NEW_API_BASE_URL}/statistics/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}`, function(statsData) {
+    $.getJSON(`${NEW_API_BASE_URL}/statistics/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}&queueId=${gameType}`, function(statsData) {
         updateStatisticsPage(statsData)
     });
 };
