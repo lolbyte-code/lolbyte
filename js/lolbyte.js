@@ -5,10 +5,22 @@ var MAX_GAME_COUNT = 20
 var CDRAGON_BASE_URL = 'https://cdn.communitydragon.org/latest/'
 var DDRAGON_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn/'
 
+var spellUrls = new Map();
+
 $.getJSON('https://ddragon.leagueoflegends.com/api/versions.json', function(versionsData) {
     var latestVersion = versionsData[0]
     DDRAGON_BASE_URL = DDRAGON_BASE_URL + latestVersion + '/'
+    $.getJSON(`${DDRAGON_BASE_URL}data/en_US/summoner.json`, function(spellsData) {
+        Object.entries(spellsData.data).forEach((entry) =>
+        spellUrls.set(
+          parseInt(entry[1].key),
+          `${DDRAGON_BASE_URL}img/spell/${entry[1].image.full}`,
+        ),
+      );
+    })
 });
+
+const getSpellIcon = (spellId) => spellUrls.get(spellId);
 
 /*** APP VARIABLES ***/
 var SELECTED_MATCH

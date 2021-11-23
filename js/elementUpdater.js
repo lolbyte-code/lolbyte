@@ -22,11 +22,7 @@ function updateMatchDetailSelectionElement(matchId) {
             });
         }
         var itemImage = document.createElement('img')
-        if (selectedSummoner.items[i]['id'] == 0) {
-            itemImage.src = 'img/resources/items/0.png'
-        } else {
-            itemImage.src = DDRAGON_BASE_URL + 'img/item/' + selectedSummoner.items[i]['id'] + '.png'
-        }
+        itemImage.src = DDRAGON_BASE_URL + 'img/item/' + selectedSummoner.items[i]['id'] + '.png'
         item.appendChild(itemImage)
         $('#matchDetailSelection #itemList').append(item)
     }
@@ -43,8 +39,8 @@ function updateMatchDetailSelectionElement(matchId) {
     $('#matchDetailSelection #stats2 #cs').html(selectedSummoner.cs + " CS, ")
     $('#matchDetailSelection #stats2 #gold').html((selectedSummoner.gold / 1000).toFixed(1) + "k Gold, ")
     $('#matchDetailSelection #stats2 #kp').html("Kill Participation: " + selectedSummoner.killParticipation + "%")
-    $('#matchDetailSelection #spellList #spell1').attr('src', 'img/resources/spells/' + selectedSummoner.spells[0] + '.png')
-    $('#matchDetailSelection #spellList #spell2').attr('src', 'img/resources/spells/' + selectedSummoner.spells[1] + '.png')
+    $('#matchDetailSelection #spellList #spell1').attr('src', getSpellIcon(selectedSummoner.spells[0]))
+    $('#matchDetailSelection #spellList #spell2').attr('src', getSpellIcon(selectedSummoner.spells[1]))
     $('#matchDetailSelection #playerInfo #summonerName').html(selectedSummoner.name)
     $('#matchDetailSelection #playerInfo #rank').html(selectedSummoner.rank)
     $('#matchDetailSelection #playerInfo #championName').html(selectedSummoner.champName)

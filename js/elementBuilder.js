@@ -295,11 +295,7 @@ function buildMatchDetailSelectionElement(matchDetailData) {
             });
         }
         var itemImage = document.createElement('img')
-        if (selectedSummoner.items[i]['id'] == 0) {
-            itemImage.src = 'img/resources/items/0.png'
-        } else {
-            itemImage.src = DDRAGON_BASE_URL + 'img/item/' + selectedSummoner.items[i]['id'] + '.png'
-        }
+        itemImage.src = DDRAGON_BASE_URL + 'img/item/' + selectedSummoner.items[i]['id'] + '.png'
         item.appendChild(itemImage)
         itemList.appendChild(item)
     }
@@ -343,11 +339,11 @@ function buildMatchDetailSelectionElement(matchDetailData) {
     spellList.id = 'spellList'
     var spell1 = document.createElement('img')
     spell1.id = 'spell1'
-    spell1.src = 'img/resources/spells/' + selectedSummoner.spells[0] + '.png'
+    spell1.src = getSpellIcon(selectedSummoner.spells[0])
     spellList.appendChild(spell1)
     var spell2 = document.createElement('img')
     spell2.id = 'spell2'
-    spell2.src = 'img/resources/spells/' + selectedSummoner.spells[1] + '.png'
+    spell2.src = getSpellIcon(selectedSummoner.spells[1])
     spellList.appendChild(spell2)
 
     var playerInfo = document.createElement('div')
@@ -526,11 +522,7 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
                     });
                 }
                 var itemImage = document.createElement('img')
-                if (currentSummoner.items[j]['id'] == 0) {
-                    itemImage.src = 'img/resources/items/0.png'
-                } else {
-                    itemImage.src = DDRAGON_BASE_URL + 'img/item/' + currentSummoner.items[j]['id'] + '.png'
-                }
+                itemImage.src = DDRAGON_BASE_URL + 'img/item/' + currentSummoner.items[j]['id'] + '.png'
                 item.appendChild(itemImage)
                 itemList.appendChild(item)
             }
@@ -539,11 +531,11 @@ function buildMatchDetailTeamElement(matchDetailData, teamNumber) {
             spellList.id = 'spellList'
             var spell1 = document.createElement('img')
             spell1.id = 'spell1'
-            spell1.src = 'img/resources/spells/' + currentSummoner.spells[0] + '.png'
+            spell1.src = getSpellIcon(currentSummoner.spells[0])
             spellList.appendChild(spell1)
             var spell2 = document.createElement('img')
             spell2.id = 'spell2'
-            spell2.src = 'img/resources/spells/' + currentSummoner.spells[1] + '.png'
+            spell2.src = getSpellIcon(currentSummoner.spells[1])
             spellList.appendChild(spell2)
 
             var wrapBadgeList = document.createElement('div')
