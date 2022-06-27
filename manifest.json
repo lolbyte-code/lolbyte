@@ -5,12 +5,7 @@
     "description":"Powered by Riot's Official API, quickly view detailed information about a summoner all within a lightweight extension.",
     "short_name":"LolByte",
 
-    "version": "2021.12.14",
-
-    "permissions": [
-        "tabs",
-        "storage"
-    ],
+    "version": "2022.06.27",
 
     "host_permissions": [
         "http://lolbyte.me/",
