@@ -33,6 +33,8 @@ function getSummoner(summonerId, listType) {
 
 function updateRecentSummoners(summonerObject) {
     var recentSummoners = getSummoners('recentSummoners')
+    // Stops duplicates if API key changes
+    recentSummoners = recentSummoners.filter((summoner) => summoner.summonerName !== summonerObject.summonerName)
     var targetSummoner = getSummoner(summonerObject.summonerId, 'recentSummoners')
     if (targetSummoner) {
         recentSummoners.splice(targetSummoner['index'], 1)
@@ -51,6 +53,8 @@ function removeRecentSummoner(summonerObject) {
 
 function addFavoriteSummoner(summonerObject) {
     var favoriteSummoners = getLocal('favoriteSummoners')
+    // Stops duplicates if API key changes
+    favoriteSummoners = favoriteSummoners.filter((summoner) => summoner.summonerName !== summonerObject.summonerName)
     favoriteSummoners.unshift(summonerObject)
     favoriteSummoners = favoriteSummoners.splice(0, MAX_SUMMONER_LIST_SIZE)
     setLocal('favoriteSummoners', favoriteSummoners)
