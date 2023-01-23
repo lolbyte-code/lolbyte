@@ -1,11 +1,11 @@
 {
-    "manifest_version": 3,
+    "manifest_version": 2,
 
     "name":"LolByte: League of Legends Summoner Search",
     "description":"Powered by Riot's Official API, quickly view detailed information about a summoner all within a lightweight extension.",
     "short_name":"LolByte",
 
-    "version": "2023.01.22",
+    "version": "2023",
 
     "host_permissions": [
         "http://lolbyte.me/",
