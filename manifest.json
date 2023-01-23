@@ -5,7 +5,7 @@
     "description":"Powered by Riot's Official API, quickly view detailed information about a summoner all within a lightweight extension.",
     "short_name":"LolByte",
 
-    "version": "2024",
+    "version": "2025",
 
     "host_permissions": [
         "http://lolbyte.me/",
@@ -25,7 +25,7 @@
 
     "browser_specific_settings": {
         "gecko": {
-            "id": "crxlolbyte@gmail.com"
+            "id": "@lolbyte"
         }
     }
 }
