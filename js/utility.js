@@ -44,7 +44,7 @@ function setOwlVisibility(className, listName, maxItemCount) {
 
 /* Helper functions */
 function formatText(text) {
-    return text.toLowerCase().replace(/[^a-zA-Z0-9\u0080-\uFFFF]/g, '')
+    return text.toLowerCase().replace(/[^#a-zA-Z0-9\u0080-\uFFFF]/g, '')
 };
 
 function formatTimestamp(timestamp) {
@@ -67,10 +67,10 @@ function setSelectedSummonerByParticipantId(matchId, participantId) {
     setMatchData(targetRecentGame)
 };
 
-function setSelectedSummonerBySummonerName(matchId, summonerName) {
+function setSelectedSummonerBySummonerId(matchId, summonerId) {
     var targetRecentGame = getMatchData(matchId)
     for (var i = 0; i < targetRecentGame.players.length; i++) {
-        if (targetRecentGame.players[i].name == summonerName) {
+        if (targetRecentGame.players[i].id == summonerId) {
             targetRecentGame.players[i]['selectedSummoner'] = true
         } else {
             targetRecentGame.players[i]['selectedSummoner'] = false
@@ -175,7 +175,7 @@ function getSearch(summonerOverride) {
     var searchedSummoner = summonerOverride ? summonerOverride.summonerName : $('#searchSummoner').val()
     var selectedRegion = summonerOverride ? summonerOverride.region : $('#regionSelector').val()
 
-    return {"summonerName": formatText(searchedSummoner), "region": selectedRegion}
+    return {"summonerName": formatText(searchedSummoner).replace("#", "%23"), "region": selectedRegion}
 };
 
 function getPlatformId() {

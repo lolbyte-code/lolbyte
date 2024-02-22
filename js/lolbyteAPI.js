@@ -38,7 +38,7 @@ function retrieveMatchData(matchId, teamId, championId) {
     rgeaLog()
     var targetGame = getMatchData(matchId)
     if (!targetGame) {
-        $.getJSON(`${NEW_API_BASE_URL}/matches/${matchId}?summonerId=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}&region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}`, function(matchDetailData) {
+        $.getJSON(`${NEW_API_BASE_URL}/matches/${matchId}?summonerId=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}&region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}&useRiotIds=true`, function(matchDetailData) {
             addMatchData(matchDetailData)
             matchDetailPage(matchId, teamId, championId)
             $('.matchId' + matchId + ' img').resetKeyframe();
@@ -48,14 +48,14 @@ function retrieveMatchData(matchId, teamId, championId) {
 };
 
 function matchDetailPage(matchId, teamId, championId) {
-    setSelectedSummonerBySummonerName(matchId, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerName)
+    setSelectedSummonerBySummonerId(matchId, SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId)
     loadLolByte(getMatchData(matchId))
     SELECTED_MATCH = matchId
 };
 
 function initCurrentGamePage() {
     rgeaLog()
-    $.getJSON(`${NEW_API_BASE_URL}/current/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}`, function(currentGameData) {
+    $.getJSON(`${NEW_API_BASE_URL}/current/${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].summonerId}?region=${SEARCH_SUMMONER_QUEUE[CURRENT_SUMMONER].region.toLowerCase()}&useRiotIds=true`, function(currentGameData) {
         updateCurrentGamePage(currentGameData)
     });
 };
